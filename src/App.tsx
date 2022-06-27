@@ -1,18 +1,46 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import Typography from "@mui/material/Typography";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import logo from "./logo.svg";
+import "./App.css";
+import PatientPage from "./components/PatientPage";
 
-function App() {
-  const [count, setCount] = useState(0)
+const APPNAME = import.meta.env.VITE_APPNAME;
+
+const Home = () => {
+  const navigate = useNavigate();
+
+  const toggleHome = () => {
+    console.log("navigate!");
+    navigate("/patient");
+  };
 
   return (
-    <div className="App">
+    <div className="App" onClick={toggleHome}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Yakeen Clinic Azlan Aziz</p>
+        <Typography variant="h3">{APPNAME}</Typography>
+        <Typography variant="h6">
+          Medical Diagnostic Information System
+        </Typography>
       </header>
     </div>
-  )
+  );
+};
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/patient" element={<PatientPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
