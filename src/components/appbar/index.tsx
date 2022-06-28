@@ -1,5 +1,9 @@
 import HomeAppbar from "./home";
 
-export default function MenuAppBar() {
-  return <HomeAppbar />;
+type MenuAppBarProps = {
+handleNew: () => void;
+}
+
+export default function MenuAppBar(props: MenuAppBarProps) {
+  return <HomeAppbar handleNew={props.handleNew} />;
 }

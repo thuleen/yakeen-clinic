@@ -21,7 +21,7 @@ const CapturePhoto = (props: FormProps) => {
     setStartCamera((old) => !old);
   };
 
-  function handleTakePhoto(dataUri) {
+  function handleTakePhoto(dataUri : string) {
     // Do stuff with the photo...
     console.log("takePhoto");
   }

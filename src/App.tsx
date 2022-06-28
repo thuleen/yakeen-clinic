@@ -9,36 +9,47 @@ import {
 } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-import PatientPage from "./components/PatientPage";
+import TransactionPage from "./components/TransactionPage";
+import TransactionsPage from "./components/TransactionsPage";
 
 const APPNAME = import.meta.env.VITE_APPNAME;
 
-const Home = () => {
-  const navigate = useNavigate();
+type HomeProps = {
+ toggleHome: () => void;
+}
 
-  const toggleHome = () => {
-    console.log("navigate!");
-    navigate("/patient");
-  };
+const Home = (props: HomeProps) => {
+
+const { toggleHome } = props;
 
   return (
     <div className="App" onClick={toggleHome}>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <div style={{ marginBottom: "15rem"}}>
         <Typography variant="h3">{APPNAME}</Typography>
+        <img src={logo} className="App-logo" alt="logo" />
         <Typography variant="h6">
-          Medical Diagnostic Information System
+          Redefine Diagnostic Information System
         </Typography>
+        </div>
       </header>
     </div>
   );
 };
 
 function App() {
+  const navigate = useNavigate();
+
+  const toggleHome = () => {
+    console.log("navigate!");
+    navigate("/new-txn");
+  };
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/patient" element={<PatientPage />} />
+      <Route path="/" element={<Home toggleHome={toggleHome} />} />
+      <Route path="/new-txn" element={<TransactionPage />} />
+      <Route path="/transactions" element={<TransactionsPage toggleHome={toggleHome} />} />
     </Routes>
   );
 }

@@ -23,54 +23,45 @@ const steps = [
     label: "Step1",
     formId: "submission.step1",
     description: `Test kit tag number`,
-    component: (tagNo) => <TagNo tagNo={tagNo} />,
+    component: (tagNo: string) => <TagNo tagNo={tagNo} />,
   },
   {
     label: "Step2",
     formId: "submission.step2",
     description: `Patient details`,
-    component: () => <Patient />,
+    component: (tagNo: string) => <Patient tagNo={tagNo} formId="submission.step2" />,
   },
   {
     label: "Step3",
     formId: "submission.step3",
     description: `Key in the results`,
-    component: () => <TestResult />,
+    component: (tagNo: string) => <TestResult tagNo={tagNo} formId="submission.step3" />,
   },
   {
     label: "Step4",
     formId: "submission.step4",
     description: `Photo evidence`,
-    component: () => <CapturePhoto />,
+    component: (tagNo: string) => <CapturePhoto tagNo={tagNo} formId="submission.step4" />,
   },
   {
     label: "Step5",
     formId: "submission.step5",
     description: `Confirm to submit`,
-    component: (tagNo) => <Summary tagNo={tagNo} />,
+    component: (tagNo: string) => <Summary tagNo={tagNo} />,
   },
   {
     label: "Step6",
     formId: "submission.step6",
     description: `Submission`,
-    component: () => <Submission />,
+    component: (tagNo: string) => <Submission tagNo={tagNo} />,
   },
 ];
 
-export default function SubmissionSteps() {
+export default function SubmissionSteps({activeStep, handleNext, handleBack}:{activeStep: number, handleNext: () => void, handleBack: () => void}) {
   const theme = useTheme();
   const maxSteps = steps.length;
 
-  const [activeStep, setActiveStep] = React.useState<number>(0);
-  const [tagNo, setTagNo] = React.useState<string>(ranVerificationCode());
-
-  const handleNext = () => {
-    setActiveStep((prev) => prev + 1);
-  };
-
-  const handleBack = () => {
-    if (activeStep > 0) setActiveStep((prev) => prev - 1);
-  };
+  const [tagNo, setTagNo] = React.useState<string>(ranVerificationCode().toString());
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>

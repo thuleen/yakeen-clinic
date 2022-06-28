@@ -1,5 +1,8 @@
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Select from "react-select";
+import ValueType from "react-select";
+import Option from "react-select";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -9,8 +12,20 @@ import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import styles from "./styles";
 
+type OptionType = {
+  value: string;
+  label: string;
+};
+
+const options: OptionType[] = [
+  { value: "positive", label: "Positive" },
+  { value: "negative", label: "Negative" },
+  { value: "invalid", label: "Invalid" }
+];
+
 type FormValues = {
   notes: string;
+  result: string;
 };
 
 type FormProps = {
@@ -35,6 +50,11 @@ const TestResult = (props: FormProps) => {
     resolver: yupResolver(schema),
   });
 
+   const [selectedOption, setSelectedOption] = useState<OptionType>(options[0]);
+
+  const handleChange = (selectedOption: OptionType) => {
+  };
+
   const onSubmit = handleSubmit((data: any) => {
     console.log("submit");
   });
@@ -53,14 +73,9 @@ const TestResult = (props: FormProps) => {
             name="result"
             control={control}
             render={({ field }) => (
-              <Select
-                {...field}
-                options={[
-                  { value: "negative", label: "Negative" },
-                  { value: "positive", label: "Positive" },
-                  { value: "invalid", label: "Invalid" },
-                ]}
-              />
+                  <Select
+        options={options}
+      />
             )}
           />
         </FormControl>

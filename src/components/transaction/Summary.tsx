@@ -8,7 +8,7 @@ type TagNoProps = {
 const Summary = (props: TagNoProps) => {
   return (
     <div style={styles.container}>
-      Sumarry test ({props.tagNo}) before submission, ertc...
+       Test result summary ({props.tagNo}) before submission, etc...
     </div>
   );
 };

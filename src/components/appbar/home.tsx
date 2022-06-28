@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AppBar from "@mui/material/AppBar";
@@ -15,11 +15,12 @@ import logo from "../../asset/img/logo.svg";
 const APPNAME = import.meta.env.VITE_APPNAME;
 
 type AppbarProps = {
-  handleReset: () => void;
+  handleNew: () => void;
 };
 
 const HomeAppbar = (props: AppbarProps) => {
-  const { handleReset } = props;
+const navigate = useNavigate();
+  const { handleNew } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [openMenu, setOpenMenu] = React.useState<boolean>(false);
 
@@ -29,11 +30,11 @@ const HomeAppbar = (props: AppbarProps) => {
   };
 
   const toggleMenuItem = (pathName: string) => {
-    // navigate.push(pathName);
+    navigate(pathName);
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" style={{ backgroundColor: "#079992"}}>
       <Toolbar style={styles.toolbarContainer}>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={styles.logoContainer}>
@@ -59,10 +60,10 @@ const HomeAppbar = (props: AppbarProps) => {
         <div style={styles.settings}>
           <IconButton
             size="large"
-            aria-label="account of current user"
+            aria-label="create-new-transaction"
             aria-controls="menu-appbar"
             aria-haspopup="true"
-            onClick={handleReset}
+            onClick={handleNew}
             color="inherit"
           >
             <AddIcon style={{ color: "white" }} />
@@ -85,8 +86,8 @@ const HomeAppbar = (props: AppbarProps) => {
             open={openMenu}
             onClose={toggleMenu}
           >
-            <MenuItem onClick={() => toggleMenuItem("/transactions-history")}>
-              Transactions history
+            <MenuItem onClick={() => toggleMenuItem("/transactions")}>
+              Transactions
             </MenuItem>
           </Menu>
         </div>
