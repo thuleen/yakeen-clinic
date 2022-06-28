@@ -12,7 +12,7 @@ import "./App.css";
 import TransactionPage from "./components/TransactionPage";
 import TransactionsPage from "./components/TransactionsPage";
 
-const APPNAME = import.meta.env.VITE_APPNAME;
+const APPNAME = "YAQEEN";
 
 type HomeProps = {
   toggleHome: () => void;

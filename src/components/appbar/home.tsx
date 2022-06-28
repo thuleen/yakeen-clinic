@@ -12,7 +12,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./styles";
 import logo from "../../asset/img/logo.svg";
 
-const APPNAME = import.meta.env.VITE_APPNAME;
+// const APPNAME = import.meta.env.VITE_APPNAME;
+const APPNAME = "YAQEEN"
 
 type AppbarProps = {
   handleNew: () => void;
