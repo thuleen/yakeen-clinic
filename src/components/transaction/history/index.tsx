@@ -1,10 +1,11 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 const ranVerificationCode = () => {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
@@ -14,65 +15,150 @@ type VerifyItemProps = {
   pending?: boolean;
   patientName: string;
   tagNo: string;
+  toggleDetails: (tagNo: string) => void;
 };
 
-const TnxItem = ({ pending, patientName, tagNo }: VerifyItemProps) => {
+const TnxItem = ({
+  pending,
+  patientName,
+  tagNo,
+  toggleDetails,
+}: VerifyItemProps) => {
   return (
-  <ListItem button>
-    <div style={{ width: "100%", display: "flex", flexDirection: "row", margin: "0rem" }}>
+    <ListItem button onClick={() => toggleDetails(tagNo)}>
       <div
         style={{
-          flexGrow: 1,
+          width: "100%",
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
+          margin: "0rem",
         }}
       >
-        <Typography variant="body2">{ format(new Date(), "do LLL yyyy hh:mm:ssa") }</Typography>
-        {!pending ? (
-          <Typography variant="caption" style={{ color: "#16a085" }}>
-           COMPLETED 
+        <div
+          style={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography variant="body2">
+            {format(new Date(), "do LLL yyyy hh:mm:ssa")}
           </Typography>
-        ) : (
-          <Typography variant="caption" color="error">
-            PENDING
+          {!pending ? (
+            <Typography variant="caption" style={{ color: "#16a085" }}>
+              COMPLETED
+            </Typography>
+          ) : (
+            <Typography variant="caption" color="error">
+              PENDING
+            </Typography>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "end",
+          }}
+        >
+          <Typography
+            variant="body2"
+            style={{ fontFamily: "Abel", fontWeight: 600 }}
+          >
+            {tagNo}
           </Typography>
-        )}
+          <Typography variant="caption">{patientName}</Typography>
+        </div>
       </div>
-      <div
-        style={{ display: "flex", flexDirection: "column", alignItems: "end" }}
-      >
-        <Typography variant="body2" style={{ fontFamily: "Abel", fontWeight: 600}}>{tagNo}</Typography>
-        <Typography variant="caption">{patientName}</Typography>
-      </div>
-    </div>
     </ListItem>
   );
 };
 
 export default function TransactionsList() {
+  const navigate = useNavigate();
+
+  const toggleDetails = (tagNo: string) => {
+    navigate(`/transaction/${tagNo}`);
+  };
+
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <TnxItem pending={true} tagNo={ranVerificationCode()} patientName="Korap Bin Rasoohah" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={true}
+        tagNo={ranVerificationCode()}
+        patientName="Korap Bin Rasoohah"
+      />
       <Divider />
-      <TnxItem pending={true} tagNo={ranVerificationCode()} patientName="On Eng Dee Bee" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={true}
+        tagNo={ranVerificationCode()}
+        patientName="On Eng Dee Bee"
+      />
       <Divider />
-      <TnxItem pending={true} tagNo={ranVerificationCode()} patientName="Alloysious Cindy Apel" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={true}
+        tagNo={ranVerificationCode()}
+        patientName="Alloysious Cindy Apel"
+      />
       <Divider />
-      <TnxItem pending={true} tagNo={ranVerificationCode()} patientName="Jen Osten binti Sheikh Paya" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={true}
+        tagNo={ranVerificationCode()}
+        patientName="Jen Osten binti Sheikh Paya"
+      />
       <Divider />
-      <TnxItem pending={true} tagNo={ranVerificationCode()} patientName="On Eng Dee Bee" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={true}
+        tagNo={ranVerificationCode()}
+        patientName="On Eng Dee Bee"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="YB Semua Boleh Makan" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="YB Semua Boleh Makan"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="Moontal bin Mooncake" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="Moontal bin Mooncake"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="Hajee Holier Dan Dau" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="Hajee Holier Dan Dau"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="Bozo Ann Fekblon" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="Bozo Ann Fekblon"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="Saiko a/l Narsistik" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="Saiko a/l Narsistik"
+      />
       <Divider />
-      <TnxItem pending={false} tagNo={ranVerificationCode()} patientName="Ms Insta Snoflaque" />
+      <TnxItem
+        toggleDetails={toggleDetails}
+        pending={false}
+        tagNo={ranVerificationCode()}
+        patientName="Ms Insta Snoflaque"
+      />
       <Divider />
     </List>
   );

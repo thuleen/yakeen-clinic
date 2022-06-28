@@ -48,6 +48,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home toggleHome={toggleHome} />} />
       <Route path="/new-txn" element={<TransactionPage />} />
+      <Route path="/transaction/:uriTagNo" element={<TransactionPage />} />
       <Route
         path="/transactions"
         element={<TransactionsPage toggleHome={toggleHome} />}
