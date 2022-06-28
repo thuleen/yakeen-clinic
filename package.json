@@ -1,7 +1,7 @@
 {
   "name": "yaqeen-clinic",
   "homepage": "https://thuleen.github.io/yaqeen-clinic/",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "scripts": {
     "predeploy": "npm run build",

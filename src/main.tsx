@@ -9,7 +9,7 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <BrowserRouter basename="https://thuleen.github.io/yaqeen-clinic/">
         <App />
       </BrowserRouter>
     </ThemeProvider>

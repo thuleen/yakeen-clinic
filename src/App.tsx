@@ -15,22 +15,21 @@ import TransactionsPage from "./components/TransactionsPage";
 const APPNAME = import.meta.env.VITE_APPNAME;
 
 type HomeProps = {
- toggleHome: () => void;
-}
+  toggleHome: () => void;
+};
 
 const Home = (props: HomeProps) => {
-
-const { toggleHome } = props;
+  const { toggleHome } = props;
 
   return (
     <div className="App" onClick={toggleHome}>
       <header className="App-header">
-      <div style={{ marginBottom: "15rem"}}>
-        <Typography variant="h3">{APPNAME}</Typography>
-        <img src={logo} className="App-logo" alt="logo" />
-        <Typography variant="h6">
-          Redefine Diagnostic Information System
-        </Typography>
+        <div style={{ marginBottom: "15rem" }}>
+          <Typography variant="h3">{APPNAME}</Typography>
+          <img src={logo} className="App-logo" alt="logo" />
+          <Typography variant="h6">
+            Redefine Diagnostic Information System
+          </Typography>
         </div>
       </header>
     </div>
@@ -49,7 +48,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home toggleHome={toggleHome} />} />
       <Route path="/new-txn" element={<TransactionPage />} />
-      <Route path="/transactions" element={<TransactionsPage toggleHome={toggleHome} />} />
+      <Route
+        path="/transactions"
+        element={<TransactionsPage toggleHome={toggleHome} />}
+      />
     </Routes>
   );
 }
