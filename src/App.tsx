@@ -26,9 +26,14 @@ const Home = (props: HomeProps) => {
       <header className="App-header">
         <div style={{ marginBottom: "15rem" }}>
           <Typography variant="h3">{APPNAME}</Typography>
-          <img src={logo} className="App-logo" alt="logo" />
+          <div style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}>
+            <img src={logo} className="App-logo" alt="logo" />
+          </div>
           <Typography variant="h6">
             Redefine Diagnostic Information System
+          </Typography>
+<Typography variant="caption">
+            (Prototype - no actual data)
           </Typography>
         </div>
       </header>
