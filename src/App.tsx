@@ -44,18 +44,16 @@ function App() {
     navigate("/new-txn");
   };
 
-  return <div>Hello!</div>
-
-  // return (
-  //   <Routes>
-  //     <Route path="/" element={<Home toggleHome={toggleHome} />} />
-  //     <Route path="/new-txn" element={<TransactionPage />} />
-  //     <Route
-  //       path="/transactions"
-  //       element={<TransactionsPage toggleHome={toggleHome} />}
-  //     />
-  //   </Routes>
-  // );
+  return (
+    <Routes>
+      <Route path="/" element={<Home toggleHome={toggleHome} />} />
+      <Route path="/new-txn" element={<TransactionPage />} />
+      <Route
+        path="/transactions"
+        element={<TransactionsPage toggleHome={toggleHome} />}
+      />
+    </Routes>
+  );
 }
 
 export default App;
