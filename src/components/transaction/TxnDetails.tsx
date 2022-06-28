@@ -1,4 +1,6 @@
 import * as React from "react";
+import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -10,14 +12,17 @@ import EditIcon from "@mui/icons-material/Edit";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 
 type TxnDetailsProps = {
   tagNo: string;
+  pending: string;
 };
 
 const TxnDetails = (props: TxnDetailsProps) => {
-  const { tagNo } = props;
+  const { tagNo, pending } = props;
+  const navigate = useNavigate();
 
   return (
     <div style={{ width: "100%" }}>
@@ -29,7 +34,7 @@ const TxnDetails = (props: TxnDetailsProps) => {
           <ListItemText
             primary={
               <Typography color="primary" style={{ fontSize: "1em" }}>
-                Tag no#
+                Tag no# {pending === "true" ? `(Pending...)` : null}
               </Typography>
             }
             secondary={
@@ -92,14 +97,33 @@ const TxnDetails = (props: TxnDetailsProps) => {
           alignItems: "center",
         }}
       >
-        <QRCodeCanvas size={286} value={tagNo} />
-        <Divider style={{ height: "1rem" }} />
-        <Typography variant="body1" color="primary">
-          Share the code above with patient
-        </Typography>
-        <Typography variant="caption" color="error">
-          TODO: Code is dummy! Does not do anything!
-        </Typography>
+        {pending === "false" ? (
+          <div onClick={() => navigate("/transactions")}>
+            <QRCodeCanvas size={286} value={tagNo} />
+            <Divider style={{ height: "1rem" }} />
+            <Typography variant="body1" color="primary">
+              Share the code above with patient
+            </Typography>
+            <Typography variant="caption" color="error">
+              TODO: Code is dummy! Does not do anything!
+            </Typography>
+          </div>
+        ) : (
+          <>
+            <Alert
+              severity="warning"
+              style={{ marginTop: "1rem", marginBottom: "1rem" }}
+            >
+              Pending...
+            </Alert>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/transactions")}
+            >
+              Test completed and submit
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );

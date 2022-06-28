@@ -12,10 +12,10 @@ const ranVerificationCode = () => {
 };
 
 type VerifyItemProps = {
-  pending?: boolean;
+  pending: boolean;
   patientName: string;
   tagNo: string;
-  toggleDetails: (tagNo: string) => void;
+  toggleDetails: (tagNo: string, pending: boolean) => void;
 };
 
 const TnxItem = ({
@@ -25,7 +25,7 @@ const TnxItem = ({
   toggleDetails,
 }: VerifyItemProps) => {
   return (
-    <ListItem button onClick={() => toggleDetails(tagNo)}>
+    <ListItem button onClick={() => toggleDetails(tagNo, pending)}>
       <div
         style={{
           width: "100%",
@@ -77,8 +77,8 @@ const TnxItem = ({
 export default function TransactionsList() {
   const navigate = useNavigate();
 
-  const toggleDetails = (tagNo: string) => {
-    navigate(`/transaction/${tagNo}`);
+  const toggleDetails = (tagNo: string, pending: boolean) => {
+    navigate(`/transaction/${tagNo}/${pending}`);
   };
 
   return (

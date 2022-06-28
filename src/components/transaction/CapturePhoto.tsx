@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Camera from "react-html5-camera-photo";
+import Camera, { FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 
@@ -21,7 +21,7 @@ const CapturePhoto = (props: FormProps) => {
     setStartCamera((old) => !old);
   };
 
-  function handleTakePhoto(dataUri : string) {
+  function handleTakePhoto(dataUri: string) {
     // Do stuff with the photo...
     console.log("takePhoto");
   }
@@ -29,6 +29,7 @@ const CapturePhoto = (props: FormProps) => {
   if (startCamera) {
     return (
       <Camera
+        idealFacingMode={FACING_MODES.ENVIRONMENT}
         onTakePhoto={(dataUri) => {
           handleTakePhoto(dataUri);
         }}

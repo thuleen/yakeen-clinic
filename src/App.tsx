@@ -32,7 +32,7 @@ const Home = (props: HomeProps) => {
           <Typography variant="h6">
             Redefine Diagnostic Information System
           </Typography>
-<Typography variant="caption">
+          <Typography variant="caption">
             (Prototype - no actual data)
           </Typography>
         </div>
@@ -53,7 +53,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home toggleHome={toggleHome} />} />
       <Route path="/new-txn" element={<TransactionPage />} />
-      <Route path="/transaction/:uriTagNo" element={<TransactionPage />} />
+      <Route
+        path="/transaction/:uriTagNo/:pending"
+        element={<TransactionPage />}
+      />
       <Route
         path="/transactions"
         element={<TransactionsPage toggleHome={toggleHome} />}

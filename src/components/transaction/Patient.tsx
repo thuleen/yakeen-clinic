@@ -56,6 +56,10 @@ const Patient = (props: FormProps) => {
           ) : null}
         </FormControl>
       </form>
+      <Typography variant="caption">
+        Additional fields (passport, etc) can be added but not more than 2 - to
+        maintainm good UX!
+      </Typography>
     </div>
   );
 };

@@ -8,7 +8,7 @@ type TransactionPageProps = {};
 
 const TransactionPage = (props: TransactionPageProps) => {
   const navigate = useNavigate();
-  const { uriTagNo } = useParams();
+  const { uriTagNo, pending } = useParams();
   const [activeStep, setActiveStep] = React.useState<number>(0);
 
   const handleNew = () => {
@@ -26,7 +26,7 @@ const TransactionPage = (props: TransactionPageProps) => {
     return (
       <>
         <MenuAppBar handleNew={handleNew} />
-        <TxnDetails tagNo={uriTagNo} />
+        <TxnDetails tagNo={uriTagNo} pending={pending ? pending : "false"} />
       </>
     );
   }
