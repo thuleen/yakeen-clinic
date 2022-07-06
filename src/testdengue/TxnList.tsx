@@ -1,4 +1,5 @@
 import * as React from "react";
+import MenuAppBar from "../appbar";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -10,6 +11,10 @@ import { format } from "date-fns";
 const ranVerificationCode = () => {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
 };
+
+type TxnListProps = {
+    handleNew: () => void;
+}
 
 type VerifyItemProps = {
   pending: boolean;
@@ -74,7 +79,8 @@ const TnxItem = ({
   );
 };
 
-export default function TransactionsList() {
+export default function TxnList( props: TxnListProps ) {
+const { handleNew} = props;
   const navigate = useNavigate();
 
   const toggleDetails = (tagNo: string, pending: boolean) => {
@@ -82,6 +88,8 @@ export default function TransactionsList() {
   };
 
   return (
+  <>
+      <MenuAppBar handleNew={handleNew} />
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       <TnxItem
         toggleDetails={toggleDetails}
@@ -161,5 +169,6 @@ export default function TransactionsList() {
       />
       <Divider />
     </List>
+    </>
   );
 }

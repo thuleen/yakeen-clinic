@@ -29,19 +29,25 @@ const steps = [
     label: "Step2",
     formId: "submission.step2",
     description: `Patient details`,
-    component: (tagNo: string) => <Patient tagNo={tagNo} formId="submission.step2" />,
+    component: (tagNo: string) => (
+      <Patient tagNo={tagNo} formId="submission.step2" />
+    ),
   },
   {
     label: "Step3",
     formId: "submission.step3",
-    description: `Key in the results`,
-    component: (tagNo: string) => <TestResult tagNo={tagNo} formId="submission.step3" />,
+    description: `Click on G/M/C in diagram below`,
+    component: (tagNo: string) => (
+      <TestResult tagNo={tagNo} formId="submission.step3" />
+    ),
   },
   {
     label: "Step4",
     formId: "submission.step4",
     description: `Photo evidence`,
-    component: (tagNo: string) => <CapturePhoto tagNo={tagNo} formId="submission.step4" />,
+    component: (tagNo: string) => (
+      <CapturePhoto tagNo={tagNo} formId="submission.step4" />
+    ),
   },
   {
     label: "Step5",
@@ -57,11 +63,21 @@ const steps = [
   },
 ];
 
-export default function SubmissionSteps({activeStep, handleNext, handleBack}:{activeStep: number, handleNext: () => void, handleBack: () => void}) {
+export default function SubmissionSteps({
+  activeStep,
+  handleNext,
+  handleBack,
+}: {
+  activeStep: number;
+  handleNext: () => void;
+  handleBack: () => void;
+}) {
   const theme = useTheme();
   const maxSteps = steps.length;
 
-  const [tagNo, setTagNo] = React.useState<string>(ranVerificationCode().toString());
+  const [tagNo, setTagNo] = React.useState<string>(
+    ranVerificationCode().toString()
+  );
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>

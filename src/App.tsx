@@ -9,14 +9,22 @@ import {
 } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
-import TransactionPage from "./components/TransactionPage";
-import TransactionsPage from "./components/TransactionsPage";
+import SubmitPage from "./testdengue/SubmitPage";
+import TxnList from "./testdengue/TxnList";
 
 const APPNAME = "YAQEEN";
 
 type HomeProps = {
   toggleHome: () => void;
 };
+
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
 
 const Home = (props: HomeProps) => {
   const { toggleHome } = props;
@@ -42,7 +50,13 @@ const Home = (props: HomeProps) => {
 };
 
 function App() {
+  // const [windowDimensions, setWindowDimensions] = useState(
+  //   getWindowDimensions()
+  // );
   const navigate = useNavigate();
+  const handleNew = () => {
+    navigate("/new-txn");
+  };
 
   const toggleHome = () => {
     console.log("navigate!");
@@ -52,15 +66,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home toggleHome={toggleHome} />} />
-      <Route path="/new-txn" element={<TransactionPage />} />
-      <Route
-        path="/transaction/:uriTagNo/:pending"
-        element={<TransactionPage />}
-      />
-      <Route
-        path="/transactions"
-        element={<TransactionsPage toggleHome={toggleHome} />}
-      />
+      <Route path="/new-txn" element={<SubmitPage />} />
+      <Route path="/transaction/:uriTagNo/:pending" element={<SubmitPage />} />
+      <Route path="/transactions" element={<TxnList handleNew={handleNew} />} />
     </Routes>
   );
 }

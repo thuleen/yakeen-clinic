@@ -1,0 +1,70 @@
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    height: "30vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    margin: "1rem",
+  },
+  formContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    margin: "1rem",
+  },
+  randomNo: {
+    textAlign: "center",
+  },
+  randomNoText: {
+    fontSize: "5.0rem",
+    fontFamily: "Abel",
+    fontWeight: 600,
+  },
+  testKit: {},
+  g: {
+    position: "absolute",
+    top: "195px",
+    left: "124px",
+    backgroundColor: "#6F1E51",
+    width: "27px",
+    height: "85px",
+  },
+  g_off: {
+    position: "absolute",
+    top: "195px",
+    left: "124px",
+    width: "27px",
+    height: "85px",
+  },
+  m: {
+    position: "absolute",
+    top: "195px",
+    left: "196px",
+    backgroundColor: "#6F1E51",
+    width: "27px",
+    height: "85px",
+  },
+  m_off: {
+    position: "absolute",
+    top: "195px",
+    left: "196px",
+    width: "27px",
+    height: "85px",
+  },
+  c: {
+    position: "absolute",
+    top: "195px",
+    left: "268px",
+    backgroundColor: "#6F1E51",
+    width: "27px",
+    height: "85px",
+  },
+  c_off: {
+    position: "absolute",
+    top: "195px",
+    left: "268px",
+    width: "27px",
+    height: "85px",
+  },
+};
+export default styles;

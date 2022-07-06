@@ -10,17 +10,17 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./styles";
-import logo from "../../asset/img/logo.svg";
+import logo from "../asset/img/logo.svg";
 
 // const APPNAME = import.meta.env.VITE_APPNAME;
-const APPNAME = "YAQEEN"
+const APPNAME = "YAQEEN";
 
 type AppbarProps = {
   handleNew: () => void;
 };
 
 const HomeAppbar = (props: AppbarProps) => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const { handleNew } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [openMenu, setOpenMenu] = React.useState<boolean>(false);
@@ -35,7 +35,7 @@ const navigate = useNavigate();
   };
 
   return (
-    <AppBar position="static" style={{ backgroundColor: "#079992"}}>
+    <AppBar position="static" style={{ backgroundColor: "#079992" }}>
       <Toolbar style={styles.toolbarContainer}>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={styles.logoContainer}>

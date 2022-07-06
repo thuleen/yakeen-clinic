@@ -1,4 +1,8 @@
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import Select from "react-select";
+import ValueType from "react-select";
+import Option from "react-select";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -7,9 +11,22 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import styles from "./styles";
+import Testkit from "./Testkit";
+
+type OptionType = {
+  value: string;
+  label: string;
+};
+
+const options: OptionType[] = [
+  { value: "positive", label: "Positive" },
+  { value: "negative", label: "Negative" },
+  { value: "invalid", label: "Invalid" },
+];
 
 type FormValues = {
-  patientName: string;
+  notes: string;
+  result: string;
 };
 
 type FormProps = {
@@ -25,7 +42,7 @@ const schema = Yup.object().shape({
   // ),
 });
 
-const Patient = (props: FormProps) => {
+const TestResult = (props: FormProps) => {
   const {
     control,
     handleSubmit,
@@ -33,35 +50,26 @@ const Patient = (props: FormProps) => {
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
+
+  const [selectedOption, setSelectedOption] = useState<OptionType>(options[0]);
+
+  const toggleG = () => {
+    console.log("toggle G!");
+  };
+
+  const handleChange = (selectedOption: OptionType) => {};
+
   const onSubmit = handleSubmit((data: any) => {
     console.log("submit");
   });
+
   return (
     <div style={styles.formContainer}>
       <form id={props.formId} onSubmit={onSubmit}>
-        <FormControl fullWidth margin="normal" variant="outlined">
-          <InputLabel htmlFor="seafarerId">Patient name</InputLabel>
-          <Controller
-            name="patientName"
-            defaultValue=""
-            control={control}
-            render={({ field }) => (
-              <OutlinedInput id="patientName" label="Patient name" {...field} />
-            )}
-          />
-          {errors.patientName ? (
-            <FormHelperText error={true}>
-              {errors.patientName?.message}
-            </FormHelperText>
-          ) : null}
-        </FormControl>
+        <Testkit />
       </form>
-      <Typography variant="caption">
-        Additional fields (passport, etc) can be added but not more than 2 - to
-        maintainm good UX!
-      </Typography>
     </div>
   );
 };
 
-export default Patient;
+export default TestResult;

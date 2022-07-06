@@ -10,7 +10,7 @@ import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
-import styles from "./styles";
+import styles from "./forms/styles";
 
 type OptionType = {
   value: string;
@@ -20,7 +20,7 @@ type OptionType = {
 const options: OptionType[] = [
   { value: "positive", label: "Positive" },
   { value: "negative", label: "Negative" },
-  { value: "invalid", label: "Invalid" }
+  { value: "invalid", label: "Invalid" },
 ];
 
 type FormValues = {
@@ -50,10 +50,9 @@ const TestResult = (props: FormProps) => {
     resolver: yupResolver(schema),
   });
 
-   const [selectedOption, setSelectedOption] = useState<OptionType>(options[0]);
+  const [selectedOption, setSelectedOption] = useState<OptionType>(options[0]);
 
-  const handleChange = (selectedOption: OptionType) => {
-  };
+  const handleChange = (selectedOption: OptionType) => {};
 
   const onSubmit = handleSubmit((data: any) => {
     console.log("submit");
@@ -72,11 +71,7 @@ const TestResult = (props: FormProps) => {
           <Controller
             name="result"
             control={control}
-            render={({ field }) => (
-                  <Select
-        options={options}
-      />
-            )}
+            render={({ field }) => <Select options={options} />}
           />
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">

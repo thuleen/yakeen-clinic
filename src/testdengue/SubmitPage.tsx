@@ -1,18 +1,19 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import MenuAppBar from "../components/appbar";
-import TnxFormContainer from "./transaction";
-import TxnDetails from "./transaction/TxnDetails";
+import MenuAppBar from "../appbar";
+import TnxFormContainer from "./index";
+import TxnDetails from "./TxnDetails";
 
-type TransactionPageProps = {};
+type SubmitPageProps = {};
 
-const TransactionPage = (props: TransactionPageProps) => {
+const SubmitPage = (props: SubmitPageProps) => {
   const navigate = useNavigate();
   const { uriTagNo, pending } = useParams();
-  const [activeStep, setActiveStep] = React.useState<number>(0);
+  const [activeStep, setActiveStep] = React.useState<number>(2);
 
   const handleNew = () => {
     setActiveStep(0);
+    navigate("/new-txn");
   };
   const handleNext = () => {
     setActiveStep((prev) => prev + 1);
@@ -43,4 +44,4 @@ const TransactionPage = (props: TransactionPageProps) => {
   );
 };
 
-export default TransactionPage;
+export default SubmitPage;
