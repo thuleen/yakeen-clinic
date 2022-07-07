@@ -36,17 +36,17 @@ const steps = [
   {
     label: "Step3",
     formId: "submission.step3",
-    description: `Click C/M/G/C/T bands below`,
+    description: `Photo evidence`,
     component: (tagNo: string) => (
-      <TestResult tagNo={tagNo} formId="submission.step3" />
+      <CapturePhoto tagNo={tagNo} formId="submission.step3" />
     ),
   },
   {
     label: "Step4",
     formId: "submission.step4",
-    description: `Photo evidence`,
+    description: `Click C/M/G/C/T bands below`,
     component: (tagNo: string) => (
-      <CapturePhoto tagNo={tagNo} formId="submission.step4" />
+      <TestResult tagNo={tagNo} formId="submission.step4" />
     ),
   },
   {

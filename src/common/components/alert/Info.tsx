@@ -10,9 +10,9 @@ const Info = (props: any) => {
   const { interpretation } = props;
   if (!interpretation) {
     return (
-      <Alert variant="outlined" severity="warning" icon={false}>
-        <Typography color="primary" variant="body1" style={{ fontWeight: 600 }}>
-          Click the bands on the test kit diagram and click interpret.
+      <Alert variant="filled" severity="warning" icon={false}>
+        <Typography color="white" variant="body1">
+          Click the bands on the test kit diagram above and click INTERPRET.
         </Typography>
       </Alert>
     );
