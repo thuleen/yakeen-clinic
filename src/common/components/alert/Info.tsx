@@ -7,12 +7,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 const Info = (props: any) => {
-  const { interpretation } = props;
-  if (!interpretation) {
+  const { sample } = props;
+  if (!sample) {
     return (
       <Alert variant="filled" severity="warning" icon={false}>
         <Typography color="white" variant="body1">
-          Click the bands on the test kit diagram above and click INTERPRET.
+          Click the bands on the test kit diagram above.
         </Typography>
       </Alert>
     );
@@ -23,10 +23,10 @@ const Info = (props: any) => {
         Interpretation:
       </Typography>
       <div style={{ minHeight: "47px" }}>
-        <Typography variant="body1">{interpretation.result}</Typography>
+        <Typography variant="body1">{sample.interpretation}</Typography>
       </div>
       <Divider style={{ height: "1rem" }} />
-      {interpretation.igM ? (
+      {sample.igM ? (
         <Chip
           size="sm"
           variant="outlined"
@@ -41,7 +41,7 @@ const Info = (props: any) => {
           icon={<RemoveCircleIcon />}
         />
       )}
-      {interpretation.igG ? (
+      {sample.igG ? (
         <Chip
           size="sm"
           variant="outlined"
@@ -56,7 +56,7 @@ const Info = (props: any) => {
           icon={<RemoveCircleIcon />}
         />
       )}
-      {interpretation.ns1Ag ? (
+      {sample.ns1Ag ? (
         <Chip
           size="sm"
           variant="outlined"

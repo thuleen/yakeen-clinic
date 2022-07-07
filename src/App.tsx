@@ -54,9 +54,6 @@ function App() {
   //   getWindowDimensions()
   // );
   const navigate = useNavigate();
-  const handleNew = () => {
-    navigate("/new-txn");
-  };
 
   const toggleHome = () => {
     console.log("navigate!");
@@ -68,7 +65,7 @@ function App() {
       <Route path="/" element={<Home toggleHome={toggleHome} />} />
       <Route path="/new-txn" element={<SubmitPage />} />
       <Route path="/transaction/:uriTagNo/:pending" element={<SubmitPage />} />
-      <Route path="/transactions" element={<TxnList handleNew={handleNew} />} />
+      <Route path="/transactions" element={<TxnList />} />
     </Routes>
   );
 }

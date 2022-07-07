@@ -3,10 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-// import ReactSelectMaterialUi from "react-select-material-ui";
-// import Select from "react-select";
-// import ValueType from "react-select";
-// import Option from "react-select";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -16,11 +13,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import styles from "./styles";
+import { createPatient } from "../redux-saga/actions";
 
 type FormValues = {
-  patientName: string;
+  name: string;
   mobileNo: string;
   socialId: string;
+  idType: string;
 };
 
 type FormProps = {
@@ -29,12 +28,7 @@ type FormProps = {
 };
 
 const schema = Yup.object().shape({
-  patientName: Yup.string().required(),
-  mobileNo: Yup.string().matches(/^[0-9]{12}$/, "Must be a valid Seafarer Id"),
-  // seafarerId: Yup.string().matches(
-  //   /^[0-9]{12}$/,
-  //   "Must be a valid Seafarer Id"
-  // ),
+  name: Yup.string().required(),
 });
 
 const Patient = (props: FormProps) => {
@@ -45,10 +39,8 @@ const Patient = (props: FormProps) => {
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
-
-  // const handleChange = (event: SelectChangeEvent) => {
-  //   setAge(event.target.value as string);
-  // };
+  const dispatch = useDispatch();
+  const createNew = (payload: any) => dispatch(createPatient(payload));
 
   const [idType, setIdType] = useState<string>("nric");
 
@@ -57,25 +49,25 @@ const Patient = (props: FormProps) => {
   };
 
   const onSubmit = handleSubmit((data: any) => {
-    console.log("submit");
+    // console.log({ ...data, idType });
+    createNew({ ...data, idType, tagNo: props.tagNo });
   });
+
   return (
     <div style={styles.formContainer}>
       <form id={props.formId} onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
-          <InputLabel htmlFor="seafarerId">Patient name</InputLabel>
+          <InputLabel htmlFor="name">Patient name</InputLabel>
           <Controller
-            name="patientName"
+            name="name"
             defaultValue=""
             control={control}
             render={({ field }) => (
-              <OutlinedInput id="patientName" label="Patient name" {...field} />
+              <OutlinedInput id="name" label="Patient name" {...field} />
             )}
           />
-          {errors.patientName ? (
-            <FormHelperText error={true}>
-              {errors.patientName?.message}
-            </FormHelperText>
+          {errors.name ? (
+            <FormHelperText error={true}>{errors.name?.message}</FormHelperText>
           ) : null}
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">

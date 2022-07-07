@@ -51,8 +51,6 @@ const Testkit = (props: TestkitProps) => {
 
   const toggleG = () => {
     setG((prevVal) => !prevVal);
-    setCc((prevVal) => !prevVal);
-    setCc((prevVal) => !prevVal);
   };
 
   const toggleM = () => {
@@ -72,58 +70,21 @@ const Testkit = (props: TestkitProps) => {
   };
 
   const toggleReset = () => {
-    setC((prevVal) => !prevVal);
-    setM((prevVal) => !prevVal);
-    setG((prevVal) => !prevVal);
-    setCc((prevVal) => !prevVal);
-    setT((prevVal) => !prevVal);
+    setC(false);
+    setM(false);
+    setG(false);
+    setCc(false);
+    setT(false);
   };
 
   return (
-    <div style={{ marginTop: "0rem" }}>
+    <div style={{ marginTop: "0rem", marginBottom: "1rem" }}>
       <div style={c ? styles.c : styles.c_off} onClick={toggleC} />
       <div style={m ? styles.m : styles.m_off} onClick={toggleM} />
       <div style={g ? styles.g : styles.g_off} onClick={toggleG} />
       <div style={cC ? styles.cC : styles.cC_off} onClick={toggleCc} />
       <div style={t ? styles.t : styles.t_off} onClick={toggleT} />
-      <div
-        style={styles.testKit}
-        onClick={() => {
-          // Interpret
-          handleInterpret();
-        }}
-      >
-        <img src={testKit} />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          width: "95%",
-          marginTop: "0.3rem",
-          marginBottom: "0.5rem",
-        }}
-      >
-        <Button
-          size="small"
-          variant="outlined"
-          color="primary"
-          onClick={toggleReset}
-        >
-          clear
-        </Button>
-        <Divider style={{ width: "0.5rem" }} />
-        <Button
-          size="small"
-          variant="contained"
-          color="primary"
-          onClick={handleInterpret}
-          // onClick={increase}
-        >
-          interpret
-        </Button>
-      </div>
+      <img src={testKit} style={styles.testKit} onClick={handleInterpret} />
     </div>
   );
 };

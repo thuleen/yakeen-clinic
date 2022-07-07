@@ -7,14 +7,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import { format } from "date-fns";
+import { useDispatch, useSelector } from "react-redux";
+import { createSample, restartStep } from "./redux-saga/actions";
 
 const ranVerificationCode = () => {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
 };
 
-type TxnListProps = {
-    handleNew: () => void;
-}
+type TxnListProps = {};
 
 type VerifyItemProps = {
   pending: boolean;
@@ -79,96 +79,104 @@ const TnxItem = ({
   );
 };
 
-export default function TxnList( props: TxnListProps ) {
-const { handleNew} = props;
+export default function TxnList(props: TxnListProps) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const createNewSample = () => dispatch(createSample());
+  const restart = () => dispatch(restartStep());
+
+  const handleNew = () => {
+    navigate("/new-txn");
+    restart();
+    createNewSample();
+  };
 
   const toggleDetails = (tagNo: string, pending: boolean) => {
     navigate(`/transaction/${tagNo}/${pending}`);
   };
 
   return (
-  <>
+    <>
       <MenuAppBar handleNew={handleNew} />
-    <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={true}
-        tagNo={ranVerificationCode()}
-        patientName="Korap Bin Rasoohah"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={true}
-        tagNo={ranVerificationCode()}
-        patientName="On Eng Dee Bee"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={true}
-        tagNo={ranVerificationCode()}
-        patientName="Alloysious Cindy Apel"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={true}
-        tagNo={ranVerificationCode()}
-        patientName="Jen Osten binti Sheikh Paya"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={true}
-        tagNo={ranVerificationCode()}
-        patientName="On Eng Dee Bee"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="YB Semua Boleh Makan"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="Moontal bin Mooncake"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="Hajee Holier Dan Dau"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="Bozo Ann Fekblon"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="Saiko a/l Narsistik"
-      />
-      <Divider />
-      <TnxItem
-        toggleDetails={toggleDetails}
-        pending={false}
-        tagNo={ranVerificationCode()}
-        patientName="Ms Insta Snoflaque"
-      />
-      <Divider />
-    </List>
+      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={true}
+          tagNo={ranVerificationCode()}
+          patientName="Korap Bin Rasoohah"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={true}
+          tagNo={ranVerificationCode()}
+          patientName="On Eng Dee Bee"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={true}
+          tagNo={ranVerificationCode()}
+          patientName="Alloysious Cindy Apel"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={true}
+          tagNo={ranVerificationCode()}
+          patientName="Jen Osten binti Sheikh Paya"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={true}
+          tagNo={ranVerificationCode()}
+          patientName="On Eng Dee Bee"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="YB Semua Boleh Makan"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="Moontal bin Mooncake"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="Hajee Holier Dan Dau"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="Bozo Ann Fekblon"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="Saiko a/l Narsistik"
+        />
+        <Divider />
+        <TnxItem
+          toggleDetails={toggleDetails}
+          pending={false}
+          tagNo={ranVerificationCode()}
+          patientName="Ms Insta Snoflaque"
+        />
+        <Divider />
+      </List>
     </>
   );
 }
