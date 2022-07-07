@@ -36,7 +36,7 @@ const steps = [
   {
     label: "Step3",
     formId: "submission.step3",
-    description: `Click on G/M/C in diagram below`,
+    description: `Click C/M/G/C/T bands below`,
     component: (tagNo: string) => (
       <TestResult tagNo={tagNo} formId="submission.step3" />
     ),

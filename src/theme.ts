@@ -6,6 +6,7 @@ declare module "@mui/material/styles" {
     white: PaletteColorOptions;
     yellow: PaletteColorOptions;
     green: PaletteColorOptions;
+    red: PaletteColorOptions;
   }
   interface Palette extends CustomPalette {}
   interface PaletteOptions extends CustomPalette {}
@@ -16,6 +17,7 @@ declare module "@mui/material/Button" {
     white: true;
     yellow: true;
     green: true;
+    red: true;
   }
 }
 
@@ -24,6 +26,7 @@ declare module "@mui/material/Typography" {
     white: true;
     yellow: true;
     green: true;
+    red: true;
   }
 }
 
@@ -34,10 +37,11 @@ const createColor = (mainColor: any) =>
 
 const theme = createTheme({
   palette: {
-      primary: createColor("#079992"),
+    primary: createColor("#079992"),
     white: createColor("#ffffff"),
     yellow: createColor("#e1b12c"),
     green: createColor("#27ae60"),
+    red: createColor("#ED4C67"),
   },
   typography: {
     h1: {
