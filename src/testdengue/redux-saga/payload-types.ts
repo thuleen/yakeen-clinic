@@ -1,26 +1,26 @@
-type Sample = {
+export type Sample = {
   tagNo: string;
-  patientName: string;
-  patientMobileNo: string;
-  patientSocialId: string;
+  name: string;
+  mobileNo: string;
+  socialId: string;
+  idType: string;
   c: boolean;
   igM: boolean;
   igG: boolean;
   cC: boolean;
   ns1Ag: boolean;
   interpretation: string;
-  samplePhotoDataUri: string;
+  samplePhotoDataUri: string | null;
 };
-export { Sample };
 
-type Patient = {
+export type Patient = {
   idType: string;
   name: string;
   socialId: string;
   mobileNo: string;
 };
 
-type Photo = {
+export type Photo = {
   tagNo: string;
   dataUri: string;
 };

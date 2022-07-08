@@ -21,7 +21,6 @@ export default function SubmissionSteps({
 }: {
   tagNo: string;
   activeStep: number;
-  handleNext: () => void;
   handleBack: () => void;
 }) {
   const theme = useTheme();
@@ -64,12 +63,6 @@ export default function SubmissionSteps({
       formId: "submission.step5",
       description: `Confirm to submit`,
       component: (tagNo: string) => <Summary tagNo={tagNo} />,
-    },
-    {
-      label: "Step6",
-      formId: "submission.step6",
-      description: `Submission`,
-      component: (tagNo: string) => <Submission tagNo={tagNo} />,
     },
   ];
 

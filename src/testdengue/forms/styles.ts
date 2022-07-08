@@ -1,6 +1,6 @@
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    height: "30vh",
+    height: "50vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -108,6 +108,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "21px",
     height: "75px",
     transition: "0.3s ease-in-out",
+  },
+  btnReInterpret: {
+    position: "absolute",
+    top: "450px",
+    left: "315px",
   },
 };
 export default styles;

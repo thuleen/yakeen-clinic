@@ -95,7 +95,6 @@ export default function dengueReducer(
       };
 
     case INTERPRET_OK:
-      console.log(action);
       nuSamples = [...state.samples];
       let sampleWithTag = nuSamples.filter(
         (i) => i.tagNo === action.payload.tagNo

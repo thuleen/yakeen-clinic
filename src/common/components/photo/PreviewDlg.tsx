@@ -48,14 +48,14 @@ export default function PreviewDlg(props: PreviewDlgProps) {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            Photo
+            Photo evidence
           </Typography>
           <Button autoFocus color="inherit" onClick={handleClose}>
             close
           </Button>
         </Toolbar>
       </AppBar>
-      <div>
+      <div onClick={handleClose}>
         <img style={{ width: "100%", height: "auto" }} src={photoDataUri} />
       </div>
     </Dialog>

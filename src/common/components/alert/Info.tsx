@@ -5,9 +5,67 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import PrimaryText from "../patient/PrimaryText";
+import SecondaryText from "../patient/SecondaryText";
+
+const Chips = (props: any) => {
+  const { igM, igG, ns1Ag } = props;
+  return (
+    <div>
+      {igM ? (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="IgM"
+          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
+        />
+      ) : (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="IgM"
+          icon={<RemoveCircleIcon />}
+        />
+      )}
+      {igG ? (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="IgG"
+          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
+        />
+      ) : (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="IgG"
+          icon={<RemoveCircleIcon />}
+        />
+      )}
+      {ns1Ag ? (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="NS1Ag"
+          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
+        />
+      ) : (
+        <Chip
+          size="small"
+          variant="outlined"
+          label="NS1Ag"
+          icon={<RemoveCircleIcon />}
+        />
+      )}
+    </div>
+  );
+};
 
 const Info = (props: any) => {
-  const { sample } = props;
+  const { sample, textOnly } = props;
   if (!sample) {
     return (
       <Alert variant="filled" severity="warning" icon={false}>
@@ -22,54 +80,38 @@ const Info = (props: any) => {
       <Typography color="primary" variant="body2" style={{ fontWeight: 600 }}>
         Interpretation:
       </Typography>
-      <div style={{ minHeight: "47px" }}>
+      <div>
         <Typography variant="body1">{sample.interpretation}</Typography>
       </div>
-      <Divider style={{ height: "1rem" }} />
-      {sample.igM ? (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="IgM"
-          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
-        />
+      {textOnly ? (
+        <List dense sx={{ width: "100%", bgcolor: "background.paper" }}>
+          <ListItem>
+            <ListItemText
+              primary={<PrimaryText label="IgG" />}
+              secondary={
+                <SecondaryText value={sample.igG ? "Positive" : "Negative"} />
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={<PrimaryText label="IgM" />}
+              secondary={
+                <SecondaryText value={sample.igM ? "Positive" : "Negative"} />
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary={<PrimaryText label="NS1 Ag" />}
+              secondary={
+                <SecondaryText value={sample.ns1Ag ? "Positive" : "Negative"} />
+              }
+            />
+          </ListItem>
+        </List>
       ) : (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="IgM"
-          icon={<RemoveCircleIcon />}
-        />
-      )}
-      {sample.igG ? (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="IgG"
-          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
-        />
-      ) : (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="IgG"
-          icon={<RemoveCircleIcon />}
-        />
-      )}
-      {sample.ns1Ag ? (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="NS1Ag"
-          icon={<AddCircleIcon style={{ color: "#ED4C67" }} />}
-        />
-      ) : (
-        <Chip
-          size="sm"
-          variant="outlined"
-          label="NS1Ag"
-          icon={<RemoveCircleIcon />}
-        />
+        <Chips igG={sample.igG} igM={sample.igM} ns1Ag={sample.ns1Ag} />
       )}
     </Alert>
   );

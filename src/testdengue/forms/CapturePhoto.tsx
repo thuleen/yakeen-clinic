@@ -1,4 +1,6 @@
 import React from "react";
+import { useForm, Controller } from "react-hook-form";
+import Alert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -7,6 +9,8 @@ import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
 import { setSamplePhotoDataUri } from "../redux-saga/actions";
+import testKitPreview from "../../asset/img/dengue-testkit-overlay.png";
+import { DengueState } from "../../store";
 
 type FormValues = {
   patientName: string;
@@ -19,7 +23,13 @@ type FormProps = {
 
 const CapturePhoto = (props: FormProps) => {
   const [startCamera, setStartCamera] = React.useState<boolean>(false);
-  // const [dataUri, setDataUri] = React.useState<string | null>(null);
+  const [localDataUri, setLocalDataUri] = React.useState<string | null>(null);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({});
 
   const { selectSmplPhoto } = useSelector((state: DengueState) => state.dengue);
   const dispatch = useDispatch();
@@ -29,12 +39,34 @@ const CapturePhoto = (props: FormProps) => {
     setStartCamera((old) => !old);
   };
 
+  const onSubmit = handleSubmit((data: any) => {
+    setDataUri({ tagNo: props.tagNo, dataUri: localDataUri });
+  });
+
   function handleTakePhoto(dataUri: string) {
-    setDataUri({ tagNo: props.tagNo, dataUri: dataUri });
+    // setDataUri({ tagNo: props.tagNo, dataUri: dataUri });
+    setLocalDataUri(dataUri);
   }
 
-  if (selectSmplPhoto) {
-    return <PhotoPreview dataUri={selectSmplPhoto} />;
+  if (localDataUri) {
+    return (
+      <div>
+        <PhotoPreview dataUri={localDataUri} />
+        <div style={{ margin: "0.5rem", textAlign: "center" }}>
+          <Alert icon={false}>
+            You may <span style={{ fontFamily: "Oswald" }}>RETAKE</span> the
+            photo to ensure the subjects are in-focus. Once you click{" "}
+            <span style={{ fontFamily: "Oswald" }}>NEXT</span> to submit, you{" "}
+            <b>WILL NOT</b> be able to do it again.
+          </Alert>
+          <div style={{ height: "1rem" }} />
+          <Button variant="outlined" onClick={() => setLocalDataUri(null)}>
+            retake
+          </Button>
+        </div>
+        <form id={props.formId} onSubmit={onSubmit}></form>
+      </div>
+    );
   }
 
   if (startCamera) {
@@ -50,9 +82,10 @@ const CapturePhoto = (props: FormProps) => {
 
   return (
     <div style={styles.container}>
+      <img src={testKitPreview} alt="preview" onClick={toggleCamera} />
       <div style={{ textAlign: "center" }}>
         <Button variant="contained" onClick={toggleCamera}>
-          take photo
+          open camera
         </Button>
       </div>
     </div>

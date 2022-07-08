@@ -5,7 +5,7 @@ import styles from "./styles";
 import { nextStep } from "../redux-saga/actions";
 
 type TagNoProps = {
-  fornId: string;
+  formId: string;
   tagNo: string;
 };
 
@@ -21,7 +21,7 @@ const TagNo = (props: TagNoProps) => {
   const dispatch = useDispatch();
   const next = () => dispatch(nextStep());
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     next();
   };
 

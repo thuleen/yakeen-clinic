@@ -1,10 +1,12 @@
 import React from "react";
+import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuAppBar from "../appbar";
-import TnxFormContainer from "./index";
 import SubmissionSteps from "./forms/SubmissionSteps";
+import TxnDetails  from "./TxnDetails"
 import { createSample, restartStep } from "./redux-saga/actions";
+import { DengueState } from "../store";
 
 type SubmitPageProps = {};
 
@@ -54,7 +56,16 @@ const SubmitPage = (props: SubmitPageProps) => {
   return (
     <>
       <MenuAppBar handleNew={handleNew} />
-      <button onClick={() => createNewSample()}>get tag no</button>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          height: "70vh",
+        }}
+      >
+        <Button onClick={createNewSample}>start</Button>
+      </div>
     </>
   );
 };

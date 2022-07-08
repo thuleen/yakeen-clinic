@@ -100,7 +100,22 @@ const ranVerificationCode = () => {
 
 function* createSample() {
   const tagNo = ranVerificationCode();
-  yield put(sampleCreated({ tagNo }));
+  yield put(
+    sampleCreated({
+      tagNo: tagNo.toString(),
+      name: "",
+      mobileNo: "",
+      socialId: "",
+      idType: "",
+      c: false,
+      igM: false,
+      igG: false,
+      cC: false,
+      ns1Ag: false,
+      interpretation: "",
+      samplePhotoDataUri: null,
+    })
+  );
 }
 
 function* createPatient(action: any) {

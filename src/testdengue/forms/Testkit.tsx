@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import RedoIcon from "@mui/icons-material/Redo";
+import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +14,6 @@ import {
   increaseAsync,
   increaseCounter,
 } from "../redux-saga/actions";
-import { InterpretTestPayload } from "../redux-saga/payload-types";
 
 type TestkitProps = {
   tagNo: string;
@@ -20,14 +21,10 @@ type TestkitProps = {
 
 const Testkit = (props: TestkitProps) => {
   const { tagNo } = props;
-  const { count, interpretations } = useSelector(
-    (state: DengueState) => state.dengue
-  );
   const dispatch = useDispatch();
   const increase = () => dispatch(increaseCounter());
   const decrease = () => dispatch(decreaseCounter());
-  const interpret = (payload: InterpretTestPayload) =>
-    dispatch(interpretTest(payload));
+  const interpret = (payload: any) => dispatch(interpretTest(payload));
   const delayIncrease = () => dispatch(increaseAsync());
   const delayDecrease = () => dispatch(decreaseAsync());
 
@@ -85,6 +82,13 @@ const Testkit = (props: TestkitProps) => {
       <div style={cC ? styles.cC : styles.cC_off} onClick={toggleCc} />
       <div style={t ? styles.t : styles.t_off} onClick={toggleT} />
       <img src={testKit} style={styles.testKit} onClick={handleInterpret} />
+      <IconButton
+        style={styles.btnReInterpret}
+        color="primary"
+        onClick={handleInterpret}
+      >
+        <RedoIcon />
+      </IconButton>
     </div>
   );
 };
