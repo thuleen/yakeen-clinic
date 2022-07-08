@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuAppBar from "../appbar";
 import SubmissionSteps from "./forms/SubmissionSteps";
-import TxnDetails  from "./TxnDetails"
+import TxnDetails from "./TxnDetails";
 import { createSample, restartStep } from "./redux-saga/actions";
 import { DengueState } from "../store";
 
