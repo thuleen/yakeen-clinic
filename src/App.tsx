@@ -14,6 +14,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import SubmitPage from "./testdengue/SubmitPage";
 import TxnList from "./testdengue/TxnList";
+import LoginForm from "./common/components/login/LoginForm";
 
 const APPNAME = "YAQEEN";
 
@@ -38,16 +39,11 @@ const Home = (props: HomeProps) => {
       <header className="App-header">
         <div style={{ marginBottom: "15rem" }}>
           <Typography variant="h3">{APPNAME}</Typography>
-          <div style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}>
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
           <Typography variant="h6">
             Redefine Diagnostic Information System
           </Typography>
           <div style={{ marginTop: "0.5rem" }}>
-            <Button onClick={toggleHome} variant="outlined" color="white">
-              log in
-            </Button>
+            <LoginForm handleDummyLogin={toggleHome} />
           </div>
         </div>
         <div style={{ color: "white" }}>
