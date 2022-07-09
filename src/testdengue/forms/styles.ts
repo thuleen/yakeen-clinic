@@ -114,5 +114,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     top: "450px",
     left: "315px",
   },
+  guidePhoto: {
+    width: "100%",
+    height: "auto",
+  },
 };
 export default styles;

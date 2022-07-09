@@ -82,7 +82,12 @@ const CapturePhoto = (props: FormProps) => {
 
   return (
     <div style={styles.container}>
-      <img src={testKitPreview} alt="preview" onClick={toggleCamera} />
+      <img
+        style={styles.guidePhoto}
+        src={testKitPreview}
+        alt="preview"
+        onClick={toggleCamera}
+      />
       <div style={{ textAlign: "center" }}>
         <Button variant="contained" onClick={toggleCamera}>
           open camera
