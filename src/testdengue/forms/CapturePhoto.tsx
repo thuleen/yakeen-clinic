@@ -82,12 +82,14 @@ const CapturePhoto = (props: FormProps) => {
 
   return (
     <div style={styles.container}>
-      <img
-        style={styles.guidePhoto}
-        src={testKitPreview}
-        alt="preview"
-        onClick={toggleCamera}
-      />
+      <div style={styles.guidePhotoContainer}>
+        <img
+          style={styles.guidePhoto}
+          src={testKitPreview}
+          alt="preview"
+          onClick={toggleCamera}
+        />
+      </div>
       <div style={{ margin: "0.5rem", textAlign: "center" }}>
         <Alert icon={false}>
           HINT: Take photo with the tag number written on a piece of paper.
@@ -98,7 +100,7 @@ const CapturePhoto = (props: FormProps) => {
           open camera
         </Button>
       </div>
-      <div style={{ height: "70px" }} />
+      <div style={{ height: "100px" }} />
     </div>
   );
 };

@@ -114,8 +114,16 @@ const styles: { [key: string]: React.CSSProperties } = {
     top: "450px",
     left: "315px",
   },
-  guidePhoto: {
+  guidePhotoContainer: {
     width: "100%",
+    height: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginBottom: "1rem"
+  },
+  guidePhoto: {
+    width: "270px",
     height: "auto",
   },
 };
