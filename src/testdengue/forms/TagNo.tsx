@@ -27,15 +27,16 @@ const TagNo = (props: TagNoProps) => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.randomNo}>
-        <Typography style={styles.randomNoText}>{props.tagNo}</Typography>
+      <div style={styles.tagNo}>
+        <Typography style={styles.tagNoText}>{props.tagNo}</Typography>
         <Typography variant="body1" color="primary">
           Write the number to tag the test kit.
         </Typography>
-        <form id={formId} onSubmit={handleSubmit(onSubmit)}>
-          <input hidden onChange={() => {}} value={tagNo} name="tagNo" />
-        </form>
       </div>
+      <div style={{ height: "250px" }} />
+      <form id={formId} onSubmit={handleSubmit(onSubmit)}>
+        <input hidden onChange={() => {}} value={tagNo} name="tagNo" />
+      </form>
     </div>
   );
 };

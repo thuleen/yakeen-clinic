@@ -12,10 +12,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "center",
     margin: "1rem",
   },
-  randomNo: {
+  tagNo: {
     textAlign: "center",
   },
-  randomNoText: {
+  tagNoText: {
     fontSize: "5.0rem",
     fontFamily: "Abel",
     fontWeight: 600,
