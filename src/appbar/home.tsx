@@ -10,10 +10,9 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./styles";
-import logo from "../asset/img/logo.svg";
+import logo from "../asset/img/yaqeen-logo.png";
 
 // const APPNAME = import.meta.env.VITE_APPNAME;
-const APPNAME = "YAQEEN";
 
 type AppbarProps = {
   handleNew: () => void;
@@ -39,22 +38,8 @@ const HomeAppbar = (props: AppbarProps) => {
       <Toolbar style={styles.toolbarContainer}>
         <div style={{ display: "flex", flexDirection: "row" }}>
           <div style={styles.logoContainer}>
-            <img src={logo} alt="flag" style={styles.logo} />
             <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography
-                color="white"
-                variant="h6"
-                component="div"
-                sx={{ flexGrow: 1 }}
-                style={{
-                  marginLeft: "0.5rem",
-                  fontFamily: "Oswald",
-                  fontWeight: 400,
-                  color: "white",
-                }}
-              >
-                {APPNAME}
-              </Typography>
+              <img src={logo} alt="flag" style={styles.logo} />
             </Link>
           </div>
         </div>

@@ -61,10 +61,13 @@ const SubmitPage = (props: SubmitPageProps) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          alignItems: "center",
           height: "70vh",
         }}
       >
-        <Button onClick={createNewSample}>start</Button>
+        <Button size="large" variant="contained" onClick={createNewSample}>
+          start
+        </Button>
       </div>
     </>
   );

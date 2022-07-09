@@ -77,7 +77,7 @@ export default function SubmissionSteps({
         activeStep={activeStep}
         nextButton={
           <Button
-            size="small"
+            size="large"
             disabled={activeStep === maxSteps - 1}
             type="submit"
             form={steps[activeStep].formId}
@@ -91,7 +91,7 @@ export default function SubmissionSteps({
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

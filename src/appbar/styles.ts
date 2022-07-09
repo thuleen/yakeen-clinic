@@ -22,7 +22,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "flex-end",
   },
   logo: {
-    width: "35px",
+    width: "75px",
     height: "auto",
   },
 };
