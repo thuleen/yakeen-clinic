@@ -10,7 +10,7 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import logo from "./logo.svg";
+import logo from "./asset/img/yaqeen-logo.png";
 import "./App.css";
 import SubmitPage from "./testdengue/SubmitPage";
 import TxnList from "./testdengue/TxnList";
@@ -38,7 +38,7 @@ const Home = (props: HomeProps) => {
     <div className="App">
       <header className="App-header">
         <div style={{ marginBottom: "15rem" }}>
-          <Typography variant="h3">{APPNAME}</Typography>
+          <img src={logo} className="App-logo" />
           <Typography variant="h6">
             Redefine Diagnostic Information System
           </Typography>

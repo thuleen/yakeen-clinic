@@ -47,6 +47,7 @@ const LoginForm = (props: LoginFormProps) => {
                     fontSize: "1.5em",
                   },
                 }}
+                placeholder="12345"
                 color="secondary"
                 id="clinicId"
                 label="Clinic Id"

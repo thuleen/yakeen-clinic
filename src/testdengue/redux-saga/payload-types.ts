@@ -11,6 +11,9 @@ export type Sample = {
   ns1Ag: boolean;
   interpretation: string;
   samplePhotoDataUri: string | null;
+  // createAt: string;
+  // testAt: string;
+  // readAt: string;
 };
 
 export type Patient = {
