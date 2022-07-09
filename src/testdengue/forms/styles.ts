@@ -1,6 +1,6 @@
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    height: "50vh",
+    height: "70vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",

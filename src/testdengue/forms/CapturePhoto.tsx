@@ -88,6 +88,12 @@ const CapturePhoto = (props: FormProps) => {
         alt="preview"
         onClick={toggleCamera}
       />
+      <div style={{ margin: "0.5rem", textAlign: "center" }}>
+        <Alert icon={false}>
+          HINT: Take photo with the tag number written on a piece of paper.
+        </Alert>
+        <div style={{ height: "1rem" }} />
+      </div>
       <div style={{ textAlign: "center" }}>
         <Button variant="contained" onClick={toggleCamera}>
           open camera
