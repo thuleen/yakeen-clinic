@@ -15,16 +15,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, LoginPayload } from "../../../app/redux-saga/actions";
 
 type FormValues = {
-  clinicId: string;
-  password: string;
+  email: string;
+  clinicName: string;
+  clinicAddress: string;
+  clinicPostcode: string;
 };
 
-type LoginFormProps = {
+type RegisterFormProps = {
   toggleForm: () => void;
 };
 
-const LoginForm = (props: LoginFormProps) => {
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+const RegisterForm = (props: RegisterFormProps) => {
   const { toggleForm } = props;
   const {
     control,
@@ -34,29 +35,25 @@ const LoginForm = (props: LoginFormProps) => {
     // resolver: yupResolver(schema),
   });
   const dispatch = useDispatch();
-  const loginUser = (payload: LoginPayload) => dispatch(login(payload));
-
-  const toggleShowPassword = () => {
-    setShowPassword((prevVal) => !prevVal);
-  };
+  // const loginUser = (payload: LoginPayload) => dispatch(login(payload));
 
   const onSubmit = handleSubmit((data) => {
     // console.log(data);
     // handleDummyLogin();
-    loginUser(data);
+    // loginUser(data);
   });
 
   return (
     <div style={{ margin: "1rem" }}>
-      <form id="login-form" onSubmit={onSubmit}>
+      <form id="register-form" onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="clinicId"
+            name="email"
             defaultValue=""
             control={control}
             render={({ field }) => (
               <OutlinedInput
-                placeholder="Clinic id"
+                placeholder="Email"
                 sx={{
                   border: "1pt solid white",
                 }}
@@ -65,8 +62,8 @@ const LoginForm = (props: LoginFormProps) => {
                     color: "white",
                   },
                 }}
-                id="clinicId"
-                label="Clinic id"
+                id="email"
+                label="Email"
                 {...field}
               />
             )}
@@ -74,12 +71,12 @@ const LoginForm = (props: LoginFormProps) => {
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="password"
+            name="clinicName"
             defaultValue=""
             control={control}
             render={({ field }) => (
               <OutlinedInput
-                placeholder="Password"
+                placeholder="Name of your clinic"
                 sx={{
                   border: "1pt solid white",
                 }}
@@ -88,20 +85,58 @@ const LoginForm = (props: LoginFormProps) => {
                     color: "white",
                   },
                 }}
-                id="password"
-                label="Password"
-                type={showPassword ? "text" : "password"}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <Button form="show.password" onClick={toggleShowPassword}>
-                      {showPassword ? (
-                        <VisibilityIcon />
-                      ) : (
-                        <VisibilityOffIcon />
-                      )}
-                    </Button>
-                  </InputAdornment>
-                }
+                id="clinicName"
+                label="Clinic name"
+                {...field}
+              />
+            )}
+          />
+        </FormControl>
+        <FormControl fullWidth margin="normal" variant="outlined">
+          <Controller
+            name="clinicAddress"
+            defaultValue=""
+            control={control}
+            render={({ field }) => (
+              <OutlinedInput
+                multiline
+                rows={4}
+                placeholder="Address of your clinic"
+                sx={{
+                  border: "1pt solid white",
+                }}
+                inputProps={{
+                  style: {
+                    color: "white",
+                  },
+                }}
+                id="clinicAddress"
+                label="Clinic address"
+                {...field}
+              />
+            )}
+          />
+        </FormControl>
+        <FormControl fullWidth margin="normal" variant="outlined">
+          <Controller
+            name="clinicPostcode"
+            defaultValue=""
+            control={control}
+            render={({ field }) => (
+              <OutlinedInput
+                placeholder="Post code"
+                sx={{
+                  border: "1pt solid white",
+                }}
+                inputProps={{
+                  type: "number",
+                  inputMode: "numeric",
+                  style: {
+                    color: "white",
+                  },
+                }}
+                id="clinicPostcode"
+                label="Post code"
                 {...field}
               />
             )}
@@ -110,19 +145,19 @@ const LoginForm = (props: LoginFormProps) => {
       </form>
       <div>
         <Button
-          form="login-form"
+          form="register-form"
           type="submit"
           color="secondary"
           variant="contained"
         >
-          Login
+          sign up
         </Button>
         <Button color="secondary" variant="outlined" onClick={toggleForm}>
-          sign up
+          cancel
         </Button>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

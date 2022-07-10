@@ -15,7 +15,7 @@ import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
 import SubmitPage from "../dengue-testkit/SubmitPage";
 import TxnList from "../dengue-testkit/TxnList";
-import LoginForm from "../common/components/login/LoginForm";
+import LogSignForm from "../common/components/login/";
 import { AppState } from "../redux-saga/store";
 
 type HomeProps = {
@@ -31,11 +31,11 @@ const Home = (props: HomeProps) => {
       <header className="App-header">
         <div style={{ marginBottom: "15rem" }}>
           <img src={logo} className="App-logo" />
-          <Typography variant="h6">
+          <Typography variant="body1">
             "keep evidence gathering & facts organised"
           </Typography>
           <div style={{ marginTop: "0.5rem" }}>
-            <LoginForm handleDummyLogin={toggleHome} />
+            <LogSignForm />
           </div>
         </div>
         <div style={{ color: "white" }}>
