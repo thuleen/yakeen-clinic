@@ -6,7 +6,7 @@ import MenuAppBar from "../appbar";
 import SubmissionSteps from "./forms/SubmissionSteps";
 import TxnDetails from "./TxnDetails";
 import { createSample, restartStep } from "./redux-saga/actions";
-import { DengueState } from "../store";
+import { DengueState } from "../redux-saga/store";
 
 type SubmitPageProps = {};
 

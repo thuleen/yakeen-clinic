@@ -12,24 +12,14 @@ import {
 } from "react-router-dom";
 import logo from "./asset/img/yaqeen-logo.png";
 import "./App.css";
-import SubmitPage from "./testdengue/SubmitPage";
-import TxnList from "./testdengue/TxnList";
+import SubmitPage from "./dengue-testkit/SubmitPage";
+import TxnList from "./dengue-testkit/TxnList";
 import LoginForm from "./common/components/login/LoginForm";
-
-const APPNAME = "YAQEEN";
 
 type HomeProps = {
   toggleHome: () => void;
   toggleUpdate: () => void;
 };
-
-function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height,
-  };
-}
 
 const Home = (props: HomeProps) => {
   const { toggleHome, toggleUpdate } = props;
@@ -58,9 +48,6 @@ const Home = (props: HomeProps) => {
 };
 
 function App() {
-  // const [windowDimensions, setWindowDimensions] = useState(
-  //   getWindowDimensions()
-  // );
   const navigate = useNavigate();
 
   const toggleHome = () => {

@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles";
 import testKit from "../../asset/img/dengue-testkit-diagram.png";
-import { DengueState } from "../../store";
+import { DengueState } from "../../redux-saga/store";
 import {
   interpretTest,
   decreaseAsync,

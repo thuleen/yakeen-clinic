@@ -8,7 +8,7 @@ import styles from "./styles";
 import Testkit from "./Testkit";
 import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
-import { DengueState } from "../../store";
+import { DengueState } from "../../redux-saga/store";
 import { nextStep } from "../redux-saga/actions";
 
 type FormProps = {

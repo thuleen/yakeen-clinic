@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import theme from "./theme";
-import store from "./store";
+import store from "./redux-saga/store";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

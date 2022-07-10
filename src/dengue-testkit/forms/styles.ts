@@ -26,7 +26,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   c: {
     position: "absolute",
-    top: "180px",
+    top: "190px",
     left: "115px",
     backgroundColor: "#6F1E51",
     width: "21px",
@@ -43,7 +43,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   m: {
     position: "absolute",
-    top: "180px",
+    top: "190px",
     left: "160px",
     backgroundColor: "#6F1E51",
     width: "21px",
@@ -60,7 +60,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   g: {
     position: "absolute",
-    top: "180px",
+    top: "190px",
     left: "206px",
     backgroundColor: "#6F1E51",
     width: "21px",

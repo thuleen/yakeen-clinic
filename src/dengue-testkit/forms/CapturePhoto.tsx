@@ -10,7 +10,7 @@ import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
 import { setSamplePhotoDataUri } from "../redux-saga/actions";
 import testKitPreview from "../../asset/img/dengue-testkit-overlay.png";
-import { DengueState } from "../../store";
+import { DengueState } from "../../redux-saga/store";
 
 type FormValues = {
   patientName: string;
