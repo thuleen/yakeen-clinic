@@ -10,11 +10,11 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
-import logo from "./asset/img/yaqeen-logo.png";
+import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
-import SubmitPage from "./dengue-testkit/SubmitPage";
-import TxnList from "./dengue-testkit/TxnList";
-import LoginForm from "./common/components/login/LoginForm";
+import SubmitPage from "../dengue-testkit/SubmitPage";
+import TxnList from "../dengue-testkit/TxnList";
+import LoginForm from "../common/components/login/LoginForm";
 
 type HomeProps = {
   toggleHome: () => void;
