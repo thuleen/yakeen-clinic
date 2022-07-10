@@ -40,14 +40,14 @@ const Home = (props: HomeProps) => {
         <div style={{ marginBottom: "15rem" }}>
           <img src={logo} className="App-logo" />
           <Typography variant="h6">
-            Redefine Diagnostic Information System
+            "evidence gathering tool for professional"
           </Typography>
           <div style={{ marginTop: "0.5rem" }}>
             <LoginForm handleDummyLogin={toggleHome} />
           </div>
         </div>
         <div style={{ color: "white" }}>
-          Ver. {import.meta.env.VITE_APP_VERSION}
+          Version. {import.meta.env.VITE_APP_VERSION}
           <IconButton onClick={toggleUpdate}>
             <RedoIcon style={{ color: "white" }} />
           </IconButton>
