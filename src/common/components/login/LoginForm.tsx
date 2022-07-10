@@ -55,7 +55,7 @@ const LoginForm = (props: LoginFormProps) => {
                 inputProps={{
                   style: {
                     color: "white",
-                    fontSize: "1.5em",
+                    fontSize: "1.1em",
                   },
                 }}
                 placeholder="12345"
@@ -81,7 +81,7 @@ const LoginForm = (props: LoginFormProps) => {
                 inputProps={{
                   style: {
                     color: "white",
-                    fontSize: "1.5em",
+                    fontSize: "1.1em",
                   },
                 }}
                 id="password"
