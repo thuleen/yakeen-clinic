@@ -13,4 +13,7 @@ sagaMiddleware.run(rootSaga);
 export type DengueState = ReturnType<typeof store.getState>;
 export type DengueDispatch = typeof store.dispatch;
 
+export type AppState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
 export default store;

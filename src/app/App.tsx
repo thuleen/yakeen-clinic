@@ -10,11 +10,13 @@ import {
   Link,
   useNavigate,
 } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
 import SubmitPage from "../dengue-testkit/SubmitPage";
 import TxnList from "../dengue-testkit/TxnList";
 import LoginForm from "../common/components/login/LoginForm";
+import { AppState } from "../redux-saga/store";
 
 type HomeProps = {
   toggleHome: () => void;
@@ -49,9 +51,10 @@ const Home = (props: HomeProps) => {
 
 function App() {
   const navigate = useNavigate();
+  const { token } = useSelector((state: AppState) => state.app);
 
   const toggleHome = () => {
-    navigate("/new-txn");
+    navigate("/");
   };
 
   const toggleUpdate = () => {
@@ -65,17 +68,20 @@ function App() {
     }
   };
 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={<Home toggleHome={toggleHome} toggleUpdate={toggleUpdate} />}
-      />
-      <Route path="/new-txn" element={<SubmitPage />} />
-      <Route path="/transaction/:uriTagNo/:pending" element={<SubmitPage />} />
-      <Route path="/transactions" element={<TxnList />} />
-    </Routes>
-  );
+  if (token) {
+    return (
+      <Routes>
+        <Route path="/" element={<SubmitPage />} />
+        <Route
+          path="/transaction/:uriTagNo/:pending"
+          element={<SubmitPage />}
+        />
+        <Route path="/transactions" element={<TxnList />} />
+      </Routes>
+    );
+  }
+
+  return <Home toggleHome={toggleHome} toggleUpdate={toggleUpdate} />;
 }
 
 export default App;

@@ -16,11 +16,12 @@ import logo from "../asset/img/yaqeen-logo.png";
 
 type AppbarProps = {
   handleNew: () => void;
+  handleLogout: () => void;
 };
 
 const HomeAppbar = (props: AppbarProps) => {
   const navigate = useNavigate();
-  const { handleNew } = props;
+  const { handleNew, handleLogout } = props;
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [openMenu, setOpenMenu] = React.useState<boolean>(false);
 
@@ -37,8 +38,12 @@ const HomeAppbar = (props: AppbarProps) => {
     <AppBar position="static" style={{ backgroundColor: "#079992" }}>
       <Toolbar style={styles.toolbarContainer}>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={styles.logoContainer}>
-            <Link to="/" style={{ textDecoration: "none" }}>
+          <div onClick={handleLogout} style={styles.logoContainer}>
+            <Link
+              to="/"
+              style={{ textDecoration: "none" }}
+              onClick={handleLogout}
+            >
               <img src={logo} alt="flag" style={styles.logo} />
             </Link>
           </div>

@@ -6,6 +6,7 @@ import MenuAppBar from "../appbar";
 import SubmissionSteps from "./forms/SubmissionSteps";
 import TxnDetails from "./TxnDetails";
 import { createSample, restartStep } from "./redux-saga/actions";
+import { logout } from "../app/redux-saga/actions";
 import { DengueState } from "../redux-saga/store";
 
 type SubmitPageProps = {};
@@ -18,10 +19,11 @@ const SubmitPage = (props: SubmitPageProps) => {
   );
   const dispatch = useDispatch();
   const createNewSample = () => dispatch(createSample());
+  const handleLogout = () => dispatch(logout());
   const restart = () => dispatch(restartStep());
 
   const handleNew = () => {
-    navigate("/new-txn");
+    navigate("/");
     restart();
     createNewSample();
   };
@@ -33,7 +35,7 @@ const SubmitPage = (props: SubmitPageProps) => {
   if (uriTagNo) {
     return (
       <>
-        <MenuAppBar handleNew={handleNew} />
+        <MenuAppBar handleNew={handleNew} handleLogout={handleLogout} />
         <TxnDetails tagNo={uriTagNo} pending={pending ? pending : "false"} />
       </>
     );
@@ -43,7 +45,7 @@ const SubmitPage = (props: SubmitPageProps) => {
     const s = samples[samples.length - 1];
     return (
       <>
-        <MenuAppBar handleNew={handleNew} />
+        <MenuAppBar handleNew={handleNew} handleLogout={handleLogout} />
         <SubmissionSteps
           tagNo={s.tagNo}
           handleBack={handleBack}
@@ -55,7 +57,7 @@ const SubmitPage = (props: SubmitPageProps) => {
 
   return (
     <>
-      <MenuAppBar handleNew={handleNew} />
+      <MenuAppBar handleNew={handleNew} handleLogout={handleLogout} />
       <div
         style={{
           display: "flex",

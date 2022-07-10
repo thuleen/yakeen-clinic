@@ -11,6 +11,8 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { login, LoginPayload } from "../../../app/redux-saga/actions";
 
 type FormValues = {
   clinicId: string;
@@ -31,14 +33,17 @@ const LoginForm = (props: LoginFormProps) => {
   } = useForm<FormValues>({
     // resolver: yupResolver(schema),
   });
+  const dispatch = useDispatch();
+  const loginUser = (payload: LoginPayload) => dispatch(login(payload));
 
   const toggleShowPassword = () => {
     setShowPassword((prevVal) => !prevVal);
   };
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    handleDummyLogin();
+    // console.log(data);
+    // handleDummyLogin();
+    loginUser(data);
   });
 
   return (

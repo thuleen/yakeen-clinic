@@ -9,6 +9,7 @@ import Divider from "@mui/material/Divider";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { createSample, restartStep } from "./redux-saga/actions";
+import { logout } from "../app/redux-saga/actions"
 
 const ranVerificationCode = () => {
   return Math.floor(1000000 + Math.random() * 9000000).toString();
@@ -83,10 +84,11 @@ export default function TxnList(props: TxnListProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const createNewSample = () => dispatch(createSample());
+  const handleLogout = () => dispatch(logout());
   const restart = () => dispatch(restartStep());
 
   const handleNew = () => {
-    navigate("/new-txn");
+    navigate("/");
     restart();
     createNewSample();
   };
@@ -97,7 +99,7 @@ export default function TxnList(props: TxnListProps) {
 
   return (
     <>
-      <MenuAppBar handleNew={handleNew} />
+      <MenuAppBar handleNew={handleNew} handleLogout={handleLogout} />
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         <TnxItem
           toggleDetails={toggleDetails}
