@@ -50,18 +50,19 @@ const LoginForm = (props: LoginFormProps) => {
             defaultValue=""
             control={control}
             render={({ field }) => (
-              <TextField
-                focused
+              <OutlinedInput
+                placeholder="Clinic id"
+                sx={{
+                  border: "1pt solid white",
+                }}
                 inputProps={{
                   style: {
                     color: "white",
                     fontSize: "1.1em",
                   },
                 }}
-                placeholder="12345"
-                color="secondary"
                 id="clinicId"
-                label="Clinic Id"
+                label="Clinic id"
                 {...field}
               />
             )}
@@ -76,7 +77,7 @@ const LoginForm = (props: LoginFormProps) => {
               <OutlinedInput
                 placeholder="Password"
                 sx={{
-                  border: "2pt solid #fbc531",
+                  border: "1pt solid white",
                 }}
                 inputProps={{
                   style: {
@@ -91,9 +92,9 @@ const LoginForm = (props: LoginFormProps) => {
                   <InputAdornment position="end">
                     <Button form="show.password" onClick={toggleShowPassword}>
                       {showPassword ? (
-                        <VisibilityIcon color="secondary" />
+                        <VisibilityIcon />
                       ) : (
-                        <VisibilityOffIcon color="secondary" />
+                        <VisibilityOffIcon />
                       )}
                     </Button>
                   </InputAdornment>
