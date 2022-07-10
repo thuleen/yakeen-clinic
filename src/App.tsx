@@ -40,7 +40,7 @@ const Home = (props: HomeProps) => {
         <div style={{ marginBottom: "15rem" }}>
           <img src={logo} className="App-logo" />
           <Typography variant="h6">
-            "evidence gathering tool for professional"
+            "keep evidence gathering & facts organised"
           </Typography>
           <div style={{ marginTop: "0.5rem" }}>
             <LoginForm handleDummyLogin={toggleHome} />
