@@ -7,13 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles";
 import testKit from "../../asset/img/dengue-testkit-diagram.png";
 import { DengueState } from "../../redux-saga/store";
-import {
-  interpretTest,
-  decreaseAsync,
-  decreaseCounter,
-  increaseAsync,
-  increaseCounter,
-} from "../redux-saga/actions";
+import { interpretTest } from "../redux-saga/actions";
 
 type TestkitProps = {
   tagNo: string;
@@ -22,11 +16,7 @@ type TestkitProps = {
 const Testkit = (props: TestkitProps) => {
   const { tagNo } = props;
   const dispatch = useDispatch();
-  const increase = () => dispatch(increaseCounter());
-  const decrease = () => dispatch(decreaseCounter());
   const interpret = (payload: any) => dispatch(interpretTest(payload));
-  const delayIncrease = () => dispatch(increaseAsync());
-  const delayDecrease = () => dispatch(decreaseAsync());
 
   const [c, setC] = useState<boolean>(false);
   const [m, setM] = useState<boolean>(false);

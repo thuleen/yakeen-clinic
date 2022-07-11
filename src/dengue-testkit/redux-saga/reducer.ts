@@ -31,18 +31,6 @@ export default function dengueReducer(
 ) {
   let nuSamples: Array<Sample> = [];
   switch (action.type) {
-    case INCREASE_COUNTER:
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-
-    case DECREASE_COUNTER:
-      return {
-        ...state,
-        count: state.count - 1,
-      };
-
     case RESTART_STEP:
       return {
         ...state,
@@ -62,7 +50,7 @@ export default function dengueReducer(
         ...state,
         samples: nuSamples,
         selectSmplPhoto: null,
-        // formActiveStep: state.formActiveStep + 1,
+        formActiveStep: 0,
       };
 
     case NEW_PATIENT_OK:

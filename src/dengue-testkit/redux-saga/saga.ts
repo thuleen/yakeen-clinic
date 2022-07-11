@@ -1,33 +1,12 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 
+import { sampleCreated, patientCreated, saveInterpretation } from "./actions";
 import {
-  decreaseCounter,
-  increaseCounter,
-  sampleCreated,
-  patientCreated,
-  saveInterpretation,
-} from "./actions";
-import {
-  DECREASE_ASYNC,
-  INCREASE_ASYNC,
   NEW_SAMPLE,
   NEW_PATIENT,
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
-
-const pauseASecond = () =>
-  new Promise((resolve) => setTimeout(() => resolve(null), 1000));
-
-function* delayIncrease() {
-  yield call(pauseASecond);
-  yield put(increaseCounter());
-}
-
-function* delayDecrease() {
-  yield call(pauseASecond);
-  yield put(decreaseCounter());
-}
 
 function* interpret(action: any) {
   let result = "";
@@ -102,6 +81,7 @@ function* createSample() {
   const tagNo = ranVerificationCode();
   yield put(
     sampleCreated({
+      pending: false,
       tagNo: tagNo.toString(),
       name: "",
       mobileNo: "",

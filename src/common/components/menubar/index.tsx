@@ -1,11 +1,11 @@
 import HomeAppbar from "./home";
 
-type MenuAppBarProps = {
+type MenubarProps = {
   handleNew: () => void;
   handleLogout: () => void;
 };
 
-export default function MenuAppBar(props: MenuAppBarProps) {
+export default function Menubar(props: MenubarProps) {
   return (
     <HomeAppbar handleNew={props.handleNew} handleLogout={props.handleLogout} />
   );

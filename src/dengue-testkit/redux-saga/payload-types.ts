@@ -1,6 +1,6 @@
 export type Sample = {
   tagNo: string;
-  name: string;
+  name: string; // patient name
   mobileNo: string;
   socialId: string;
   idType: string;
@@ -11,6 +11,7 @@ export type Sample = {
   ns1Ag: boolean;
   interpretation: string;
   samplePhotoDataUri: string | null;
+  pending: boolean;
   // createAt: string;
   // testAt: string;
   // readAt: string;

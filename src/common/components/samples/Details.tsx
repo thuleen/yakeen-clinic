@@ -15,12 +15,12 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { QRCodeCanvas } from "qrcode.react";
 
-type TxnDetailsProps = {
+type SampleDetailsProps = {
   tagNo: string;
   pending: string;
 };
 
-const TxnDetails = (props: TxnDetailsProps) => {
+const SampleDetails = (props: SampleDetailsProps) => {
   const { tagNo, pending } = props;
   const navigate = useNavigate();
 
@@ -129,4 +129,4 @@ const TxnDetails = (props: TxnDetailsProps) => {
   );
 };
 
-export default TxnDetails;
+export default SampleDetails;

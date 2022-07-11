@@ -17,11 +17,9 @@ import Submission from "./Submission";
 export default function SubmissionSteps({
   tagNo,
   activeStep,
-  handleBack,
 }: {
   tagNo: string;
   activeStep: number;
-  handleBack: () => void;
 }) {
   const theme = useTheme();
 
@@ -91,7 +89,7 @@ export default function SubmissionSteps({
           </Button>
         }
         backButton={
-          <Button size="large" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="large" disabled={activeStep === 0}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

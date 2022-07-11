@@ -13,8 +13,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
-import SubmitPage from "../dengue-testkit/SubmitPage";
-import TxnList from "../dengue-testkit/TxnList";
+import StartPage from "./StartPage";
+import Dengue from "../dengue-testkit";
+import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../redux-saga/store";
 
@@ -71,12 +72,9 @@ function App() {
   if (token) {
     return (
       <Routes>
-        <Route path="/" element={<SubmitPage />} />
-        <Route
-          path="/transaction/:uriTagNo/:pending"
-          element={<SubmitPage />}
-        />
-        <Route path="/transactions" element={<TxnList />} />
+        <Route path="/" element={<StartPage />} />
+        <Route path="/list" element={<SampleList />} />
+        <Route path="/dengue" element={<Dengue />} />
       </Routes>
     );
   }

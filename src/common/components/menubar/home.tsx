@@ -10,7 +10,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./styles";
-import logo from "../asset/img/yaqeen-logo.png";
+import logo from "../../../asset/img/yaqeen-logo.png";
 
 // const APPNAME = import.meta.env.VITE_APPNAME;
 
@@ -77,9 +77,7 @@ const HomeAppbar = (props: AppbarProps) => {
             open={openMenu}
             onClose={toggleMenu}
           >
-            <MenuItem onClick={() => toggleMenuItem("/transactions")}>
-              Transactions
-            </MenuItem>
+            <MenuItem onClick={() => toggleMenuItem("/list")}>Samples</MenuItem>
           </Menu>
         </div>
       </Toolbar>
