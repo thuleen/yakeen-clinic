@@ -13,12 +13,13 @@ import TestResult from "./TestResult";
 import CapturePhoto from "./CapturePhoto";
 import Summary from "./Summary";
 import Submission from "./Submission";
+import { DengueSample } from "../redux-saga/payload-type";
 
-export default function SubmissionSteps({
-  tagNo,
+export default function StepsForm({
+  sample,
   activeStep,
 }: {
-  tagNo: string;
+  sample: DengueSample;
   activeStep: number;
 }) {
   const theme = useTheme();
@@ -29,7 +30,7 @@ export default function SubmissionSteps({
       formId: "submission.step1",
       description: `Test kit tag number`,
       component: (tagNo: string) => (
-        <TagNo formId="submission.step1" tagNo={tagNo} />
+        <TagNo formId="submission.step1" tagNo={sample.tagNo} />
       ),
     },
     {
@@ -37,7 +38,7 @@ export default function SubmissionSteps({
       formId: "submission.step2",
       description: `Patient details`,
       component: (tagNo: string) => (
-        <Patient tagNo={tagNo} formId="submission.step2" />
+        <Patient tagNo={sample.tagNo} formId="submission.step2" />
       ),
     },
     {
@@ -45,7 +46,7 @@ export default function SubmissionSteps({
       formId: "submission.step3",
       description: `Photo evidence`,
       component: (tagNo: string) => (
-        <CapturePhoto tagNo={tagNo} formId="submission.step3" />
+        <CapturePhoto tagNo={sample.tagNo} formId="submission.step3" />
       ),
     },
     {
@@ -53,14 +54,14 @@ export default function SubmissionSteps({
       formId: "submission.step4",
       description: `Click C/M/G/C/T bands below`,
       component: (tagNo: string) => (
-        <TestResult tagNo={tagNo} formId="submission.step4" />
+        <TestResult tagNo={sample.tagNo} formId="submission.step4" />
       ),
     },
     {
       label: "Step5",
       formId: "submission.step5",
       description: `Confirm to submit`,
-      component: (tagNo: string) => <Summary tagNo={tagNo} />,
+      component: (tagNo: string) => <Summary tagNo={sample.tagNo} />,
     },
   ];
 
@@ -111,11 +112,11 @@ export default function SubmissionSteps({
       >
         <Typography variant="h6" color="primary" style={{ marginLeft: "1rem" }}>
           {steps[activeStep].description}{" "}
-          {activeStep === 0 ? null : `(${tagNo})`}
+          {activeStep === 0 ? null : `(${sample.tagNo})`}
         </Typography>
       </Paper>
       <Box sx={{ flexGrow: 1, width: "100%" }}>
-        {steps[activeStep].component(tagNo)}
+        {steps[activeStep].component(sample.tagNo)}
       </Box>
     </Box>
   );

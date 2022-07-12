@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
 import StartPage from "./StartPage";
-import Dengue from "../dengue-testkit";
+import DengueForm from "../dengue-testkit";
+import EditForm from "../common/components/samples/Edit";
 import SampleDetails from "../common/components/samples/Details";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
@@ -76,9 +77,10 @@ function App() {
     return (
       <Routes>
         <Route path="/" element={<StartPage />} />
+        <Route path="/edit/:tagNo" element={<EditForm />} />
         <Route path="/sample/:tagNo" element={<SampleDetails />} />
         <Route path="/samples" element={<SampleList />} />
-        <Route path="/dengue" element={<Dengue />} />
+        <Route path="/dengue" element={<DengueForm />} />
       </Routes>
     );
   }

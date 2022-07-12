@@ -1,7 +1,4 @@
 import {
-  DECREASE_COUNTER,
-  INCREASE_COUNTER,
-  RESTART_STEP,
   NEXT_STEP,
   NEW_SAMPLE,
   NEW_SAMPLE_OK,
@@ -31,15 +28,12 @@ export default function dengueReducer(
 ) {
   let nuSamples: Array<DengueSample> = [];
   switch (action.type) {
-    case RESTART_STEP:
-      return {
-        ...state,
-        formActiveStep: 0,
-      };
-
     case NEXT_STEP:
+      nuSamples = [...state.samples];
+      nuSamples[nuSamples.length - 1].lastActiveStep = state.formActiveStep + 1;
       return {
         ...state,
+        samples: nuSamples,
         formActiveStep: state.formActiveStep + 1,
       };
 
@@ -62,6 +56,7 @@ export default function dengueReducer(
       sampleWithPatient.idType = action.payload.idType;
       sampleWithPatient.socialId = action.payload.socialId;
       sampleWithPatient.mobileNo = action.payload.mobileNo;
+      sampleWithPatient.lastActiveStep = action.payload.lastActiveStep;
       return {
         ...state,
         samples: nuSamples,
@@ -74,6 +69,7 @@ export default function dengueReducer(
         (s) => s.tagNo === action.payload.tagNo
       );
       sampleWithPhoto[0].samplePhotoDataUri = action.payload.dataUri;
+      sampleWithPhoto[0].lastActiveStep = state.formActiveStep + 1;
       nuSamples = [...nuSamples, { ...sampleWithPhoto[0] }];
       return {
         ...state,
@@ -97,7 +93,6 @@ export default function dengueReducer(
         ...state,
         samples: nuSamples,
       };
-
     default:
       return state;
   }

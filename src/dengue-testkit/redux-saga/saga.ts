@@ -95,6 +95,7 @@ function* createSample() {
       ns1Ag: false,
       interpretation: "",
       samplePhotoDataUri: null,
+      lastActiveStep: 1,
     })
   );
 }
@@ -103,7 +104,7 @@ function* createPatient(action: any) {
   yield console.log(action);
   // Fetch api to register the patient
   //
-  yield put(patientCreated({ ...action.payload }));
+  yield put(patientCreated({ ...action.payload, lastActiveStep: 2 }));
 }
 
 export default function* dengueSaga() {

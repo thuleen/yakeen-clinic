@@ -6,7 +6,6 @@ import {
   SET_SMPLPHOTO_DATAURI,
   INTERPRET,
   INTERPRET_OK,
-  RESTART_STEP,
   NEXT_STEP,
 } from "../../common/constants/action-type";
 import { DengueSample, Patient, Photo } from "./payload-type";
@@ -18,10 +17,6 @@ export const createSample = () => ({
 export const sampleCreated = (payload: DengueSample) => ({
   type: NEW_SAMPLE_OK,
   payload,
-});
-
-export const restartStep = () => ({
-  type: RESTART_STEP,
 });
 
 export const nextStep = () => ({

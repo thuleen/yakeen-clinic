@@ -12,13 +12,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { QRCodeCanvas } from "qrcode.react";
 import Menubar from "../menubar";
 import { logout } from "../../../app/redux-saga/actions";
 import styles from "./styles";
 import { DengueState } from "../../../redux-saga/store";
+import { Sample } from "../../constants/payload-type";
 
 const SampleDetails = () => {
   const { tagNo } = useParams();
@@ -27,7 +28,7 @@ const SampleDetails = () => {
   const { samples } = useSelector((state: DengueState) => state.dengue);
   const handleLogout = () => dispatch(logout());
 
-  const sample = samples.filter((s) => s.tagNo === tagNo)[0];
+  let sample = samples.filter((s) => s.tagNo === tagNo)[0];
 
   // for now assume it is dengue/ns1 test
   let result = "";
@@ -110,7 +111,16 @@ const SampleDetails = () => {
           justifyContent: "center",
           alignItems: "center",
         }}
-      ></div>
+      >
+        <Button
+          variant="contained"
+          color="primary"
+          component={Link}
+          to={`/edit/${tagNo}`}
+        >
+          Resume...
+        </Button>
+      </div>
     </>
   );
 };

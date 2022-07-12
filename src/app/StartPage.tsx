@@ -4,10 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../common/components/menubar";
 import SampleDetails from "../common/components/samples/Details";
-import {
-  createSample,
-  restartStep,
-} from "../dengue-testkit/redux-saga/actions";
+import { createSample } from "../dengue-testkit/redux-saga/actions";
 import { logout } from "../app/redux-saga/actions";
 // import { DengueState } from "../redux-saga/store";
 
@@ -21,7 +18,6 @@ const StartPage = (props: StartPageProps) => {
   const handleLogout = () => dispatch(logout());
 
   const handleNew = () => {
-    // restart();
     createNewSample();
     navigate("/dengue");
   };

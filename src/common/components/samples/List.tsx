@@ -66,7 +66,7 @@ export default function SampleList(props: ListProps) {
     navigate("/");
   };
 
-  const toggleDetails = (tagNo: string, pending: boolean) => {
+  const toggleDetails = (tagNo: string) => {
     navigate(`/sample/${tagNo}`);
   };
 
@@ -86,7 +86,7 @@ export default function SampleList(props: ListProps) {
       <div key={index}>
         <Item
           testType={s.testType}
-          toggleDetails={() => toggleDetails(s.tagNo, s.pending)}
+          toggleDetails={() => toggleDetails(s.tagNo)}
           pending={s.pending}
           tagNo={s.tagNo}
           patientName={s.name ? s.name : "-"}

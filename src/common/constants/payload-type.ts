@@ -7,6 +7,7 @@ export interface Sample {
   idType: string;
   samplePhotoDataUri: string | null;
   pending: boolean;
+  lastActiveStep: number;
   // createAt: string;
   // testAt: string;
   // readAt: string;
