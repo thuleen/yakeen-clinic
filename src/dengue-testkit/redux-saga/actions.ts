@@ -9,13 +9,13 @@ import {
   RESTART_STEP,
   NEXT_STEP,
 } from "../../common/constants/action-type";
-import { Sample, Patient, Photo } from "./payload-types";
+import { DengueSample, Patient, Photo } from "./payload-type";
 
 export const createSample = () => ({
   type: NEW_SAMPLE,
 });
 
-export const sampleCreated = (payload: Sample) => ({
+export const sampleCreated = (payload: DengueSample) => ({
   type: NEW_SAMPLE_OK,
   payload,
 });
@@ -43,12 +43,12 @@ export const setSamplePhotoDataUri = (payload: Photo) => ({
   payload,
 });
 
-export const interpretTest = (payload: Sample) => ({
+export const interpretTest = (payload: DengueSample) => ({
   type: INTERPRET,
   payload: payload,
 });
 
-export const saveInterpretation = (payload: Sample) => ({
+export const saveInterpretation = (payload: DengueSample) => ({
   type: INTERPRET_OK,
   payload: payload,
 });

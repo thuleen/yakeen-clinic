@@ -9,13 +9,13 @@ import {
   SET_SMPLPHOTO_DATAURI,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
-import { Sample } from "./payload-types";
+import { DengueSample } from "./payload-type";
 
 export interface AppReducerState {
   count: number;
   formActiveStep: number;
   selectSmplPhoto: string | null;
-  samples: Array<Sample>;
+  samples: Array<DengueSample>;
 }
 
 const initialState = {
@@ -29,7 +29,7 @@ export default function dengueReducer(
   state: AppReducerState = initialState,
   action: any
 ) {
-  let nuSamples: Array<Sample> = [];
+  let nuSamples: Array<DengueSample> = [];
   switch (action.type) {
     case RESTART_STEP:
       return {

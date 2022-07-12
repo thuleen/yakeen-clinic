@@ -1,21 +1,13 @@
-export type Sample = {
-  tagNo: string;
-  name: string; // patient name
-  mobileNo: string;
-  socialId: string;
-  idType: string;
+import { Sample } from "../../common/constants/payload-type";
+
+export interface DengueSample extends Sample {
   c: boolean;
   igM: boolean;
   igG: boolean;
   cC: boolean;
   ns1Ag: boolean;
   interpretation: string;
-  samplePhotoDataUri: string | null;
-  pending: boolean;
-  // createAt: string;
-  // testAt: string;
-  // readAt: string;
-};
+}
 
 export type Patient = {
   idType: string;
