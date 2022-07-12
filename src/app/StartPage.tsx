@@ -16,15 +16,11 @@ type StartPageProps = {};
 const StartPage = (props: StartPageProps) => {
   const navigate = useNavigate();
   const { uriTagNo, pending } = useParams();
-  // const { formActiveStep, samples } = useSelector(
-  //   (state: DengueState) => state.dengue
-  // );
   const dispatch = useDispatch();
   const createNewSample = () => dispatch(createSample());
   const handleLogout = () => dispatch(logout());
-  // const restart = () => dispatch(restartStep());
 
-  const handleCreateNew = () => {
+  const handleNew = () => {
     // restart();
     createNewSample();
     navigate("/dengue");
@@ -34,18 +30,9 @@ const StartPage = (props: StartPageProps) => {
     // if (activeStep > 0) setActiveStep((prev) => prev - 1);
   };
 
-  // if (uriTagNo) {
-  //   return (
-  //     <>
-  //       <MenuBar handleNew={handleNew} handleLogout={handleLogout} />
-  //       <SampleDetails tagNo={uriTagNo} pending={pending ? pending : "false"} />
-  //     </>
-  //   );
-  // }
-
   return (
     <>
-      <MenuBar handleNew={handleCreateNew} handleLogout={handleLogout} />
+      <MenuBar handleNew={handleNew} handleLogout={handleLogout} />
       <div
         style={{
           display: "flex",
@@ -55,7 +42,7 @@ const StartPage = (props: StartPageProps) => {
           height: "70vh",
         }}
       >
-        <Button size="large" variant="contained" onClick={handleCreateNew}>
+        <Button size="large" variant="contained" onClick={handleNew}>
           dengue test kit
         </Button>
         (more test kits in the future)

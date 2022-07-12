@@ -15,6 +15,7 @@ import logo from "../asset/img/yaqeen-logo.png";
 import "./App.css";
 import StartPage from "./StartPage";
 import Dengue from "../dengue-testkit";
+import SampleDetails from "../common/components/samples/Details";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../redux-saga/store";
@@ -73,7 +74,8 @@ function App() {
     return (
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="/list" element={<SampleList />} />
+        <Route path="/sample/:tagNo" element={<SampleDetails />} />
+        <Route path="/samples" element={<SampleList />} />
         <Route path="/dengue" element={<Dengue />} />
       </Routes>
     );

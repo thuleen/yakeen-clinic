@@ -1,6 +1,7 @@
 export interface Sample {
+  testType: string;
   tagNo: string;
-  name: string; // patient name
+  name: string | null; // patient name
   mobileNo: string;
   socialId: string;
   idType: string;

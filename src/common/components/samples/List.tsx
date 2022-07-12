@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
 import { DengueState } from "../../../redux-saga/store";
 import { logout } from "../../../app/redux-saga/actions";
+import styles from "./styles";
 
 type ListProps = {};
 
@@ -17,54 +18,38 @@ type ItemProps = {
   pending: boolean;
   patientName: string;
   tagNo: string;
+  testType: string;
   toggleDetails: (tagNo: string, pending: boolean) => void;
 };
 
-const Item = ({ pending, patientName, tagNo, toggleDetails }: ItemProps) => {
+const Item = ({
+  testType,
+  pending,
+  patientName,
+  tagNo,
+  toggleDetails,
+}: ItemProps) => {
   return (
     <ListItem button onClick={() => toggleDetails(tagNo, pending)}>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          margin: "0rem",
-        }}
-      >
-        <div
-          style={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+      <div style={styles.listItem}>
+        <div style={styles.listItemFirstCol}>
           <Typography variant="body2">
-            {format(new Date(), "do LLL yyyy hh:mm:ssa")}
+            {format(new Date(), "dd LLL yy hh:mm:ssa")}
           </Typography>
-          {!pending ? (
-            <Typography variant="caption" style={{ color: "#16a085" }}>
-              COMPLETED
-            </Typography>
-          ) : (
-            <Typography variant="caption" color="error">
-              PENDING
-            </Typography>
-          )}
+          <Typography variant="caption">
+            {patientName ? patientName : "-"}
+          </Typography>
+          <Typography variant="caption">
+            {pending ? "Pending" : "Completed"}
+          </Typography>
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "end",
-          }}
-        >
-          <Typography
-            variant="body2"
-            style={{ fontFamily: "Abel", fontWeight: 600 }}
-          >
+        <div style={styles.listItemSecondCol}>
+          <Typography variant="body2" style={styles.listItemTagNo}>
             {tagNo}
           </Typography>
-          <Typography variant="caption">{patientName}</Typography>
+          <Typography variant="caption" style={styles.listItemTestType}>
+            {testType}
+          </Typography>
         </div>
       </div>
     </ListItem>
@@ -78,21 +63,33 @@ export default function SampleList(props: ListProps) {
   const handleLogout = () => dispatch(logout());
 
   const handleNew = () => {
-    // createNewSample();
+    navigate("/");
   };
 
   const toggleDetails = (tagNo: string, pending: boolean) => {
-    navigate(`/transaction/${tagNo}/${pending}`);
+    navigate(`/sample/${tagNo}`);
   };
+
+  if (samples.length === 0) {
+    return (
+      <>
+        <Menubar handleNew={handleNew} handleLogout={handleLogout} />
+        <div style={styles.container}>
+          <Typography variant="body1">No sample</Typography>
+        </div>
+      </>
+    );
+  }
 
   let sampleList = samples.map((s, index) => {
     return (
       <div key={index}>
         <Item
+          testType={s.testType}
           toggleDetails={() => toggleDetails(s.tagNo, s.pending)}
           pending={s.pending}
           tagNo={s.tagNo}
-          patientName={s.name}
+          patientName={s.name? s.name : "-"}
         />
         <Divider />
       </div>

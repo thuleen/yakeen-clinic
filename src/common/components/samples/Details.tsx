@@ -12,34 +12,46 @@ import EditIcon from "@mui/icons-material/Edit";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { QRCodeCanvas } from "qrcode.react";
+import Menubar from "../menubar";
+import { logout } from "../../../app/redux-saga/actions";
+import styles from "./styles";
+import { DengueState } from "../../../redux-saga/store";
 
-type SampleDetailsProps = {
-  tagNo: string;
-  pending: string;
-};
-
-const SampleDetails = (props: SampleDetailsProps) => {
-  const { tagNo, pending } = props;
+const SampleDetails = () => {
+  const { tagNo } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { samples } = useSelector((state: DengueState) => state.dengue);
+  const handleLogout = () => dispatch(logout());
+
+  const sample = samples.filter((s) => s.tagNo === tagNo)[0];
+
+  // for now assume it is dengue/ns1 test
+  let result = "";
+  if (!sample.pending) {
+    result = "Key in the correct results here!";
+  }
+
+  const handleNew = () => {
+    navigate("/");
+  };
 
   return (
-    <div style={{ width: "100%" }}>
+    <>
+      <Menubar handleNew={handleNew} handleLogout={handleLogout} />
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         <ListItem>
           <ListItemAvatar>
             <LocalOfferIcon color="primary" />
           </ListItemAvatar>
           <ListItemText
-            primary={
-              <Typography color="primary" style={{ fontSize: "1em" }}>
-                Tag no# {pending === "true" ? `(Pending...)` : null}
-              </Typography>
-            }
+            primary={<Typography color="primary">Tag no#</Typography>}
             secondary={
-              <Typography style={{ fontFamily: "Abel", fontSize: "1.2em" }}>
-                {tagNo}
+              <Typography style={styles.detailsItemTagNo}>
+                {sample.tagNo}
               </Typography>
             }
           />
@@ -50,12 +62,12 @@ const SampleDetails = (props: SampleDetailsProps) => {
             <AccountCircleIcon color="primary" />
           </ListItemAvatar>
           <ListItemText
-            primary={
-              <Typography color="primary" style={{ fontSize: "1em" }}>
-                Patient name
+            primary={<Typography color="primary">Patient name</Typography>}
+            secondary={
+              <Typography style={styles.detailsItemPatientName}>
+                {sample.name ? sample.name : "-"}
               </Typography>
             }
-            secondary="TODO"
           />
         </ListItem>
         <Divider />
@@ -64,26 +76,28 @@ const SampleDetails = (props: SampleDetailsProps) => {
             <BiotechIcon color="primary" />
           </ListItemAvatar>
           <ListItemText
-            primary={
-              <Typography color="primary" style={{ fontSize: "1em" }}>
-                Diagnostic result
+            primary={<Typography color="primary">Test type</Typography>}
+            secondary={
+              <Typography style={styles.detailsItemTestType}>
+                {sample.testType}
               </Typography>
             }
-            secondary="TODO"
           />
         </ListItem>
         <Divider />
         <ListItem>
-          <ListItemAvatar>
-            <EditIcon color="primary" />
-          </ListItemAvatar>
+          <ListItemAvatar></ListItemAvatar>
           <ListItemText
             primary={
               <Typography color="primary" style={{ fontSize: "1em" }}>
-                Notes
+                Interpretation of results
               </Typography>
             }
-            secondary="TODO"
+            secondary={
+              <Typography style={styles.detailsItemTestResult}>
+                {sample.pending ? "Pending" : result}
+              </Typography>
+            }
           />
         </ListItem>
       </List>
@@ -96,36 +110,8 @@ const SampleDetails = (props: SampleDetailsProps) => {
           justifyContent: "center",
           alignItems: "center",
         }}
-      >
-        {pending === "false" ? (
-          <div onClick={() => navigate("/transactions")}>
-            <QRCodeCanvas size={286} value={tagNo} />
-            <Divider style={{ height: "1rem" }} />
-            <Typography variant="body1" color="primary">
-              Share the code above with patient
-            </Typography>
-            <Typography variant="caption" color="error">
-              TODO: Code is dummy! Does not do anything!
-            </Typography>
-          </div>
-        ) : (
-          <>
-            <Alert
-              severity="warning"
-              style={{ marginTop: "1rem", marginBottom: "1rem" }}
-            >
-              Pending...
-            </Alert>
-            <Button
-              variant="outlined"
-              onClick={() => navigate("/transactions")}
-            >
-              Test completed and submit
-            </Button>
-          </>
-        )}
-      </div>
-    </div>
+      ></div>
+    </>
   );
 };
 

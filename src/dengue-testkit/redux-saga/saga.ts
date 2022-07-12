@@ -73,17 +73,18 @@ function* interpret(action: any) {
   yield put(saveInterpretation({ ...action.payload, interpretation: result }));
 }
 
-const ranVerificationCode = () => {
+const generataRandTagNo = () => {
   return Math.floor(1000000 + Math.random() * 9000000);
 };
 
 function* createSample() {
-  const tagNo = ranVerificationCode();
+  const tagNo = generataRandTagNo();
   yield put(
     sampleCreated({
-      pending: false,
+      testType: "Dengue/NS1",
+      pending: true,
       tagNo: tagNo.toString(),
-      name: "",
+      name: null,
       mobileNo: "",
       socialId: "",
       idType: "",
@@ -106,8 +107,6 @@ function* createPatient(action: any) {
 }
 
 export default function* dengueSaga() {
-  // yield takeEvery(INCREASE_ASYNC, delayIncrease);
-  // yield takeEvery(DECREASE_ASYNC, delayDecrease);
   yield takeEvery(NEW_SAMPLE, createSample);
   yield takeEvery(NEW_PATIENT, createPatient);
   yield takeEvery(INTERPRET, interpret);

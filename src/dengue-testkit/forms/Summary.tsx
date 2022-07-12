@@ -16,7 +16,7 @@ const Summary = (props: TagNoProps) => {
   return (
     <div style={styles.container}>
       <PatientDetails
-        name={sample.name}
+        name={sample.name ? sample.name : "-"}
         socialId={sample.socialId}
         mobileNo={sample.mobileNo}
         idType={sample.idType}

@@ -77,7 +77,9 @@ const HomeAppbar = (props: AppbarProps) => {
             open={openMenu}
             onClose={toggleMenu}
           >
-            <MenuItem onClick={() => toggleMenuItem("/list")}>Samples</MenuItem>
+            <MenuItem onClick={() => toggleMenuItem("/samples")}>
+              Samples
+            </MenuItem>
           </Menu>
         </div>
       </Toolbar>
