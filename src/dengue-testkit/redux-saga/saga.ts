@@ -101,7 +101,7 @@ function* createSample() {
 }
 
 function* createPatient(action: any) {
-  yield console.log(action);
+  // yield console.log(action);
   // Fetch api to register the patient
   //
   yield put(patientCreated({ ...action.payload, lastActiveStep: 2 }));
