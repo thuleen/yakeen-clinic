@@ -18,6 +18,10 @@
   color: white;
 }
 
+.App-subheader {
+  font-style: italic;
+}
+
 .App-link {
   color: #61dafb;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -44,26 +45,20 @@ const RegisterForm = (props: RegisterFormProps) => {
   });
 
   return (
-    <div style={{ margin: "1rem" }}>
+    <Paper sx={{ padding: "1rem" }}>
       <form id="register-form" onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
             name="email"
-            defaultValue=""
             control={control}
             render={({ field }) => (
-              <OutlinedInput
-                placeholder="Email"
-                sx={{
-                  border: "1pt solid white",
-                }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
-                }}
+              <TextField
                 id="email"
-                label="Email"
+                label="Email of a contact person"
+                placeholder="tipahcun89@yuhoo.com"
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 {...field}
               />
             )}
@@ -72,19 +67,13 @@ const RegisterForm = (props: RegisterFormProps) => {
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
             name="clinicName"
-            defaultValue=""
             control={control}
             render={({ field }) => (
-              <OutlinedInput
-                placeholder="Name of your clinic"
-                sx={{
-                  border: "1pt solid white",
+              <TextField
+                InputLabelProps={{
+                  shrink: true,
                 }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
-                }}
+                placeholder="Klinik Sihat"
                 id="clinicName"
                 label="Clinic name"
                 {...field}
@@ -98,17 +87,14 @@ const RegisterForm = (props: RegisterFormProps) => {
             defaultValue=""
             control={control}
             render={({ field }) => (
-              <OutlinedInput
+              <TextField
                 multiline
                 rows={4}
-                placeholder="Address of your clinic"
-                sx={{
-                  border: "1pt solid white",
-                }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
+                placeholder="Lot 10A, Blok B, Bangunan Setia Kasih,                                        
+                Jalan Seklinik, Taman Naluri,                                                  
+                Nilai, Negeri Sembilan"
+                InputLabelProps={{
+                  shrink: true,
                 }}
                 id="clinicAddress"
                 label="Clinic address"
@@ -123,20 +109,13 @@ const RegisterForm = (props: RegisterFormProps) => {
             defaultValue=""
             control={control}
             render={({ field }) => (
-              <OutlinedInput
-                placeholder="Post code"
-                sx={{
-                  border: "1pt solid white",
-                }}
-                inputProps={{
-                  type: "number",
-                  inputMode: "numeric",
-                  style: {
-                    color: "white",
-                  },
+              <TextField
+                placeholder="71700"
+                InputLabelProps={{
+                  shrink: true,
                 }}
                 id="clinicPostcode"
-                label="Post code"
+                label="Postcode"
                 {...field}
               />
             )}
@@ -149,14 +128,15 @@ const RegisterForm = (props: RegisterFormProps) => {
           type="submit"
           color="secondary"
           variant="contained"
+          style={{ marginRight: "0.5rem" }}
         >
           sign up
         </Button>
-        <Button color="secondary" variant="outlined" onClick={toggleForm}>
+        <Button variant="outlined" onClick={toggleForm}>
           cancel
         </Button>
       </div>
-    </div>
+    </Paper>
   );
 };
 

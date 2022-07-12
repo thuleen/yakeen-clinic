@@ -45,7 +45,6 @@ const StartPage = (props: StartPageProps) => {
         <Button size="large" variant="contained" onClick={handleNew}>
           dengue test kit
         </Button>
-        (more test kits in the future)
       </div>
     </>
   );

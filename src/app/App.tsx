@@ -33,7 +33,7 @@ const Home = (props: HomeProps) => {
       <header className="App-header">
         <div style={{ marginBottom: "15rem" }}>
           <img src={logo} className="App-logo" />
-          <Typography variant="body1">
+          <Typography variant="body1" className="App-subheader">
             "keep evidence gathering & facts organised"
           </Typography>
           <div style={{ marginTop: "0.5rem" }}>
@@ -41,7 +41,9 @@ const Home = (props: HomeProps) => {
           </div>
         </div>
         <div style={{ color: "white" }}>
-          Version. {import.meta.env.VITE_APP_VERSION}
+          <Typography variant="caption">
+            Version. {import.meta.env.VITE_APP_VERSION}
+          </Typography>
           <IconButton onClick={toggleUpdate}>
             <RedoIcon style={{ color: "white" }} />
           </IconButton>

@@ -95,9 +95,9 @@ const LoginForm = (props: LoginFormProps) => {
                   <InputAdornment position="end">
                     <Button form="show.password" onClick={toggleShowPassword}>
                       {showPassword ? (
-                        <VisibilityIcon />
+                        <VisibilityIcon sx={{ color: "yellow" }} />
                       ) : (
-                        <VisibilityOffIcon />
+                        <VisibilityOffIcon sx={{ color: "yellow" }} />
                       )}
                     </Button>
                   </InputAdornment>
@@ -114,6 +114,7 @@ const LoginForm = (props: LoginFormProps) => {
           type="submit"
           color="secondary"
           variant="contained"
+          style={{ marginRight: "0.5rem" }}
         >
           Login
         </Button>

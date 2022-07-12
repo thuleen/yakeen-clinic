@@ -89,7 +89,7 @@ export default function SampleList(props: ListProps) {
           toggleDetails={() => toggleDetails(s.tagNo, s.pending)}
           pending={s.pending}
           tagNo={s.tagNo}
-          patientName={s.name? s.name : "-"}
+          patientName={s.name ? s.name : "-"}
         />
         <Divider />
       </div>
