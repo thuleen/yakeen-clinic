@@ -84,32 +84,17 @@ const Info = (props: any) => {
         <Typography variant="body1">{sample.interpretation}</Typography>
       </div>
       {textOnly ? (
-        <List dense sx={{ width: "100%", bgcolor: "background.paper" }}>
-          <ListItem>
-            <ListItemText
-              primary={<PrimaryText label="IgG" />}
-              secondary={
-                <SecondaryText value={sample.igG ? "Positive" : "Negative"} />
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={<PrimaryText label="IgM" />}
-              secondary={
-                <SecondaryText value={sample.igM ? "Positive" : "Negative"} />
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={<PrimaryText label="NS1 Ag" />}
-              secondary={
-                <SecondaryText value={sample.ns1Ag ? "Positive" : "Negative"} />
-              }
-            />
-          </ListItem>
-        </List>
+        <div>
+          <Typography variant="body1">
+            IgG: {sample.igG ? "Positive" : "Negative"}{" "}
+          </Typography>
+          <Typography variant="body1">
+            IgM: {sample.igM ? "Positive" : "Negative"}{" "}
+          </Typography>
+          <Typography variant="body1">
+            NS1Ag: {sample.ns1Ag ? "Positive" : "Negative"}{" "}
+          </Typography>
+        </div>
       ) : (
         <Chips igG={sample.igG} igM={sample.igM} ns1Ag={sample.ns1Ag} />
       )}

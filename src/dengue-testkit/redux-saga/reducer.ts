@@ -28,7 +28,9 @@ export default function dengueReducer(
   let nuSamples: Array<DengueSample> = [];
   switch (action.type) {
     case SELECT_SAMPLE:
-      let selectedSample = state.samples.filter((s) => s.tagNo === action.payload)[0];
+      let selectedSample = state.samples.filter(
+        (s) => s.tagNo === action.payload
+      )[0];
       return {
         ...state,
         activeSample: selectedSample,

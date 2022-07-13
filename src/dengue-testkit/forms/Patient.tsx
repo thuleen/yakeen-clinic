@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Alert from "@mui/material/Alert";
 import MenuItem from "@mui/material/MenuItem";
 import Input from "@mui/material/Input";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -125,6 +126,9 @@ const Patient = (props: FormProps) => {
           />
         </FormControl>
       </form>
+      <Alert icon={false}>
+        HINT: Write the tag number on the test kit packaging/box.
+      </Alert>
     </div>
   );
 };

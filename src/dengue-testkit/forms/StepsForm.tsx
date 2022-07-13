@@ -26,7 +26,7 @@ export default function StepsForm(props: StepsFormProps) {
     {
       label: "Step0",
       formId: "submission.step0",
-      description: `Patient tag # ${sample.tagNo}`,
+      description: `Tag # ${sample.tagNo}`,
       component: () => {
         return <Patient formId="submission.step0" />;
       },

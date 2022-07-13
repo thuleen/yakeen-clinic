@@ -9,7 +9,11 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
 import { DengueState } from "../../../redux-saga/store";
-import { logout, selectSample } from "../../../app/redux-saga/actions";
+import {
+  logout,
+  selectSample,
+  SelectSamplePayload,
+} from "../../../app/redux-saga/actions";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
 
@@ -62,7 +66,7 @@ export default function SampleList(props: ListProps) {
   const dispatch = useDispatch();
   const { samples } = useSelector((state: DengueState) => state.dengue);
   const handleLogout = () => dispatch(logout());
-  const handleSelect = (tagNo: string) => dispatch(selectSample(tagNo));
+  const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
 
   const handleNew = () => {
     navigate("/");

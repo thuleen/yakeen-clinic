@@ -6,6 +6,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "center",
     margin: "1rem",
   },
+  summaryContainer: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    margin: "1rem",
+  },
   formContainer: {
     display: "flex",
     flexDirection: "column",

@@ -16,14 +16,40 @@ const Summary = (props: TagNoProps) => {
   const { name, mobileNo, socialId, idType } = activeSample;
 
   return (
-    <div style={styles.container}>
-      <PatientDetails
-        name={name ? name : "-"}
-        socialId={socialId}
-        mobileNo={mobileNo}
-        idType={idType}
-      />
+    <div style={styles.summaryContainer}>
+      <div style={{ margin: "1rem" }}>
+        <Typography variant="caption" color="primary">
+          Patient name:
+        </Typography>
+        <Typography variant="body1">{activeSample.name}</Typography>
+        <Typography variant="caption" color="primary">
+          {activeSample.idType}
+        </Typography>
+        <Typography variant="body1">{activeSample.socialId}</Typography>
+        <Typography variant="caption" color="primary">
+          Tested on:
+        </Typography>
+        <Typography variant="body1">05 Apr 2022 09:45:12AM</Typography>
+        <Typography variant="caption" color="primary">
+          Test site:
+        </Typography>
+        <Typography variant="body1">
+          Klinic 1MDB, Pekan Rasuah, Pahang.
+        </Typography>
+        <Typography variant="caption" color="primary">
+          Test kit:
+        </Typography>
+        <Typography variant="body1">
+          Accobiotech Dengue Virus Antigen Rapid Test kit
+        </Typography>
+      </div>
       <Info textOnly sample={activeSample} />
+      <div style={{ marginTop: "1rem" }}>
+        <img
+          style={{ width: "100%", height: "auto" }}
+          src={activeSample.samplePhotoDataUri}
+        />
+      </div>
     </div>
   );
 };
