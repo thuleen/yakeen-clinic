@@ -5,20 +5,19 @@ import {
   NEW_PATIENT_OK,
   SET_SMPLPHOTO_DATAURI,
   INTERPRET_OK,
+  SELECT_SAMPLE,
 } from "../../common/constants/action-type";
 import { DengueSample } from "./payload-type";
 
 export interface AppReducerState {
-  count: number;
-  formActiveStep: number;
   selectSmplPhoto: string | null;
-  samples: Array<DengueSample>;
+  activeSample: DengueSample | null;
+  samples: DengueSample[];
 }
 
 const initialState = {
-  count: 0,
   selectSmplPhoto: null,
-  formActiveStep: 0,
+  activeSample: null,
   samples: [],
 };
 
@@ -28,25 +27,32 @@ export default function dengueReducer(
 ) {
   let nuSamples: Array<DengueSample> = [];
   switch (action.type) {
-    case NEXT_STEP:
-      nuSamples = [...state.samples];
-      nuSamples[nuSamples.length - 1].lastActiveStep = state.formActiveStep + 1;
+    case SELECT_SAMPLE:
+      let selectedSample = state.samples.filter((s) => s.tagNo === action.payload)[0];
       return {
         ...state,
-        samples: nuSamples,
-        formActiveStep: state.formActiveStep + 1,
+        activeSample: selectedSample,
       };
-
+    case NEXT_STEP:
+      nuSamples = [...state.samples];
+      let sampleToUpdate = nuSamples.filter(
+        (s) => s.tagNo === action.payload.tagNo
+      )[0];
+      sampleToUpdate.lastActiveStep = sampleToUpdate.lastActiveStep + 1;
+      return {
+        ...state,
+        activeSample: sampleToUpdate,
+        samples: nuSamples,
+      };
     case NEW_SAMPLE_OK:
       // console.log(action);
       nuSamples = [...state.samples, { ...action.payload }];
       return {
         ...state,
         samples: nuSamples,
+        activeSample: action.payload,
         selectSmplPhoto: null,
-        formActiveStep: 0,
       };
-
     case NEW_PATIENT_OK:
       nuSamples = [...state.samples];
       let sampleWithPatient = nuSamples.filter(
@@ -56,26 +62,25 @@ export default function dengueReducer(
       sampleWithPatient.idType = action.payload.idType;
       sampleWithPatient.socialId = action.payload.socialId;
       sampleWithPatient.mobileNo = action.payload.mobileNo;
-      sampleWithPatient.lastActiveStep = action.payload.lastActiveStep;
+      sampleWithPatient.lastActiveStep = 1;
       return {
         ...state,
+        activeSample: sampleWithPatient,
         samples: nuSamples,
-        formActiveStep: state.formActiveStep + 1,
       };
 
     case SET_SMPLPHOTO_DATAURI:
       nuSamples = [...state.samples];
       let sampleWithPhoto = nuSamples.filter(
         (s) => s.tagNo === action.payload.tagNo
-      );
-      sampleWithPhoto[0].samplePhotoDataUri = action.payload.dataUri;
-      sampleWithPhoto[0].lastActiveStep = state.formActiveStep + 1;
-      nuSamples = [...nuSamples, { ...sampleWithPhoto[0] }];
+      )[0];
+      sampleWithPhoto.samplePhotoDataUri = action.payload.dataUri;
+      sampleWithPhoto.lastActiveStep = 2;
+      nuSamples = [...nuSamples, { ...sampleWithPhoto }];
       return {
         ...state,
-        // samples: nuSamples,
+        activeSample: sampleWithPhoto,
         selectSmplPhoto: action.payload.dataUri,
-        formActiveStep: state.formActiveStep + 1,
       };
 
     case INTERPRET_OK:
@@ -91,6 +96,7 @@ export default function dengueReducer(
       sampleWithTag.ns1Ag = action.payload.ns1Ag;
       return {
         ...state,
+        activeSample: sampleWithTag,
         samples: nuSamples,
       };
     default:

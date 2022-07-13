@@ -1,5 +1,4 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-
 import { sampleCreated, patientCreated, saveInterpretation } from "./actions";
 import {
   NEW_SAMPLE,
@@ -95,16 +94,16 @@ function* createSample() {
       ns1Ag: false,
       interpretation: "",
       samplePhotoDataUri: null,
-      lastActiveStep: 1,
+      lastActiveStep: 0,
     })
   );
 }
 
 function* createPatient(action: any) {
-  // yield console.log(action);
+  yield console.log(action);
   // Fetch api to register the patient
   //
-  yield put(patientCreated({ ...action.payload, lastActiveStep: 2 }));
+  yield put(patientCreated({ ...action.payload }));
 }
 
 export default function* dengueSaga() {

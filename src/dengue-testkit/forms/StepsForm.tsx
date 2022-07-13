@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import TagNo from "./TagNo";
 import Patient from "./Patient";
 import TestResult from "./TestResult";
 import CapturePhoto from "./CapturePhoto";
@@ -15,57 +14,45 @@ import Summary from "./Summary";
 import Submission from "./Submission";
 import { DengueSample } from "../redux-saga/payload-type";
 
-export default function StepsForm({
-  sample,
-  activeStep,
-}: {
+type StepsFormProps = {
   sample: DengueSample;
-  activeStep: number;
-}) {
+};
+
+export default function StepsForm(props: StepsFormProps) {
   const theme = useTheme();
+  const { sample } = props;
 
   const steps = [
     {
+      label: "Step0",
+      formId: "submission.step0",
+      description: `Patient tag # ${sample.tagNo}`,
+      component: () => {
+        return <Patient formId="submission.step0" />;
+      },
+    },
+    {
       label: "Step1",
       formId: "submission.step1",
-      description: `Test kit tag number`,
-      component: (tagNo: string) => (
-        <TagNo formId="submission.step1" tagNo={sample.tagNo} />
-      ),
+      description: `Photo evidence`,
+      component: () => <CapturePhoto formId="submission.step1" />,
     },
     {
       label: "Step2",
       formId: "submission.step2",
-      description: `Patient details`,
-      component: (tagNo: string) => (
-        <Patient tagNo={sample.tagNo} formId="submission.step2" />
-      ),
+      description: `Click C/M/G/C/T bands below`,
+      component: () => <TestResult formId="submission.step2" />,
     },
     {
       label: "Step3",
       formId: "submission.step3",
-      description: `Photo evidence`,
-      component: (tagNo: string) => (
-        <CapturePhoto tagNo={sample.tagNo} formId="submission.step3" />
-      ),
-    },
-    {
-      label: "Step4",
-      formId: "submission.step4",
-      description: `Click C/M/G/C/T bands below`,
-      component: (tagNo: string) => (
-        <TestResult tagNo={sample.tagNo} formId="submission.step4" />
-      ),
-    },
-    {
-      label: "Step5",
-      formId: "submission.step5",
       description: `Confirm to submit`,
-      component: (tagNo: string) => <Summary tagNo={sample.tagNo} />,
+      component: () => <Summary formId="submission.step3" />,
     },
   ];
 
   const maxSteps = steps.length;
+  const { tagNo, lastActiveStep } = sample;
 
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
@@ -73,13 +60,13 @@ export default function StepsForm({
         variant="text"
         steps={maxSteps}
         position="static"
-        activeStep={activeStep}
+        activeStep={lastActiveStep}
         nextButton={
           <Button
             size="large"
-            disabled={activeStep === maxSteps - 1}
+            disabled={lastActiveStep === maxSteps - 1}
             type="submit"
-            form={steps[activeStep].formId}
+            form={steps[lastActiveStep].formId}
           >
             Next
             {theme.direction === "rtl" ? (
@@ -90,7 +77,7 @@ export default function StepsForm({
           </Button>
         }
         backButton={
-          <Button size="large" disabled={activeStep === 0}>
+          <Button size="large" disabled={lastActiveStep === 0}>
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (
@@ -111,12 +98,12 @@ export default function StepsForm({
         }}
       >
         <Typography variant="h6" color="primary" style={{ marginLeft: "1rem" }}>
-          {steps[activeStep].description}{" "}
-          {activeStep === 0 ? null : `(${sample.tagNo})`}
+          {steps[lastActiveStep].description}{" "}
+          {lastActiveStep === 0 ? null : `(${tagNo})`}
         </Typography>
       </Paper>
       <Box sx={{ flexGrow: 1, width: "100%" }}>
-        {steps[activeStep].component(sample.tagNo)}
+        {steps[lastActiveStep].component()}
       </Box>
     </Box>
   );

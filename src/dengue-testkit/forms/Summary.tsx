@@ -4,24 +4,26 @@ import styles from "./styles";
 import { DengueState } from "../../redux-saga/store";
 import PatientDetails from "../../common/components/patient/List";
 import Info from "../../common/components/alert/Info";
+import { DengueSample } from "../redux-saga/payload-type";
 
 type TagNoProps = {
-  tagNo: string;
+  formId: string;
 };
 
 const Summary = (props: TagNoProps) => {
-  const { tagNo } = props;
-  const { samples } = useSelector((state: DengueState) => state.dengue);
-  const sample = samples.filter((s) => s.tagNo === tagNo)[0];
+  const { formId } = props;
+  const { activeSample } = useSelector((state: DengueState) => state.dengue);
+  const { name, mobileNo, socialId, idType } = activeSample;
+
   return (
     <div style={styles.container}>
       <PatientDetails
-        name={sample.name ? sample.name : "-"}
-        socialId={sample.socialId}
-        mobileNo={sample.mobileNo}
-        idType={sample.idType}
+        name={name ? name : "-"}
+        socialId={socialId}
+        mobileNo={mobileNo}
+        idType={idType}
       />
-      <Info textOnly sample={sample} />
+      <Info textOnly sample={activeSample} />
     </div>
   );
 };

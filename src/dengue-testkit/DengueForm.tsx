@@ -18,20 +18,9 @@ const DengueForm = (props: DengueFormProps) => {
   const handleNew = () => {
     navigate("/");
   };
+  const { activeSample } = useSelector((state: DengueState) => state.dengue);
 
-  const { formActiveStep, samples } = useSelector(
-    (state: DengueState) => state.dengue
-  );
-
-  let activeStep = formActiveStep;
-
-  let selSample = samples[samples.length - 1];
-  if (props.sample) {
-    selSample = props.sample;
-    activeStep = props.sample.lastActiveStep;
-  }
-
-  if (!selSample) {
+  if (!activeSample) {
     return (
       <div>
         <Menubar handleNew={handleNew} handleLogout={handleLogout} />
@@ -43,7 +32,7 @@ const DengueForm = (props: DengueFormProps) => {
   return (
     <div>
       <Menubar handleNew={handleNew} handleLogout={handleLogout} />
-      <StepsForm activeStep={activeStep} sample={selSample} />
+      <StepsForm sample={activeSample} />
     </div>
   );
 };

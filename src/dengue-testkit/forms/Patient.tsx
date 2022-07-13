@@ -14,6 +14,8 @@ import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import styles from "./styles";
 import { createPatient } from "../redux-saga/actions";
+import { DengueState } from "../../redux-saga/store";
+import { DengueSample } from "../redux-saga/payload-type";
 
 type FormValues = {
   name: string;
@@ -24,7 +26,6 @@ type FormValues = {
 
 type FormProps = {
   formId: string;
-  tagNo: string;
 };
 
 const schema = Yup.object().shape({
@@ -39,10 +40,11 @@ const Patient = (props: FormProps) => {
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
+  const [idType, setIdType] = useState<string>("nric");
+  const { activeSample } = useSelector((state: DengueState) => state.dengue);
+  const { tagNo } = activeSample;
   const dispatch = useDispatch();
   const createNew = (payload: any) => dispatch(createPatient(payload));
-
-  const [idType, setIdType] = useState<string>("nric");
 
   const handleIdTypeChange = (event: SelectChangeEvent) => {
     setIdType(event.target.value as string);
@@ -50,7 +52,7 @@ const Patient = (props: FormProps) => {
 
   const onSubmit = handleSubmit((data: any) => {
     // console.log({ ...data, idType });
-    createNew({ ...data, idType, tagNo: props.tagNo });
+    createNew({ ...data, idType, tagNo: tagNo });
   });
 
   return (

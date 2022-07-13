@@ -11,6 +11,7 @@ import PhotoPreview from "../../common/components/photo/Preview";
 import { setSamplePhotoDataUri } from "../redux-saga/actions";
 import testKitPreview from "../../asset/img/dengue-testkit-overlay.png";
 import { DengueState } from "../../redux-saga/store";
+import { DengueSample } from "../redux-saga/payload-type";
 
 type FormValues = {
   patientName: string;
@@ -18,7 +19,6 @@ type FormValues = {
 
 type FormProps = {
   formId: string;
-  tagNo: string;
 };
 
 const CapturePhoto = (props: FormProps) => {
@@ -31,7 +31,10 @@ const CapturePhoto = (props: FormProps) => {
     formState: { errors },
   } = useForm<FormValues>({});
 
-  const { selectSmplPhoto } = useSelector((state: DengueState) => state.dengue);
+  const { selectSmplPhoto, activeSample } = useSelector(
+    (state: DengueState) => state.dengue
+  );
+  const { tagNo } = activeSample;
   const dispatch = useDispatch();
   const setDataUri = (payload: any) => dispatch(setSamplePhotoDataUri(payload));
 
@@ -40,7 +43,7 @@ const CapturePhoto = (props: FormProps) => {
   };
 
   const onSubmit = handleSubmit((data: any) => {
-    setDataUri({ tagNo: props.tagNo, dataUri: localDataUri });
+    setDataUri({ tagNo: tagNo, dataUri: localDataUri });
   });
 
   function handleTakePhoto(dataUri: string) {

@@ -3,6 +3,7 @@ import {
   LOGIN_OK,
   LOGOUT,
   LOGOUT_OK,
+  SELECT_SAMPLE,
 } from "../../common/constants/action-type";
 
 export interface LoginPayload {
@@ -28,4 +29,13 @@ export const logout = () => ({
 
 export const logoutOK = () => ({
   type: LOGOUT_OK,
+});
+
+export interface SelectSamplePayload {
+  tagNo: string;
+}
+
+export const selectSample = (payload: SelectSamplePayload) => ({
+  type: SELECT_SAMPLE,
+  payload,
 });

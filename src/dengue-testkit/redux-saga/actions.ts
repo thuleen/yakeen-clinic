@@ -19,8 +19,9 @@ export const sampleCreated = (payload: DengueSample) => ({
   payload,
 });
 
-export const nextStep = () => ({
+export const nextStep = (payload: DengueSample) => ({
   type: NEXT_STEP,
+  payload,
 });
 
 export const createPatient = (payload: Patient) => ({

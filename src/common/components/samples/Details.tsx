@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { QRCodeCanvas } from "qrcode.react";
 import Menubar from "../menubar";
@@ -22,17 +22,15 @@ import { DengueState } from "../../../redux-saga/store";
 import { Sample } from "../../constants/payload-type";
 
 const SampleDetails = () => {
-  const { tagNo } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { samples } = useSelector((state: DengueState) => state.dengue);
+  const { activeSample } = useSelector((state: DengueState) => state.dengue);
   const handleLogout = () => dispatch(logout());
-
-  let sample = samples.filter((s) => s.tagNo === tagNo)[0];
+  const { tagNo, name, testType, pending } = activeSample;
 
   // for now assume it is dengue/ns1 test
   let result = "";
-  if (!sample.pending) {
+  if (!pending) {
     result = "Key in the correct results here!";
   }
 
@@ -51,9 +49,7 @@ const SampleDetails = () => {
           <ListItemText
             primary={<Typography color="primary">Tag no#</Typography>}
             secondary={
-              <Typography style={styles.detailsItemTagNo}>
-                {sample.tagNo}
-              </Typography>
+              <Typography style={styles.detailsItemTagNo}>{tagNo}</Typography>
             }
           />
         </ListItem>
@@ -66,7 +62,7 @@ const SampleDetails = () => {
             primary={<Typography color="primary">Patient name</Typography>}
             secondary={
               <Typography style={styles.detailsItemPatientName}>
-                {sample.name ? sample.name : "-"}
+                {name ? name : "-"}
               </Typography>
             }
           />
@@ -80,7 +76,7 @@ const SampleDetails = () => {
             primary={<Typography color="primary">Test type</Typography>}
             secondary={
               <Typography style={styles.detailsItemTestType}>
-                {sample.testType}
+                {testType}
               </Typography>
             }
           />
@@ -96,7 +92,7 @@ const SampleDetails = () => {
             }
             secondary={
               <Typography style={styles.detailsItemTestResult}>
-                {sample.pending ? "Pending" : result}
+                {pending ? "Pending" : result}
               </Typography>
             }
           />

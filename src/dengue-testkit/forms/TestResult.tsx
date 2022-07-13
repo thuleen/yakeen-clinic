@@ -9,38 +9,36 @@ import Testkit from "./Testkit";
 import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
 import { DengueState } from "../../redux-saga/store";
+import { DengueSample } from "../redux-saga/payload-type";
 import { nextStep } from "../redux-saga/actions";
 
 type FormProps = {
   formId: string;
-  tagNo: string;
 };
 
 const TestResult = (props: FormProps) => {
-  const { tagNo, formId } = props;
+  const { formId } = props;
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const { samples, selectSmplPhoto } = useSelector(
+  const { selectSmplPhoto, activeSample } = useSelector(
     (state: DengueState) => state.dengue
   );
+  const { tagNo } = activeSample;
   const [openPreview, setOpenPreview] = React.useState<boolean>(false);
-
   const dispatch = useDispatch();
-  const next = () => dispatch(nextStep());
+  const next = (sample: DengueSample) => dispatch(nextStep(sample));
 
   const onSubmit = () => {
-    next();
+    next(activeSample);
   };
 
   const togglePreview = () => {
     setOpenPreview((old) => !old);
   };
-
-  const sample = samples.filter((s) => s.tagNo === tagNo);
 
   return (
     <div style={styles.formContainer}>
@@ -50,7 +48,7 @@ const TestResult = (props: FormProps) => {
         photoDataUri={selectSmplPhoto}
       />
       <Testkit tagNo={tagNo} />
-      <Info sample={sample[0]} />
+      <Info sample={activeSample} />
       <div style={{ display: "flex", flexDirection: "row", marginTop: "1rem" }}>
         <Button
           variant="outlined"
