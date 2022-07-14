@@ -15,7 +15,8 @@ const TestkitPreview = (props: TestkitPreviewProps) => {
   if (!sample) {
     return <div>Error</div>;
   }
-  const { c, cC, igG, igM, ns1Ag, name, idType, mobileNo, socialId } = sample;
+  const { c, cC, igG, igM, ns1Ag, name, idType, mobileNo, socialId, tagNo } =
+    sample;
   return (
     <div style={{ margin: "1rem" }}>
       <Alert icon={false}>Please confirm the followings before submit</Alert>
@@ -33,6 +34,7 @@ const TestkitPreview = (props: TestkitPreviewProps) => {
         <img src={testKit} style={styles.testKit} />
       </div>
       <div style={{ marginTop: "1rem" }}>
+        <div style={styles.previewTagNo}>Tag# {tagNo}</div>
         <img
           style={{ width: "100%", height: "auto" }}
           src={sample.samplePhotoDataUri ? sample.samplePhotoDataUri : ""}

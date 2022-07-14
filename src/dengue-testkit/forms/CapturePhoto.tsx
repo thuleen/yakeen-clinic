@@ -55,6 +55,7 @@ const CapturePhoto = (props: FormProps) => {
     return (
       <div>
         <PhotoPreview dataUri={localDataUri} />
+        <div style={styles.photoPreviewTagNo}>Tag No# {tagNo}</div>
         <div style={{ margin: "0.5rem", textAlign: "center" }}>
           <Button variant="outlined" onClick={() => setLocalDataUri(null)}>
             retake

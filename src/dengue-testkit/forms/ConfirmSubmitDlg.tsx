@@ -54,7 +54,7 @@ export default function ConfirmSubmitDlg(props: ConfirmSubmitDlgProps) {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            Confirm to submit
+            Confirm {activeSample.tagNo}
           </Typography>
           <Button autoFocus color="inherit" onClick={handleSubmit}>
             submit

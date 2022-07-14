@@ -80,7 +80,7 @@ export default function SampleList(props: ListProps) {
     navigate(`/edit/${tagNo}`);
   };
 
-  if (!samples) {
+  if (samples.length === 0) {
     return (
       <>
         <Menubar handleNew={handleNew} handleLogout={handleLogout} />
