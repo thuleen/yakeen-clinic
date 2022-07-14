@@ -56,13 +56,6 @@ const CapturePhoto = (props: FormProps) => {
       <div>
         <PhotoPreview dataUri={localDataUri} />
         <div style={{ margin: "0.5rem", textAlign: "center" }}>
-          <Alert icon={false}>
-            You may <span style={{ fontFamily: "Oswald" }}>RETAKE</span> the
-            photo to ensure the subjects are in-focus. Once you click{" "}
-            <span style={{ fontFamily: "Oswald" }}>NEXT</span> to submit, you{" "}
-            <b>WILL NOT</b> be able to do it again.
-          </Alert>
-          <div style={{ height: "1rem" }} />
           <Button variant="outlined" onClick={() => setLocalDataUri(null)}>
             retake
           </Button>
@@ -94,7 +87,7 @@ const CapturePhoto = (props: FormProps) => {
         />
       </div>
       <div style={{ margin: "0.5rem", textAlign: "center" }}>
-        <Alert icon={false}>HINT: Take photo with the tag number.</Alert>
+        <Alert icon={false}>Take photo with the tag number.</Alert>
       </div>
       <div style={{ textAlign: "center" }}>
         <Button variant="contained" onClick={toggleCamera}>

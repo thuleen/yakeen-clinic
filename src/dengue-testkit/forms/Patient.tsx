@@ -94,40 +94,75 @@ const Patient = (props: FormProps) => {
             </FormHelperText>
           ) : null}
         </FormControl>
-        <FormControl fullWidth margin="normal" variant="standard">
-          <Controller
-            name="socialId"
-            defaultValue=""
-            control={control}
-            render={({ field }) => (
-              <OutlinedInput
-                id="socialId"
-                label="Id"
-                {...field}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <Select
-                      id="id-select"
-                      value={idType}
-                      onChange={handleIdTypeChange}
-                    >
-                      <MenuItem
-                        style={{ border: "0pt solid white" }}
-                        value="nric"
+        {idType === "nric" ? (
+          <FormControl fullWidth margin="normal" variant="standard">
+            <Controller
+              name="socialId"
+              defaultValue=""
+              control={control}
+              render={({ field }) => (
+                <OutlinedInput
+                  id="socialId"
+                  label="Id"
+                  inputProps={{ type: "number", inputMode: "numeric" }}
+                  {...field}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Select
+                        id="id-select"
+                        value={idType}
+                        onChange={handleIdTypeChange}
                       >
-                        NRIC
-                      </MenuItem>
-                      <MenuItem value="passport">Passport</MenuItem>
-                    </Select>
-                  </InputAdornment>
-                }
-              />
-            )}
-          />
-        </FormControl>
+                        <MenuItem
+                          style={{ border: "0pt solid white" }}
+                          value="nric"
+                        >
+                          NRIC
+                        </MenuItem>
+                        <MenuItem value="passport">Passport</MenuItem>
+                      </Select>
+                    </InputAdornment>
+                  }
+                />
+              )}
+            />
+          </FormControl>
+        ) : (
+          <FormControl fullWidth margin="normal" variant="standard">
+            <Controller
+              name="socialId"
+              defaultValue=""
+              control={control}
+              render={({ field }) => (
+                <OutlinedInput
+                  id="socialId"
+                  label="Id"
+                  {...field}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <Select
+                        id="id-select"
+                        value={idType}
+                        onChange={handleIdTypeChange}
+                      >
+                        <MenuItem
+                          style={{ border: "0pt solid white" }}
+                          value="nric"
+                        >
+                          NRIC
+                        </MenuItem>
+                        <MenuItem value="passport">Passport</MenuItem>
+                      </Select>
+                    </InputAdornment>
+                  }
+                />
+              )}
+            />
+          </FormControl>
+        )}
       </form>
       <Alert icon={false}>
-        HINT: Write the tag number on the test kit packaging/box.
+        Write down the tag number on the test kit packaging/box.
       </Alert>
     </div>
   );

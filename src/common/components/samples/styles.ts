@@ -41,5 +41,9 @@ const styles: { [key: string]: React.CSSProperties } = {
   detailsItemTestResult: {
     fontSize: "1.1em",
   },
+  statusCompleted: {
+    color: "#27ae60",
+  },
+  statusPending: {},
 };
 export default styles;

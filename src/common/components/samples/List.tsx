@@ -44,7 +44,10 @@ const Item = ({
           <Typography variant="caption">
             {patientName ? patientName : "-"}
           </Typography>
-          <Typography variant="caption">
+          <Typography
+            variant="caption"
+            style={pending ? styles.statusPending : styles.statusCompleted}
+          >
             {pending ? "Pending" : "Completed"}
           </Typography>
         </div>
@@ -74,7 +77,7 @@ export default function SampleList(props: ListProps) {
 
   const toggleDetails = (tagNo: string) => {
     handleSelect(tagNo);
-    navigate(`/sample/${tagNo}`);
+    navigate(`/edit/${tagNo}`);
   };
 
   if (!samples) {

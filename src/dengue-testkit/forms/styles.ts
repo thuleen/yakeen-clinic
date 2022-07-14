@@ -7,7 +7,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     margin: "1rem",
   },
   summaryContainer: {
-    height: "100vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -118,8 +117,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   btnReInterpret: {
     position: "absolute",
-    top: "450px",
-    left: "315px",
+    top: "475px",
+    left: "300px",
   },
   guidePhotoContainer: {
     width: "100%",

@@ -16,7 +16,6 @@ import "./App.css";
 import StartPage from "./StartPage";
 import DengueForm from "../dengue-testkit/DengueForm";
 import EditForm from "../common/components/samples/Edit";
-import SampleDetails from "../common/components/samples/Details";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../redux-saga/store";
@@ -78,7 +77,6 @@ function App() {
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/edit/:tagNo" element={<EditForm />} />
-        <Route path="/sample/:tagNo" element={<SampleDetails />} />
         <Route path="/samples" element={<SampleList />} />
         <Route path="/dengue" element={<DengueForm />} />
       </Routes>

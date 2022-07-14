@@ -40,6 +40,9 @@ export default function dengueReducer(
       let sampleToUpdate = nuSamples.filter(
         (s) => s.tagNo === action.payload.tagNo
       )[0];
+      if (sampleToUpdate.lastActiveStep === 2) {
+        sampleToUpdate.pending = false;
+      }
       sampleToUpdate.lastActiveStep = sampleToUpdate.lastActiveStep + 1;
       return {
         ...state,

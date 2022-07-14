@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RedoIcon from "@mui/icons-material/Redo";
 import IconButton from "@mui/material/IconButton";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,10 +12,11 @@ import { interpretTest } from "../redux-saga/actions";
 
 type TestkitProps = {
   tagNo: string;
+  togglePreview: () => void;
 };
 
 const Testkit = (props: TestkitProps) => {
-  const { tagNo } = props;
+  const { tagNo, togglePreview } = props;
   const dispatch = useDispatch();
   const interpret = (payload: any) => dispatch(interpretTest(payload));
 
@@ -72,13 +74,25 @@ const Testkit = (props: TestkitProps) => {
       <div style={cC ? styles.cC : styles.cC_off} onClick={toggleCc} />
       <div style={t ? styles.t : styles.t_off} onClick={toggleT} />
       <img src={testKit} style={styles.testKit} onClick={handleInterpret} />
-      <IconButton
-        style={styles.btnReInterpret}
-        color="primary"
-        onClick={handleInterpret}
-      >
-        <RedoIcon />
-      </IconButton>
+      <div style={{ display: "flex", flexDirection: "row", marginTop: "1rem" }}>
+        <Button
+          startIcon={<RedoIcon />}
+          variant="contained"
+          color="primary"
+          onClick={handleInterpret}
+        >
+          interpret
+        </Button>
+        <Divider style={{ width: "0.3rem" }} />
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<InsertPhotoIcon />}
+          onClick={togglePreview}
+        >
+          evidence {tagNo}
+        </Button>
+      </div>
     </div>
   );
 };

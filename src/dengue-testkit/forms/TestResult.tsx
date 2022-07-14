@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import RedoIcon from "@mui/icons-material/Redo";
 import Button from "@mui/material/Button";
 import styles from "./styles";
@@ -47,18 +46,8 @@ const TestResult = (props: FormProps) => {
         handleClose={togglePreview}
         photoDataUri={selectSmplPhoto}
       />
-      <Testkit tagNo={tagNo} />
+      <Testkit tagNo={tagNo} togglePreview={togglePreview} />
       <Info sample={activeSample} />
-      <div style={{ display: "flex", flexDirection: "row", marginTop: "1rem" }}>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<InsertPhotoIcon />}
-          onClick={togglePreview}
-        >
-          evidence {tagNo}
-        </Button>
-      </div>
       <form id={formId} onSubmit={handleSubmit(onSubmit)}>
         <input hidden />
       </form>

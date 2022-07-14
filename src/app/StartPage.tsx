@@ -3,10 +3,8 @@ import Button from "@mui/material/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../common/components/menubar";
-import SampleDetails from "../common/components/samples/Details";
 import { createSample } from "../dengue-testkit/redux-saga/actions";
 import { logout } from "../app/redux-saga/actions";
-// import { DengueState } from "../redux-saga/store";
 
 type StartPageProps = {};
 
