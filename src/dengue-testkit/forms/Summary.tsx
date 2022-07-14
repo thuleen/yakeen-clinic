@@ -13,7 +13,7 @@ type TagNoProps = {
 const Summary = (props: TagNoProps) => {
   const { formId } = props;
   const { activeSample } = useSelector((state: DengueState) => state.dengue);
-  const { name, mobileNo, socialId, idType } = activeSample;
+  const { name, mobileNo, socialId, idType, tagNo } = activeSample;
 
   return (
     <div style={styles.summaryContainer}>
@@ -50,6 +50,7 @@ const Summary = (props: TagNoProps) => {
           src={activeSample.samplePhotoDataUri}
         />
       </div>
+      <div style={styles.summaryPhotoTagNo}>Tag No#{tagNo}</div>
     </div>
   );
 };
