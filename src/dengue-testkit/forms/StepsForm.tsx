@@ -54,7 +54,6 @@ export default function StepsForm(props: StepsFormProps) {
 
   const maxSteps = steps.length;
   const { tagNo, lastActiveStep } = sample;
-
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
       <MobileStepper
@@ -81,7 +80,7 @@ export default function StepsForm(props: StepsFormProps) {
           <Button
             onClick={handleBack}
             size="large"
-            disabled={lastActiveStep === maxSteps - 1}
+            disabled={lastActiveStep === maxSteps - 1 || lastActiveStep === 0}
           >
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
