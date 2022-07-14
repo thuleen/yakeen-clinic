@@ -63,6 +63,9 @@ const Patient = (props: FormProps) => {
 
   return (
     <div style={styles.formContainer}>
+      <Alert icon={false}>
+        Write down the tag number on the test kit packaging/box/paper.
+      </Alert>
       <form id={props.formId} onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel htmlFor="name">Patient name</InputLabel>
@@ -166,9 +169,6 @@ const Patient = (props: FormProps) => {
           </FormControl>
         )}
       </form>
-      <Alert icon={false}>
-        Write down the tag number on the test kit packaging/box.
-      </Alert>
     </div>
   );
 };

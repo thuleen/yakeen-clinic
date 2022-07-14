@@ -8,7 +8,7 @@ export interface Sample {
   samplePhotoDataUri: string | null;
   pending: boolean;
   lastActiveStep: number;
-  // createAt: string;
-  // testAt: string;
-  // readAt: string;
+  createAt: string;
+  interpretAt: string;
+  photoTakenAt: string; // date time photo was taken
 }

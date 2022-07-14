@@ -19,4 +19,5 @@ export type Patient = {
 export type Photo = {
   tagNo: string;
   dataUri: string;
+  photoTakenAt: string;
 };

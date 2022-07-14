@@ -27,7 +27,7 @@ const TestResult = (props: FormProps) => {
   const { selectSmplPhoto, activeSample } = useSelector(
     (state: DengueState) => state.dengue
   );
-  const { tagNo } = activeSample;
+  const { tagNo, photoTakenAt } = activeSample;
   const [openPreview, setOpenPreview] = React.useState<boolean>(false);
   const [openConfDlg, setOpenConfDlg] = React.useState<boolean>(false);
   const dispatch = useDispatch();
@@ -59,6 +59,7 @@ const TestResult = (props: FormProps) => {
         handleClose={togglePreview}
         photoDataUri={selectSmplPhoto}
         tagNo={tagNo}
+        photoTakenAt={photoTakenAt}
       />
       <Testkit tagNo={tagNo} togglePreview={togglePreview} />
       <Info sample={activeSample} />

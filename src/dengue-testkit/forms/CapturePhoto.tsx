@@ -12,6 +12,7 @@ import { setSamplePhotoDataUri } from "../redux-saga/actions";
 import testKitPreview from "../../asset/img/dengue-testkit-overlay.png";
 import { DengueState } from "../../redux-saga/store";
 import { DengueSample } from "../redux-saga/payload-type";
+import { mysqlDateFormatter } from "../../utils/datetime-formatter";
 
 type FormValues = {
   patientName: string;
@@ -24,6 +25,9 @@ type FormProps = {
 const CapturePhoto = (props: FormProps) => {
   const [startCamera, setStartCamera] = React.useState<boolean>(false);
   const [localDataUri, setLocalDataUri] = React.useState<string | null>(null);
+  const [photoTakenAt, setPhotoTakenAt] = React.useState<string>(
+    mysqlDateFormatter(new Date())
+  );
 
   const {
     control,
@@ -43,19 +47,27 @@ const CapturePhoto = (props: FormProps) => {
   };
 
   const onSubmit = handleSubmit((data: any) => {
-    setDataUri({ tagNo: tagNo, dataUri: localDataUri });
+    setDataUri({
+      tagNo: tagNo,
+      dataUri: localDataUri,
+      photoTakenAt: photoTakenAt,
+    });
   });
 
   function handleTakePhoto(dataUri: string) {
     // setDataUri({ tagNo: props.tagNo, dataUri: dataUri });
     setLocalDataUri(dataUri);
+    setPhotoTakenAt(mysqlDateFormatter(new Date()));
   }
 
   if (localDataUri) {
     return (
       <div>
-        <PhotoPreview dataUri={localDataUri} />
-        <div style={styles.photoPreviewTagNo}>Tag No# {tagNo}</div>
+        <PhotoPreview
+          dataUri={localDataUri}
+          tagNo={tagNo}
+          photoTakenAt={photoTakenAt}
+        />
         <div style={{ margin: "0.5rem", textAlign: "center" }}>
           <Button variant="outlined" onClick={() => setLocalDataUri(null)}>
             retake
@@ -79,6 +91,12 @@ const CapturePhoto = (props: FormProps) => {
 
   return (
     <div style={styles.container}>
+      <div style={{ marginBottom: "1rem" }}>
+        <Alert icon={false}>
+          Take photo of the test kit with the tag number, written on the
+          packaging/box/paper
+        </Alert>
+      </div>
       <div style={styles.guidePhotoContainer}>
         <img
           style={styles.guidePhoto}
@@ -87,15 +105,12 @@ const CapturePhoto = (props: FormProps) => {
           onClick={toggleCamera}
         />
       </div>
-      <div style={{ margin: "0.5rem", textAlign: "center" }}>
-        <Alert icon={false}>Take photo with the tag number.</Alert>
-      </div>
       <div style={{ textAlign: "center" }}>
         <Button variant="contained" onClick={toggleCamera}>
           open camera
         </Button>
       </div>
-      <div style={{ height: "100px" }} />
+      <div style={{ height: "200px" }} />
     </div>
   );
 };

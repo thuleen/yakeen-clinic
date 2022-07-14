@@ -28,10 +28,11 @@ type PreviewDlgProps = {
   open: boolean;
   handleClose: () => void;
   tagNo: string;
+  photoTakenAt: string;
 };
 
 export default function PreviewDlg(props: PreviewDlgProps) {
-  const { open, handleClose, photoDataUri, tagNo } = props;
+  const { open, handleClose, photoDataUri, tagNo, photoTakenAt } = props;
   return (
     <Dialog
       fullScreen
@@ -61,6 +62,7 @@ export default function PreviewDlg(props: PreviewDlgProps) {
         <img style={{ width: "100%", height: "auto" }} src={photoDataUri} />
       </div>
       <div style={styles.photoPreviewTagNo}>Tag No#{tagNo}</div>
+      <div style={styles.photoPreviewDt}>{photoTakenAt}</div>
     </Dialog>
   );
 }

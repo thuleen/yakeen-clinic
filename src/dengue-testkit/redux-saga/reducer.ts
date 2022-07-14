@@ -9,6 +9,7 @@ import {
   SELECT_SAMPLE,
 } from "../../common/constants/action-type";
 import { DengueSample } from "./payload-type";
+import { mysqlDateFormatter } from "../../utils/datetime-formatter";
 
 export interface AppReducerState {
   selectSmplPhoto: string | null;
@@ -92,6 +93,7 @@ export default function dengueReducer(
         (s) => s.tagNo === action.payload.tagNo
       )[0];
       sampleWithPhoto.samplePhotoDataUri = action.payload.dataUri;
+      sampleWithPhoto.photoTakenAt = action.payload.photoTakenAt;
       sampleWithPhoto.lastActiveStep = 2;
       nuSamples = [...nuSamples, { ...sampleWithPhoto }];
       return {
@@ -101,6 +103,7 @@ export default function dengueReducer(
       };
 
     case INTERPRET_OK:
+      const interpretAt = mysqlDateFormatter(new Date());
       nuSamples = [...state.samples];
       let sampleWithTag = nuSamples.filter(
         (i) => i.tagNo === action.payload.tagNo
@@ -111,6 +114,7 @@ export default function dengueReducer(
       sampleWithTag.igG = action.payload.igG;
       sampleWithTag.igM = action.payload.igM;
       sampleWithTag.ns1Ag = action.payload.ns1Ag;
+      sampleWithTag.interpretAt = interpretAt;
       return {
         ...state,
         activeSample: sampleWithTag,

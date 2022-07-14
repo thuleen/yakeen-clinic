@@ -35,7 +35,7 @@ export default function StepsForm(props: StepsFormProps) {
     {
       label: "Step1",
       formId: "submission.step1",
-      description: `Photo evidence`,
+      description: `Test kit photo with tag #`,
       component: () => <CapturePhoto formId="submission.step1" />,
     },
     {
@@ -103,7 +103,7 @@ export default function StepsForm(props: StepsFormProps) {
       >
         <Typography variant="h6" color="primary" style={{ marginLeft: "1rem" }}>
           {steps[lastActiveStep].description}{" "}
-          {lastActiveStep === 0 ? null : `(${tagNo})`}
+          {lastActiveStep === 0 ? null : `${tagNo}`}
         </Typography>
       </Paper>
       <Box sx={{ flexGrow: 1, width: "100%" }}>

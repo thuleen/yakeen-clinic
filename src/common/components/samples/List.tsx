@@ -16,6 +16,7 @@ import {
 } from "../../../app/redux-saga/actions";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
+import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";
 
 type ListProps = {};
 
@@ -24,6 +25,7 @@ type ItemProps = {
   patientName: string;
   tagNo: string;
   testType: string;
+  mysqlDatetime: string;
   toggleDetails: (tagNo: string, pending: boolean) => void;
 };
 
@@ -32,6 +34,7 @@ const Item = ({
   pending,
   patientName,
   tagNo,
+  mysqlDatetime,
   toggleDetails,
 }: ItemProps) => {
   return (
@@ -39,7 +42,7 @@ const Item = ({
       <div style={styles.listItem}>
         <div style={styles.listItemFirstCol}>
           <Typography variant="body2">
-            {format(new Date(), "dd LLL yy hh:mm:ssa")}
+            {formatFromMysqlDtString(mysqlDatetime)}
           </Typography>
           <Typography variant="caption">
             {patientName ? patientName : "-"}
@@ -100,6 +103,7 @@ export default function SampleList(props: ListProps) {
           pending={s.pending}
           tagNo={s.tagNo}
           patientName={s.name ? s.name : "-"}
+          mysqlDatetime={s.createAt}
         />
         <Divider />
       </div>

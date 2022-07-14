@@ -6,6 +6,7 @@ import {
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
+import { mysqlDateFormatter } from "../../utils/datetime-formatter";
 
 function* interpret(action: any) {
   let result = "";
@@ -78,6 +79,7 @@ const generataRandTagNo = () => {
 
 function* createSample() {
   const tagNo = generataRandTagNo();
+  const createAt = `${mysqlDateFormatter(new Date())}`;
   yield put(
     createSampleOK({
       testType: "Dengue/NS1",
@@ -95,12 +97,15 @@ function* createSample() {
       interpretation: "",
       samplePhotoDataUri: null,
       lastActiveStep: 0,
+      createAt: createAt,
+      interpretAt: createAt,
+      photoTakenAt: createAt,
     })
   );
 }
 
 function* savePatient(action: any) {
-  yield console.log(action);
+  // yield console.log(action);
   // Fetch api to register the patient
   //
   yield put(savePatientOK({ ...action.payload }));
