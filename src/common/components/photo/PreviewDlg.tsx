@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import CloseIcon from "@mui/icons-material/Close";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
+import styles from "./styles";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -26,10 +27,11 @@ type PreviewDlgProps = {
   photoDataUri: string;
   open: boolean;
   handleClose: () => void;
+  tagNo: string;
 };
 
 export default function PreviewDlg(props: PreviewDlgProps) {
-  const { open, handleClose, photoDataUri } = props;
+  const { open, handleClose, photoDataUri, tagNo } = props;
   return (
     <Dialog
       fullScreen
@@ -48,7 +50,7 @@ export default function PreviewDlg(props: PreviewDlgProps) {
             <CloseIcon />
           </IconButton>
           <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-            Photo evidence
+            Photo {tagNo}
           </Typography>
           <Button autoFocus color="inherit" onClick={handleClose}>
             close
@@ -58,6 +60,7 @@ export default function PreviewDlg(props: PreviewDlgProps) {
       <div onClick={handleClose}>
         <img style={{ width: "100%", height: "auto" }} src={photoDataUri} />
       </div>
+      <div style={styles.photoPreviewTagNo}>Tag No#{tagNo}</div>
     </Dialog>
   );
 }

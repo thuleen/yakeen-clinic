@@ -58,6 +58,7 @@ const TestResult = (props: FormProps) => {
         open={openPreview}
         handleClose={togglePreview}
         photoDataUri={selectSmplPhoto}
+        tagNo={tagNo}
       />
       <Testkit tagNo={tagNo} togglePreview={togglePreview} />
       <Info sample={activeSample} />
