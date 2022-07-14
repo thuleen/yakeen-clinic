@@ -9,7 +9,8 @@ import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
 import { DengueState } from "../../redux-saga/store";
 import { DengueSample } from "../redux-saga/payload-type";
-import { nextStep } from "../redux-saga/actions";
+import { nextStep } from "../../app/redux-saga/actions";
+import ConfirmSubmitDlg from "./ConfirmSubmitDlg";
 
 type FormProps = {
   formId: string;
@@ -28,10 +29,17 @@ const TestResult = (props: FormProps) => {
   );
   const { tagNo } = activeSample;
   const [openPreview, setOpenPreview] = React.useState<boolean>(false);
+  const [openConfDlg, setOpenConfDlg] = React.useState<boolean>(false);
   const dispatch = useDispatch();
   const next = (sample: DengueSample) => dispatch(nextStep(sample));
 
+  const onConfirm = () => {
+    // next(activeSample);
+    setOpenConfDlg(true);
+  };
+
   const onSubmit = () => {
+    setOpenConfDlg(false);
     next(activeSample);
   };
 
@@ -41,6 +49,11 @@ const TestResult = (props: FormProps) => {
 
   return (
     <div style={styles.formContainer}>
+      <ConfirmSubmitDlg
+        open={openConfDlg}
+        handleClose={() => setOpenConfDlg((old) => !old)}
+        handleSubmit={onSubmit}
+      />
       <PreviewDlg
         open={openPreview}
         handleClose={togglePreview}
@@ -48,7 +61,7 @@ const TestResult = (props: FormProps) => {
       />
       <Testkit tagNo={tagNo} togglePreview={togglePreview} />
       <Info sample={activeSample} />
-      <form id={formId} onSubmit={handleSubmit(onSubmit)}>
+      <form id={formId} onSubmit={handleSubmit(onConfirm)}>
         <input hidden />
       </form>
     </div>

@@ -4,7 +4,10 @@ import {
   LOGOUT,
   LOGOUT_OK,
   SELECT_SAMPLE,
+  BACK_STEP,
+  NEXT_STEP,
 } from "../../common/constants/action-type";
+import { Sample } from "../../common/constants/payload-type";
 
 export interface LoginPayload {
   clinicId: string;
@@ -37,5 +40,15 @@ export interface SelectSamplePayload {
 
 export const selectSample = (payload: SelectSamplePayload) => ({
   type: SELECT_SAMPLE,
+  payload,
+});
+
+export const backStep = (payload: Sample) => ({
+  type: BACK_STEP,
+  payload,
+});
+
+export const nextStep = (payload: Sample) => ({
+  type: NEXT_STEP,
   payload,
 });

@@ -1,12 +1,11 @@
 import {
   NEW_SAMPLE,
   NEW_SAMPLE_OK,
-  NEW_PATIENT,
-  NEW_PATIENT_OK,
+  SAVE_PATIENT,
+  SAVE_PATIENT_OK,
   SET_SMPLPHOTO_DATAURI,
   INTERPRET,
   INTERPRET_OK,
-  NEXT_STEP,
 } from "../../common/constants/action-type";
 import { DengueSample, Patient, Photo } from "./payload-type";
 
@@ -14,23 +13,18 @@ export const createSample = () => ({
   type: NEW_SAMPLE,
 });
 
-export const sampleCreated = (payload: DengueSample) => ({
+export const createSampleOK = (payload: DengueSample) => ({
   type: NEW_SAMPLE_OK,
   payload,
 });
 
-export const nextStep = (payload: DengueSample) => ({
-  type: NEXT_STEP,
+export const savePatient = (payload: Patient) => ({
+  type: SAVE_PATIENT,
   payload,
 });
 
-export const createPatient = (payload: Patient) => ({
-  type: NEW_PATIENT,
-  payload,
-});
-
-export const patientCreated = (payload: Patient) => ({
-  type: NEW_PATIENT_OK,
+export const savePatientOK = (payload: Patient) => ({
+  type: SAVE_PATIENT_OK,
   payload,
 });
 

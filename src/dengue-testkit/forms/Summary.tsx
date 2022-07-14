@@ -17,7 +17,7 @@ const Summary = (props: TagNoProps) => {
 
   return (
     <div style={styles.summaryContainer}>
-      <div style={{ margin: "1rem" }}>
+      <div style={{ margin: "0rem", marginBottom: "0.5rem" }}>
         <Typography variant="caption" color="primary">
           Patient name:
         </Typography>
@@ -40,7 +40,7 @@ const Summary = (props: TagNoProps) => {
           Test kit:
         </Typography>
         <Typography variant="body1">
-          Accobiotech Dengue Virus Antigen Rapid Test kit
+          Dengue Virus Antigen Rapid Test kit
         </Typography>
       </div>
       <Info textOnly sample={activeSample} />

@@ -16,11 +16,12 @@ import { DengueSample } from "../redux-saga/payload-type";
 
 type StepsFormProps = {
   sample: DengueSample;
+  handleBack: () => void;
 };
 
 export default function StepsForm(props: StepsFormProps) {
   const theme = useTheme();
-  const { sample } = props;
+  const { sample, handleBack } = props;
 
   const steps = [
     {
@@ -46,7 +47,7 @@ export default function StepsForm(props: StepsFormProps) {
     {
       label: "Step3",
       formId: "submission.step3",
-      description: `Confirm to submit`,
+      description: `Summary`,
       component: () => <Summary formId="submission.step3" />,
     },
   ];
@@ -77,7 +78,11 @@ export default function StepsForm(props: StepsFormProps) {
           </Button>
         }
         backButton={
-          <Button size="large" disabled={lastActiveStep === 0}>
+          <Button
+            onClick={handleBack}
+            size="large"
+            disabled={lastActiveStep === maxSteps - 1}
+          >
             {theme.direction === "rtl" ? (
               <KeyboardArrowRight />
             ) : (

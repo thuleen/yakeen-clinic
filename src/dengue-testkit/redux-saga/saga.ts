@@ -1,8 +1,8 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { sampleCreated, patientCreated, saveInterpretation } from "./actions";
+import { createSampleOK, savePatientOK, saveInterpretation } from "./actions";
 import {
   NEW_SAMPLE,
-  NEW_PATIENT,
+  SAVE_PATIENT,
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
@@ -79,14 +79,14 @@ const generataRandTagNo = () => {
 function* createSample() {
   const tagNo = generataRandTagNo();
   yield put(
-    sampleCreated({
+    createSampleOK({
       testType: "Dengue/NS1",
       pending: true,
       tagNo: tagNo.toString(),
-      name: null,
+      name: "",
       mobileNo: "",
       socialId: "",
-      idType: "",
+      idType: "nric",
       c: false,
       igM: false,
       igG: false,
@@ -99,15 +99,15 @@ function* createSample() {
   );
 }
 
-function* createPatient(action: any) {
+function* savePatient(action: any) {
   yield console.log(action);
   // Fetch api to register the patient
   //
-  yield put(patientCreated({ ...action.payload }));
+  yield put(savePatientOK({ ...action.payload }));
 }
 
 export default function* dengueSaga() {
   yield takeEvery(NEW_SAMPLE, createSample);
-  yield takeEvery(NEW_PATIENT, createPatient);
+  yield takeEvery(SAVE_PATIENT, savePatient);
   yield takeEvery(INTERPRET, interpret);
 }

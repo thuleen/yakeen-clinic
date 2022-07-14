@@ -1,8 +1,9 @@
 import {
+  BACK_STEP,
   NEXT_STEP,
   NEW_SAMPLE,
   NEW_SAMPLE_OK,
-  NEW_PATIENT_OK,
+  SAVE_PATIENT_OK,
   SET_SMPLPHOTO_DATAURI,
   INTERPRET_OK,
   SELECT_SAMPLE,
@@ -35,6 +36,17 @@ export default function dengueReducer(
         ...state,
         activeSample: selectedSample,
       };
+    case BACK_STEP:
+      nuSamples = [...state.samples];
+      let sampleToBack = nuSamples.filter(
+        (s) => s.tagNo === action.payload.tagNo
+      )[0];
+      sampleToBack.lastActiveStep = sampleToBack.lastActiveStep - 1;
+      return {
+        ...state,
+        activeSample: sampleToBack,
+        samples: nuSamples,
+      };
     case NEXT_STEP:
       nuSamples = [...state.samples];
       let sampleToUpdate = nuSamples.filter(
@@ -58,7 +70,7 @@ export default function dengueReducer(
         activeSample: action.payload,
         selectSmplPhoto: null,
       };
-    case NEW_PATIENT_OK:
+    case SAVE_PATIENT_OK:
       nuSamples = [...state.samples];
       let sampleWithPatient = nuSamples.filter(
         (s) => s.tagNo === action.payload.tagNo
