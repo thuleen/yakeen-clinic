@@ -20,45 +20,6 @@ import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
 import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";
 
-const Pending = () => (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <AccessTimeIcon
-      fontSize="small"
-      style={{ marginRight: "0.3rem", color: "#e1b12c" }}
-    />
-    <Typography variant="caption" color="primary">
-      Pending
-    </Typography>
-  </div>
-);
-
-const Done = () => (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
-  >
-    <DoneIcon
-      fontSize="small"
-      color="primary"
-      style={{ marginRight: "0.3rem" }}
-    />
-    <Typography variant="caption" color="primary">
-      Done
-    </Typography>
-  </div>
-);
-
 type ListProps = {};
 
 type ItemProps = {
@@ -92,15 +53,39 @@ const Item = ({
           <Typography variant="body2">
             {idType} {socialId}
           </Typography>
-          {pending ? <Pending /> : <Done />}
         </div>
         <div style={styles.listItemSecondCol}>
-          <Typography
-            variant="body2"
-            style={pending ? styles.listItemTagNoPending : styles.listItemTagNo}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
           >
-            {tagNo}
-          </Typography>
+            {pending ? (
+              <AccessTimeIcon
+                fontSize="small"
+                style={{ color: "#e1b12c", marginTop: "3px" }}
+              />
+            ) : (
+              <DoneIcon
+                fontSize="small"
+                style={{
+                  color: "#079992",
+                  marginTop: "3px",
+                  marginRight: "3px",
+                }}
+              />
+            )}
+            <Typography
+              variant="body2"
+              style={
+                pending ? styles.listItemTagNoPending : styles.listItemTagNo
+              }
+            >
+              {tagNo}
+            </Typography>
+          </div>
           <Typography variant="caption" color="primary">
             {testType}
           </Typography>

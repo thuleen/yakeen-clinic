@@ -82,7 +82,7 @@ function* createSample() {
   const createAt = `${mysqlDateFormatter(new Date())}`;
   yield put(
     createSampleOK({
-      testType: "Dengue/NS1",
+      testType: "Dengue/NS1Ag",
       pending: true,
       tagNo: tagNo.toString(),
       name: "",
