@@ -14,11 +14,18 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
+    alignItems: "flex-start",
   },
   listItemSecondCol: {
     display: "flex",
     flexDirection: "column",
     alignItems: "end",
+  },
+  listItemPatientName: {
+    width: "230px",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
   },
   listItemTagNo: {
     fontFamily: "Abel",
@@ -33,9 +40,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "1.3em",
   },
   detailsItemPatientName: {
-    fontSize: "1.1em",
-  },
-  detailsItemTestType: {
     fontSize: "1.1em",
   },
   detailsItemTestResult: {

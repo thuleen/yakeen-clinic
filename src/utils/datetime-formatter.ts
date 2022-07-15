@@ -7,6 +7,6 @@ export { mysqlDateFormatter };
 
 const formatFromMysqlDtString = (date: string): string => {
   let d = parseISO(date);
-  return format(d, "dd/MM/yyyy HH:MM:ss");
+  return format(d, "dd/MM/yy HH:MM:ss");
 };
 export { formatFromMysqlDtString };

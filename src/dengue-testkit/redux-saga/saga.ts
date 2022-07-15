@@ -88,7 +88,7 @@ function* createSample() {
       name: "",
       mobileNo: "",
       socialId: "",
-      idType: "nric",
+      idType: "Nric",
       c: false,
       igM: false,
       igG: false,

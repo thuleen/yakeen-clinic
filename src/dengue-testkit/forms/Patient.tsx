@@ -102,7 +102,7 @@ const Patient = (props: FormProps) => {
             </FormHelperText>
           ) : null}
         </FormControl>
-        {idType === "nric" ? (
+        {idType === "Nric" ? (
           <FormControl fullWidth margin="normal" variant="standard">
             <Controller
               name="socialId"
@@ -123,11 +123,11 @@ const Patient = (props: FormProps) => {
                       >
                         <MenuItem
                           style={{ border: "0pt solid white" }}
-                          value="nric"
+                          value="Nric"
                         >
                           NRIC
                         </MenuItem>
-                        <MenuItem value="passport">Passport</MenuItem>
+                        <MenuItem value="Passport">Passport</MenuItem>
                       </Select>
                     </InputAdornment>
                   }
@@ -155,11 +155,11 @@ const Patient = (props: FormProps) => {
                       >
                         <MenuItem
                           style={{ border: "0pt solid white" }}
-                          value="nric"
+                          value="Nric"
                         >
                           NRIC
                         </MenuItem>
-                        <MenuItem value="passport">Passport</MenuItem>
+                        <MenuItem value="Passport">Passport</MenuItem>
                       </Select>
                     </InputAdornment>
                   }

@@ -5,6 +5,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
@@ -18,11 +19,33 @@ import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
 import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";
 
+const Pending = () => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <AccessTimeIcon
+      fontSize="small"
+      color="primary"
+      style={{ marginRight: "0.3rem" }}
+    />
+    <Typography variant="caption" color="primary">
+      Pending
+    </Typography>
+  </div>
+);
+
 type ListProps = {};
 
 type ItemProps = {
   pending: boolean;
   patientName: string;
+  idType: string;
+  socialId: string;
   tagNo: string;
   testType: string;
   mysqlDatetime: string;
@@ -33,6 +56,8 @@ const Item = ({
   testType,
   pending,
   patientName,
+  idType,
+  socialId,
   tagNo,
   mysqlDatetime,
   toggleDetails,
@@ -41,25 +66,27 @@ const Item = ({
     <ListItem button onClick={() => toggleDetails(tagNo, pending)}>
       <div style={styles.listItem}>
         <div style={styles.listItemFirstCol}>
-          <Typography variant="body2">
-            {formatFromMysqlDtString(mysqlDatetime)}
-          </Typography>
-          <Typography variant="caption">
+          <Typography variant="body1" style={styles.listItemPatientName}>
             {patientName ? patientName : "-"}
           </Typography>
-          <Typography
-            variant="caption"
-            style={pending ? styles.statusPending : styles.statusCompleted}
-          >
-            {pending ? "Pending" : "Completed"}
+          <Typography variant="body2">
+            {idType} {socialId}
           </Typography>
+          {pending ? <Pending /> : null}
         </div>
         <div style={styles.listItemSecondCol}>
-          <Typography variant="body2" style={styles.listItemTagNo}>
+          <Typography
+            variant="body2"
+            color="primary"
+            style={styles.listItemTagNo}
+          >
             {tagNo}
           </Typography>
-          <Typography variant="caption" style={styles.listItemTestType}>
+          <Typography variant="caption" color="primary">
             {testType}
+          </Typography>
+          <Typography variant="caption" style={styles.listItemTestType}>
+            {formatFromMysqlDtString(mysqlDatetime)}
           </Typography>
         </div>
       </div>
@@ -103,6 +130,8 @@ export default function SampleList(props: ListProps) {
           pending={s.pending}
           tagNo={s.tagNo}
           patientName={s.name ? s.name : "-"}
+          idType={s.idType}
+          socialId={s.socialId}
           mysqlDatetime={s.createAt}
         />
         <Divider />

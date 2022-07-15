@@ -24,9 +24,7 @@ const TestResult = (props: FormProps) => {
     watch,
     formState: { errors },
   } = useForm();
-  const { selectSmplPhoto, activeSample } = useSelector(
-    (state: DengueState) => state.dengue
-  );
+  const { activeSample } = useSelector((state: DengueState) => state.dengue);
   const { tagNo, photoTakenAt } = activeSample;
   const [openPreview, setOpenPreview] = React.useState<boolean>(false);
   const [openConfDlg, setOpenConfDlg] = React.useState<boolean>(false);
@@ -57,7 +55,7 @@ const TestResult = (props: FormProps) => {
       <PreviewDlg
         open={openPreview}
         handleClose={togglePreview}
-        photoDataUri={selectSmplPhoto}
+        photoDataUri={activeSample.samplePhotoDataUri}
         tagNo={tagNo}
         photoTakenAt={photoTakenAt}
       />
