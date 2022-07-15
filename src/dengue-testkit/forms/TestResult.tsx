@@ -61,7 +61,11 @@ const TestResult = (props: FormProps) => {
         tagNo={tagNo}
         photoTakenAt={photoTakenAt}
       />
-      <Testkit tagNo={tagNo} togglePreview={togglePreview} />
+      <Testkit
+        tagNo={tagNo}
+        togglePreview={togglePreview}
+        sample={activeSample}
+      />
       <Info sample={activeSample} />
       <form id={formId} onSubmit={handleSubmit(onConfirm)}>
         <input hidden />

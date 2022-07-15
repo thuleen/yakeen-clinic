@@ -9,23 +9,26 @@ import styles from "./styles";
 import testKit from "../../asset/img/dengue-testkit-diagram.png";
 import { DengueState } from "../../redux-saga/store";
 import { interpretTest } from "../redux-saga/actions";
+import { DengueSample } from "../redux-saga/payload-type";
 
 type TestkitProps = {
+  sample: DengueSample;
   tagNo: string;
   togglePreview: () => void;
 };
 
 const Testkit = (props: TestkitProps) => {
-  const { tagNo, togglePreview } = props;
+  const { tagNo, togglePreview, sample } = props;
+  // const { c, igM, igG, cC, ns1Ag } = sample;
   const dispatch = useDispatch();
   const interpret = (payload: any) => dispatch(interpretTest(payload));
 
-  const [c, setC] = useState<boolean>(false);
-  const [m, setM] = useState<boolean>(false);
-  const [g, setG] = useState<boolean>(false);
+  const [c, setC] = useState<boolean>(sample.c);
+  const [m, setM] = useState<boolean>(sample.igM);
+  const [g, setG] = useState<boolean>(sample.igG);
   //NS1 Ag
-  const [cC, setCc] = useState<boolean>(false);
-  const [t, setT] = useState<boolean>(false);
+  const [cC, setCc] = useState<boolean>(sample.cC);
+  const [t, setT] = useState<boolean>(sample.ns1Ag);
 
   const handleInterpret = () => {
     interpret({

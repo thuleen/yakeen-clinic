@@ -26,7 +26,7 @@ export default function ConfirmLogoutDlg(props: ConfirmLogoutDlgProps) {
       <DialogTitle id="alert-dialog-title" color="primary">
         Sign out
       </DialogTitle>
-      <DialogContent dividers>
+      <DialogContent>
         <DialogContentText id="alert-dialog-description">
           Confirm sign out?
         </DialogContentText>

@@ -125,7 +125,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
     alignItems: "center",
     marginBottom: "1rem",
-    marginTop: "1rem",
   },
   guidePhoto: {
     width: "270px",

@@ -93,8 +93,8 @@ const CapturePhoto = (props: FormProps) => {
     <div style={styles.container}>
       <div style={{ marginBottom: "1rem" }}>
         <Alert icon={false}>
-          Take photo of the test kit with the tag number, written on the
-          packaging/box/paper
+          Take a photo of the test kit clearly showing results (at 20 mins mark)
+          with the written tag no.
         </Alert>
       </div>
       <div style={styles.guidePhotoContainer}>
@@ -105,12 +105,7 @@ const CapturePhoto = (props: FormProps) => {
           onClick={toggleCamera}
         />
       </div>
-      <div style={{ textAlign: "center" }}>
-        <Button variant="contained" onClick={toggleCamera}>
-          open camera
-        </Button>
-      </div>
-      <div style={{ height: "200px" }} />
+      <div style={{ height: "290px" }} />
     </div>
   );
 };
