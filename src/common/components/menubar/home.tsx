@@ -47,7 +47,10 @@ const HomeAppbar = (props: AppbarProps) => {
     <>
       <ConfirmLogoutDlg
         open={openConfDlg}
-        handleConfirm={() => handleLogout()}
+        handleConfirm={() => {
+          navigate("/");
+          handleLogout();
+        }}
         handleClose={() => setOpenConfDlg(false)}
       />
       <AppBar position="static" style={{ backgroundColor: "#079992" }}>
