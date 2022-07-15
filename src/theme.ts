@@ -42,7 +42,7 @@ const theme = createTheme({
     white: createColor("#ffffff"),
     yellow: createColor("#e1b12c"),
     green: createColor("#27ae60"),
-    red: createColor("#ED4C67"),
+    red: createColor("#ff6b6b"),
   },
   typography: {
     h1: {

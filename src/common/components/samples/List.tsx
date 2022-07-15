@@ -6,6 +6,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import DoneIcon from "@mui/icons-material/Done";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
@@ -30,11 +31,30 @@ const Pending = () => (
   >
     <AccessTimeIcon
       fontSize="small"
+      style={{ marginRight: "0.3rem", color: "#e1b12c" }}
+    />
+    <Typography variant="caption" color="primary">
+      Pending
+    </Typography>
+  </div>
+);
+
+const Done = () => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <DoneIcon
+      fontSize="small"
       color="primary"
       style={{ marginRight: "0.3rem" }}
     />
     <Typography variant="caption" color="primary">
-      Pending
+      Done
     </Typography>
   </div>
 );
@@ -72,13 +92,12 @@ const Item = ({
           <Typography variant="body2">
             {idType} {socialId}
           </Typography>
-          {pending ? <Pending /> : null}
+          {pending ? <Pending /> : <Done />}
         </div>
         <div style={styles.listItemSecondCol}>
           <Typography
             variant="body2"
-            color="primary"
-            style={styles.listItemTagNo}
+            style={pending ? styles.listItemTagNoPending : styles.listItemTagNo}
           >
             {tagNo}
           </Typography>

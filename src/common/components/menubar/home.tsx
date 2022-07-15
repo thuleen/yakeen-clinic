@@ -35,6 +35,7 @@ const HomeAppbar = (props: AppbarProps) => {
 
   const toggleMenuItem = (pathName: string) => {
     navigate(pathName);
+    setOpenMenu((previousVal) => !previousVal);
   };
 
   const onLogout = () => {

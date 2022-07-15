@@ -31,6 +31,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontFamily: "Abel",
     fontSize: "1.3rem",
     fontWeight: 600,
+    color: "#079992",
+  },
+  listItemTagNoPending: {
+    fontFamily: "Abel",
+    fontSize: "1.3rem",
+    fontWeight: 600,
+    color: "#e1b12c",
   },
   listItemTestType: {
     color: "#079992",
