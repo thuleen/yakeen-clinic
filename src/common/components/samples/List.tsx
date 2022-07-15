@@ -30,6 +30,7 @@ type ItemProps = {
   tagNo: string;
   testType: string;
   mysqlDatetime: string;
+  interpretation: string;
   toggleDetails: (tagNo: string, pending: boolean) => void;
 };
 
@@ -40,6 +41,7 @@ const Item = ({
   idType,
   socialId,
   tagNo,
+  interpretation,
   mysqlDatetime,
   toggleDetails,
 }: ItemProps) => {
@@ -50,8 +52,11 @@ const Item = ({
           <Typography variant="body1" style={styles.listItemPatientName}>
             {patientName ? patientName : "-"}
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" style={styles.listItemTestSocialId}>
             {idType} {socialId}
+          </Typography>
+          <Typography variant="body2" style={styles.listItemInterpret}>
+            {interpretation}
           </Typography>
         </div>
         <div style={styles.listItemSecondCol}>
@@ -65,14 +70,18 @@ const Item = ({
             {pending ? (
               <AccessTimeIcon
                 fontSize="small"
-                style={{ color: "#e1b12c", marginTop: "3px" }}
+                style={{
+                  color: "#e1b12c",
+                  marginTop: "3.4px",
+                  marginRight: "0.3rem",
+                }}
               />
             ) : (
               <DoneIcon
                 fontSize="small"
                 style={{
                   color: "#079992",
-                  marginTop: "3px",
+                  marginTop: "3.4px",
                   marginRight: "3px",
                 }}
               />
@@ -137,6 +146,7 @@ export default function SampleList(props: ListProps) {
           idType={s.idType}
           socialId={s.socialId}
           mysqlDatetime={s.createAt}
+          interpretation={s.interpretation.length > 0 ? s.interpretation : "-"}
         />
         <Divider />
       </div>

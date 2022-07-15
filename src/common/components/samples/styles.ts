@@ -26,6 +26,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
     overflow: "hidden",
+    color: "#353b48",
+  },
+  listItemTestSocialId: {
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    color: "#353b48",
   },
   listItemTagNo: {
     fontFamily: "Abel",
@@ -45,6 +52,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   detailsItemTagNo: {
     fontFamily: "Abel",
     fontSize: "1.3em",
+  },
+  listItemInterpret: {
+    width: "230px",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    color: "#353b48",
+    fontStyle: "italic",
   },
   detailsItemPatientName: {
     fontSize: "1.1em",

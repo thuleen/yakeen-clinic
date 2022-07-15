@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../common/components/menubar";
@@ -36,8 +37,10 @@ const StartPage = (props: StartPageProps) => {
           height: "70vh",
         }}
       >
+        <Alert icon={false}>Click test kit button to begin</Alert>
+        <div style={{ height: "1rem" }} />
         <Button size="large" variant="contained" onClick={handleNew}>
-          dengue test kit
+          dengue duo igg/igm Ns1Ag test kit
         </Button>
       </div>
     </>
