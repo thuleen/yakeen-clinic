@@ -11,4 +11,5 @@ export interface Sample {
   createAt: string;
   interpretAt: string;
   photoTakenAt: string; // date time photo was taken
+  shareLink: string;
 }

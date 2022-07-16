@@ -8,6 +8,8 @@ import {
 } from "../../common/constants/action-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
 
+const PATIENT_APP_URL = import.meta.env.VITE_APP_URL_PATIENT;
+
 function* interpret(action: any) {
   let result = "";
   const { tagNo, c, igM, igG, cC, ns1Ag } = action.payload;
@@ -100,6 +102,7 @@ function* createSample() {
       createAt: createAt,
       interpretAt: createAt,
       photoTakenAt: createAt,
+      shareLink: PATIENT_APP_URL,
     })
   );
 }

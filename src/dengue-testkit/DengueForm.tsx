@@ -1,3 +1,5 @@
+import React from "react";
+import Drawer from "@mui/material/Drawer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DengueState } from "../redux-saga/store";
@@ -6,6 +8,7 @@ import Menubar from "../common/components/menubar";
 import StepsForm from "./forms/StepsForm";
 import { DengueSample } from "./redux-saga/payload-type";
 import { backStep } from "../app/redux-saga/actions";
+import Qrcode from "../common/components/share/Qrcode";
 
 type DengueFormProps = {
   sample?: DengueSample;
@@ -15,10 +18,12 @@ const DengueForm = (props: DengueFormProps) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => dispatch(logout());
+  const [openShare, setOpenShare] = React.useState<boolean>(false);
 
   const handleNew = () => {
     navigate("/");
   };
+
   const { activeSample } = useSelector((state: DengueState) => state.dengue);
   const onBack = (sample: DengueSample) => dispatch(backStep(sample));
 
@@ -35,10 +40,34 @@ const DengueForm = (props: DengueFormProps) => {
     onBack(activeSample);
   };
 
+  const toggleShare = () => {
+    console.log("share!");
+    setOpenShare((old) => !old);
+  };
+
   return (
     <div>
       <Menubar handleNew={handleNew} handleLogout={handleLogout} />
-      <StepsForm sample={activeSample} handleBack={handleBack} />
+      <StepsForm
+        sample={activeSample}
+        handleBack={handleBack}
+        toggleShare={toggleShare}
+      />
+      <Drawer anchor="bottom" open={openShare} onClose={toggleShare}>
+        <div
+          style={{
+            width: "100%",
+            height: "350px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          dummy!
+          <Qrcode shareLink={activeSample.shareLink} />
+        </div>
+      </Drawer>
     </div>
   );
 };

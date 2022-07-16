@@ -10,7 +10,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    margin: "1rem",
+    marginLeft: "1rem",
+    marginRight: "1rem",
   },
   formContainer: {
     display: "flex",
