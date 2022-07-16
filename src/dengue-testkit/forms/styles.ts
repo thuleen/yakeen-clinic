@@ -207,7 +207,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   summaryPhotoTagNo: {
     position: "absolute",
-    top: "775px",
+    top: "710px",
     left: "35px",
     color: "#636e72",
     fontFamily: "Abel",
@@ -217,7 +217,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   summaryPhotoTakenAt: {
     position: "absolute",
-    top: "795px",
+    top: "735px",
     left: "35px",
     color: "#636e72",
     fontFamily: "Abel",

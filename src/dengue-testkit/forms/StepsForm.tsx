@@ -47,7 +47,7 @@ export default function StepsForm(props: StepsFormProps) {
     {
       label: "Step3",
       formId: "submission.step3",
-      description: `Summary`,
+      description: `Test result`,
       component: () => <Summary formId="submission.step3" />,
     },
   ];
@@ -56,41 +56,43 @@ export default function StepsForm(props: StepsFormProps) {
   const { tagNo, lastActiveStep } = sample;
   return (
     <Box sx={{ flexGrow: 1, width: "100%" }}>
-      <MobileStepper
-        variant="text"
-        steps={maxSteps}
-        position="static"
-        activeStep={lastActiveStep}
-        nextButton={
-          <Button
-            size="large"
-            disabled={lastActiveStep === maxSteps - 1}
-            type="submit"
-            form={steps[lastActiveStep].formId}
-          >
-            Next
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button
-            onClick={handleBack}
-            size="large"
-            disabled={lastActiveStep === maxSteps - 1 || lastActiveStep === 0}
-          >
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            Back
-          </Button>
-        }
-      />
+      {lastActiveStep === maxSteps - 1 ? null : (
+        <MobileStepper
+          variant="text"
+          steps={maxSteps}
+          position="static"
+          activeStep={lastActiveStep}
+          nextButton={
+            <Button
+              size="large"
+              disabled={lastActiveStep === maxSteps - 1}
+              type="submit"
+              form={steps[lastActiveStep].formId}
+            >
+              Next
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              onClick={handleBack}
+              size="large"
+              disabled={lastActiveStep === maxSteps - 1 || lastActiveStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              Back
+            </Button>
+          }
+        />
+      )}
       <Paper
         square
         elevation={0}
@@ -101,10 +103,25 @@ export default function StepsForm(props: StepsFormProps) {
           bgcolor: "background.default",
         }}
       >
-        <Typography variant="h6" color="primary" style={{ marginLeft: "1rem" }}>
-          {steps[lastActiveStep].description}{" "}
-          {lastActiveStep === 0 ? null : `${tagNo}`}
-        </Typography>
+        {lastActiveStep === maxSteps - 1 ? (
+          <Typography
+            variant="h6"
+            color="primary"
+            style={{ marginTop: "1rem", marginLeft: "1rem" }}
+          >
+            {steps[lastActiveStep].description}{" "}
+            {lastActiveStep === 0 ? null : `${tagNo}`}
+          </Typography>
+        ) : (
+          <Typography
+            variant="h6"
+            color="primary"
+            style={{ marginLeft: "1rem" }}
+          >
+            {steps[lastActiveStep].description}{" "}
+            {lastActiveStep === 0 ? null : `${tagNo}`}
+          </Typography>
+        )}
       </Paper>
       <Box sx={{ flexGrow: 1, width: "100%" }}>
         {steps[lastActiveStep].component()}
