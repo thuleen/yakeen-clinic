@@ -9,7 +9,6 @@ import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
 import { setSamplePhotoDataUri } from "../redux-saga/actions";
-import testKitPreview from "../../asset/img/dengue-testkit-overlay.png";
 import { DengueState } from "../../redux-saga/store";
 import { DengueSample } from "../redux-saga/payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
@@ -55,7 +54,6 @@ const CapturePhoto = (props: FormProps) => {
   });
 
   function handleTakePhoto(dataUri: string) {
-    // setDataUri({ tagNo: props.tagNo, dataUri: dataUri });
     setLocalDataUri(dataUri);
     setPhotoTakenAt(mysqlDateFormatter(new Date()));
   }
@@ -97,14 +95,9 @@ const CapturePhoto = (props: FormProps) => {
           with the written tag no.
         </Alert>
       </div>
-      <div style={styles.guidePhotoContainer}>
-        <img
-          style={styles.guidePhoto}
-          src={testKitPreview}
-          alt="preview"
-          onClick={toggleCamera}
-        />
-      </div>
+      <Button onClick={toggleCamera} variant="contained">
+        start camera
+      </Button>
       <div style={{ height: "290px" }} />
     </div>
   );
