@@ -41,7 +41,6 @@ const DengueForm = (props: DengueFormProps) => {
   };
 
   const toggleShare = () => {
-    console.log("share!");
     setOpenShare((old) => !old);
   };
 
@@ -57,14 +56,13 @@ const DengueForm = (props: DengueFormProps) => {
         <div
           style={{
             width: "100%",
-            height: "350px",
+            height: "395px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          dummy!
           <Qrcode shareLink={activeSample.shareLink} />
         </div>
       </Drawer>
