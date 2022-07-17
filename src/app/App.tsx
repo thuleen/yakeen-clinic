@@ -11,7 +11,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import logo from "../asset/img/yaqeen-logo.png";
+import logo from "../assets/img/yaqeen-logo.png";
 import "./App.css";
 import StartPage from "./StartPage";
 import DengueForm from "../dengue-testkit/DengueForm";

@@ -5,7 +5,7 @@ import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./styles";
-import testKit from "../../asset/img/dengue-testkit-diagram.jpg";
+import testKit from "../../assets/img/dengue-testkit-diagram.jpg";
 import { DengueSample } from "../redux-saga/payload-type";
 
 export enum Indicator {

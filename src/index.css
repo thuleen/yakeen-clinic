@@ -15,11 +15,11 @@ code {
 @font-face {
   font-family: "Abel";
   src: local("Abel"),
-    url("./asset/fonts/Abel/Abel-Regular.ttf") format("truetype");
+    url("./assets/fonts/Abel/Abel-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Oswald";
   src: local("Abel"),
-    url("./asset/fonts/Oswald/Oswald-VariableFont_wght.ttf") format("truetype");
+    url("./assets/fonts/Oswald/Oswald-VariableFont_wght.ttf") format("truetype");
 }

@@ -102,7 +102,7 @@ function* createSample() {
       createAt: createAt,
       interpretAt: createAt,
       photoTakenAt: createAt,
-      shareLink: PATIENT_APP_URL,
+      shareLink: `${PATIENT_APP_URL}/123`,
     })
   );
 }
