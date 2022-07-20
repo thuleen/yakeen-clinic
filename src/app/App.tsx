@@ -67,7 +67,7 @@ const Home = (props: HomeProps) => {
 
 function App() {
   const navigate = useNavigate();
-  const { token, initialised } = useSelector((state: AppState) => state.app);
+  const { clinic, initialised } = useSelector((state: AppState) => state.app);
   const dispatch = useDispatch();
   const handleInit = () => dispatch(init());
 
@@ -90,7 +90,7 @@ function App() {
     }
   };
 
-  if (token) {
+  if (clinic) {
     return (
       <Routes>
         <Route path="/" element={<StartPage />} />

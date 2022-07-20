@@ -9,11 +9,29 @@ import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux-saga/actions";
 import { Login } from "../../constants/payload-type";
+import { AppState } from "../../../redux-saga/store";
+
+interface LoaderProps {
+  open: boolean;
+  handleClose: () => void;
+}
+
+const Loader = (props: LoaderProps) => (
+  <Backdrop
+    sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    open={props.open}
+    onClick={props.handleClose}
+  >
+    <CircularProgress color="inherit" />
+  </Backdrop>
+);
 
 type FormValues = {
   email: string;
@@ -36,6 +54,7 @@ const LoginForm = (props: LoginFormProps) => {
   });
   const dispatch = useDispatch();
   const loginUser = (payload: Login) => dispatch(login(payload));
+  const { pending } = useSelector((state: AppState) => state.app);
 
   const toggleShowPassword = () => {
     setShowPassword((prevVal) => !prevVal);
@@ -47,6 +66,8 @@ const LoginForm = (props: LoginFormProps) => {
 
   return (
     <div style={{ margin: "1rem" }}>
+    <Loader open={pending} handleClose={ () => console.log("close backdrop!")} />
+
       <form id="login-form" onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller

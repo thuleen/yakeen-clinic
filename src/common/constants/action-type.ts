@@ -10,6 +10,7 @@ export const RESET = "RESET";
 
 export const LOGIN = "LOGIN";
 export const LOGIN_OK = "LOGIN_OK";
+export const LOGIN_ERR = "LOGIN_ERR";
 
 export const LOGOUT = "LOGOUT";
 export const LOGOUT_OK = "LOGOUT_OK";

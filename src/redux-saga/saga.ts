@@ -6,11 +6,12 @@ import {
   initOK,
   initErr,
   loginOK,
+  loginErr,
   logoutOK,
 } from "./actions";
 import { INIT, REGISTER, LOGIN, LOGOUT } from "../common/constants/action-type";
 import { initialize } from "../common/api/app";
-import { register } from "../common/api/clinic";
+import { register, apiLogin } from "../common/api/clinic";
 
 function* registerClinic(action: any): any {
   const { name, address, postcode, email } = action.payload;
@@ -40,9 +41,18 @@ function* init(): any {
   yield put(initOK());
 }
 
-function* login(action: any) {
-  // TODO Call login API
-  yield put(loginOK({ token: "dummyToken" }));
+function* login(action: any): any {
+  const { email, password } = action.payload;
+  const res = yield call(apiLogin, { email: email, password: password });
+  if (!res) {
+    yield put(loginErr({ errMsg: res.message }));
+    return;
+  }
+  if (res.status === "Error") {
+    yield put(loginErr({ errMsg: res.message }));
+    return;
+  }
+  yield put(loginOK({ okMsg: res.message, clinic: res.result.clinic }));
 }
 
 function* logout() {

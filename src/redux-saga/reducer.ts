@@ -7,24 +7,27 @@ import {
   REGISTER,
   REGISTER_OK,
   REGISTER_ERR,
+  LOGIN,
   LOGIN_OK,
+  LOGIN_ERR,
   LOGOUT_OK,
 } from "../common/constants/action-type";
+import { Clinic } from "../common/constants/payload-type";
 
 export interface AppReducerState {
   pending: boolean;
   initialised: boolean;
-  token: string | null;
   errMsg: string | null;
   okMsg: string | null;
+  clinic: Clinic | null;
 }
 
 const initialState = {
   pending: false,
   initialised: false,
-  token: null,
   errMsg: null,
   okMsg: null,
+  clinic: null,
 };
 
 function reducerApp(state: AppReducerState = initialState, action: any) {
@@ -65,15 +68,27 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
         ...state,
         initialised: false,
       };
+    case LOGIN:
+      return {
+        ...state,
+        pending: true,
+        clinic: null,
+      };
     case LOGIN_OK:
       return {
         ...state,
-        token: action.payload.token,
+        pending: false,
+        clinic: action.payload.clinic,
+      };
+    case LOGIN_ERR:
+      return {
+        ...state,
+        pending: false,
       };
     case LOGOUT_OK:
       return {
         ...state,
-        token: null,
+        clinic: null,
       };
     default:
       return state;

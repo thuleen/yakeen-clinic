@@ -8,6 +8,7 @@ import {
   REGISTER_ERR,
   LOGIN,
   LOGIN_OK,
+  LOGIN_ERR,
   LOGOUT,
   LOGOUT_OK,
   SELECT_SAMPLE,
@@ -22,6 +23,7 @@ import {
   RegisterOK,
   Login,
   LoginOK,
+  LoginErr,
 } from "../common/constants/payload-type";
 
 export const init = () => ({
@@ -62,6 +64,11 @@ export const login = (payload: Login) => ({
 
 export const loginOK = (payload: LoginOK) => ({
   type: LOGIN_OK,
+  payload,
+});
+
+export const loginErr = (payload: LoginErr) => ({
+  type: LOGIN_ERR,
   payload,
 });
 

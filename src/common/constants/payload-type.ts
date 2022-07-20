@@ -18,6 +18,27 @@ export interface Sample {
   shareLink: string;
 }
 
+export interface Clinic {
+  id: string;
+  name: string;
+  address: string;
+  postcode: string;
+}
+
+export interface Login {
+  email: string;
+  password: string;
+}
+
+export interface LoginOK {
+  okMsg: string;
+  clinic: Clinic | null;
+}
+
+export interface LoginErr {
+  errMsg: string;
+}
+
 export interface RegisterErr {
   errMsg: string;
 }
@@ -31,15 +52,6 @@ export interface Register {
   address: string;
   postcode: string;
   email: string;
-}
-
-export interface Login {
-  clinicId: string;
-  password: string;
-}
-
-export interface LoginOK {
-  token: string;
 }
 
 export interface SampleSelection {
