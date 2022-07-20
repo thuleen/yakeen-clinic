@@ -12,7 +12,7 @@ import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { login, LoginPayload } from "../../../app/redux-saga/actions";
+import { login } from "../../../redux-saga/actions";
 
 type FormValues = {
   clinicId: string;

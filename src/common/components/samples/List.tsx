@@ -11,11 +11,7 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
 import { DengueState } from "../../../redux-saga/store";
-import {
-  logout,
-  selectSample,
-  SelectSamplePayload,
-} from "../../../app/redux-saga/actions";
+import { logout, selectSample } from "../../../redux-saga/actions";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
 import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";

@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import RedoIcon from "@mui/icons-material/Redo";
 import Typography from "@mui/material/Typography";
@@ -19,14 +19,16 @@ import EditForm from "../common/components/samples/Edit";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../redux-saga/store";
+import { init } from "../redux-saga/actions";
 
 type HomeProps = {
   toggleHome: () => void;
   toggleUpdate: () => void;
+  initialised: boolean;
 };
 
 const Home = (props: HomeProps) => {
-  const { toggleHome, toggleUpdate } = props;
+  const { toggleHome, toggleUpdate, initialised } = props;
 
   return (
     <div className="App">
@@ -40,7 +42,17 @@ const Home = (props: HomeProps) => {
             <LogSignForm />
           </div>
         </div>
-        <div style={{ color: "white" }}>
+        <div
+          style={{
+            color: "white",
+          }}
+        >
+          {initialised ? null : (
+            <Typography variant="caption" color="error">
+              API error&nbsp;
+            </Typography>
+          )}
+
           <Typography variant="caption">
             Version. {import.meta.env.VITE_APP_VERSION}
           </Typography>
@@ -55,7 +67,13 @@ const Home = (props: HomeProps) => {
 
 function App() {
   const navigate = useNavigate();
-  const { token } = useSelector((state: AppState) => state.app);
+  const { token, initialised } = useSelector((state: AppState) => state.app);
+  const dispatch = useDispatch();
+  const handleInit = () => dispatch(init());
+
+  useEffect(() => {
+    handleInit();
+  }, []);
 
   const toggleHome = () => {
     navigate("/");
@@ -83,7 +101,13 @@ function App() {
     );
   }
 
-  return <Home toggleHome={toggleHome} toggleUpdate={toggleUpdate} />;
+  return (
+    <Home
+      initialised={initialised}
+      toggleHome={toggleHome}
+      toggleUpdate={toggleUpdate}
+    />
+  );
 }
 
 export default App;

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import MenuBar from "../common/components/menubar";
 import { createSample } from "../dengue-testkit/redux-saga/actions";
-import { logout } from "../app/redux-saga/actions";
+import { logout } from "../redux-saga/actions";
 
 type StartPageProps = {};
 

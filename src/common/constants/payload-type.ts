@@ -13,3 +13,23 @@ export interface Sample {
   photoTakenAt: string; // date time photo was taken
   shareLink: string;
 }
+
+export interface Register {
+  name: string;
+  address: string;
+  postcode: string;
+  email: email;
+}
+
+export interface Login {
+  clinicId: string;
+  password: string;
+}
+
+export interface LoginOk {
+  token: string;
+}
+
+export interface SampleSelection {
+  tagNo: string;
+}

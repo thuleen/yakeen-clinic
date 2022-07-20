@@ -1,3 +1,11 @@
+export const INIT = "INIT";
+export const INIT_OK = "INIT_OK";
+export const INIT_ERR = "INIT_ERR";
+
+export const REGISTER = "REGISTER";
+export const REGISTER_OK = "REGISTER_OK";
+export const REGISTER_ERR = "REGISTER_ERR";
+
 export const LOGIN = "LOGIN";
 export const LOGIN_OK = "LOGIN_OK";
 

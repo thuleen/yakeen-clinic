@@ -13,13 +13,14 @@ import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { login, LoginPayload } from "../../../app/redux-saga/actions";
+import { register } from "../../../redux-saga/actions";
+import { Register } from "../../constants/payload-type";
 
 type FormValues = {
   email: string;
-  clinicName: string;
-  clinicAddress: string;
-  clinicPostcode: string;
+  name: string;
+  address: string;
+  postcode: string;
 };
 
 type RegisterFormProps = {
@@ -36,12 +37,10 @@ const RegisterForm = (props: RegisterFormProps) => {
     // resolver: yupResolver(schema),
   });
   const dispatch = useDispatch();
-  // const loginUser = (payload: LoginPayload) => dispatch(login(payload));
+  const handleRegister = (payload: Register) => dispatch(register(payload));
 
   const onSubmit = handleSubmit((data) => {
-    // console.log(data);
-    // handleDummyLogin();
-    // loginUser(data);
+    handleRegister(data);
   });
 
   return (
@@ -50,6 +49,7 @@ const RegisterForm = (props: RegisterFormProps) => {
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
             name="email"
+            defaultValue=""
             control={control}
             render={({ field }) => (
               <TextField
@@ -66,7 +66,8 @@ const RegisterForm = (props: RegisterFormProps) => {
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="clinicName"
+            name="name"
+            defaultValue=""
             control={control}
             render={({ field }) => (
               <TextField
@@ -74,7 +75,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                   shrink: true,
                 }}
                 placeholder="Klinik Sihat"
-                id="clinicName"
+                id="name"
                 label="Clinic name"
                 {...field}
               />
@@ -83,7 +84,7 @@ const RegisterForm = (props: RegisterFormProps) => {
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="clinicAddress"
+            name="address"
             defaultValue=""
             control={control}
             render={({ field }) => (
@@ -96,7 +97,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                id="clinicAddress"
+                id="address"
                 label="Clinic address"
                 {...field}
               />
@@ -105,7 +106,7 @@ const RegisterForm = (props: RegisterFormProps) => {
         </FormControl>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="clinicPostcode"
+            name="postcode"
             defaultValue=""
             control={control}
             render={({ field }) => (
@@ -114,7 +115,7 @@ const RegisterForm = (props: RegisterFormProps) => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                id="clinicPostcode"
+                id="postcode"
                 label="Postcode"
                 {...field}
               />

@@ -3,11 +3,10 @@ import Drawer from "@mui/material/Drawer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { DengueState } from "../redux-saga/store";
-import { logout } from "../app/redux-saga/actions";
 import Menubar from "../common/components/menubar";
 import StepsForm from "./forms/StepsForm";
 import { DengueSample } from "./redux-saga/payload-type";
-import { backStep } from "../app/redux-saga/actions";
+import { logout, backStep } from "../redux-saga/actions";
 import Qrcode from "../common/components/share/Qrcode";
 
 type DengueFormProps = {
