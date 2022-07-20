@@ -1,6 +1,13 @@
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import dengueSaga from "../dengue-testkit/redux-saga/saga";
-import { registerOK, initOK, initErr, loginOK, logoutOK } from "./actions";
+import {
+  registerOK,
+  registerErr,
+  initOK,
+  initErr,
+  loginOK,
+  logoutOK,
+} from "./actions";
 import { INIT, REGISTER, LOGIN, LOGOUT } from "../common/constants/action-type";
 import { initialize } from "../common/api/app";
 import { register } from "../common/api/clinic";
@@ -13,7 +20,15 @@ function* registerClinic(action: any) {
     postcode,
     email,
   });
-  console.log(res);
+  if (!res) {
+    yield put(registerErr());
+    return;
+  }
+  if (res.status === "Error") {
+    yield put(registerErr({ errMsg: res.message }));
+    return;
+  }
+  yield put(registerOK());
 }
 
 function* init() {

@@ -9,12 +9,14 @@ import { useForm, Controller } from "react-hook-form";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../../redux-saga/actions";
+import { register, reset } from "../../../redux-saga/actions";
 import { Register } from "../../constants/payload-type";
+import { AppState } from "../../../redux-saga/store";
 
 type FormValues = {
   email: string;
@@ -38,10 +40,25 @@ const RegisterForm = (props: RegisterFormProps) => {
   });
   const dispatch = useDispatch();
   const handleRegister = (payload: Register) => dispatch(register(payload));
+  const handleReset = () => dispatch(reset());
+  const { pending, errMsg } = useSelector((state: AppState) => state.app);
 
   const onSubmit = handleSubmit((data) => {
     handleRegister(data);
   });
+
+  if (errMsg) {
+    return (
+      <Paper sx={{ padding: "1rem" }}>
+        <Typography color="error">{errMsg}</Typography>
+        <Button variant="outlined" onClick={handleReset}>try again</Button>
+      </Paper>
+    );
+  }
+
+  if (pending) {
+    return <Paper sx={{ padding: "1rem" }}>Loading...</Paper>;
+  }
 
   return (
     <Paper sx={{ padding: "1rem" }}>

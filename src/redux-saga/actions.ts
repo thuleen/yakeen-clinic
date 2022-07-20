@@ -2,6 +2,7 @@ import {
   INIT,
   INIT_OK,
   INIT_ERR,
+  RESET,
   REGISTER,
   REGISTER_OK,
   REGISTER_ERR,
@@ -17,6 +18,7 @@ import {
   Sample,
   SampleSelection,
   Register,
+  RegisterErr,
   Login,
   LoginOK,
 } from "../common/constants/payload-type";
@@ -33,6 +35,10 @@ export const initErr = () => ({
   type: INIT_ERR,
 });
 
+export const reset = () => ({
+  type: RESET,
+});
+
 export const register = (payload: Register) => ({
   type: REGISTER,
   payload,
@@ -42,8 +48,9 @@ export const registerOK = () => ({
   type: REGISTER_OK,
 });
 
-export const registerErr = () => ({
+export const registerErr = (payload: RegisterErr) => ({
   type: REGISTER_ERR,
+  payload,
 });
 
 export const login = (payload: Login) => ({

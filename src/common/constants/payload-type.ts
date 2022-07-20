@@ -14,12 +14,18 @@ export interface Sample {
   shareLink: string;
 }
 
+export interface ResponseError {
+  errMsg: string;
+}
+
 export interface Register {
   name: string;
   address: string;
   postcode: string;
   email: email;
 }
+
+export interface ResponseError extends ResponseError {}
 
 export interface Login {
   clinicId: string;

@@ -6,6 +6,8 @@ export const REGISTER = "REGISTER";
 export const REGISTER_OK = "REGISTER_OK";
 export const REGISTER_ERR = "REGISTER_ERR";
 
+export const RESET = "RESET";
+
 export const LOGIN = "LOGIN";
 export const LOGIN_OK = "LOGIN_OK";
 
