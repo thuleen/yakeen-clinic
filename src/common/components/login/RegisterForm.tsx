@@ -41,17 +41,32 @@ const RegisterForm = (props: RegisterFormProps) => {
   const dispatch = useDispatch();
   const handleRegister = (payload: Register) => dispatch(register(payload));
   const handleReset = () => dispatch(reset());
-  const { pending, errMsg } = useSelector((state: AppState) => state.app);
+  const { pending, errMsg, okMsg } = useSelector(
+    (state: AppState) => state.app
+  );
 
   const onSubmit = handleSubmit((data) => {
     handleRegister(data);
   });
 
+  if (okMsg) {
+    return (
+      <Paper sx={{ padding: "1rem" }}>
+        <Typography color="success">{okMsg}</Typography>
+        <Button variant="contained" onClick={toggleForm}>
+          login
+        </Button>
+      </Paper>
+    );
+  }
+
   if (errMsg) {
     return (
       <Paper sx={{ padding: "1rem" }}>
         <Typography color="error">{errMsg}</Typography>
-        <Button variant="outlined" onClick={handleReset}>try again</Button>
+        <Button variant="outlined" onClick={handleReset}>
+          try again
+        </Button>
       </Paper>
     );
   }

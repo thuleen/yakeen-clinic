@@ -16,11 +16,15 @@ export interface AppReducerState {
   initialised: boolean;
   token: string | null;
   errMsg: string | null;
+  okMsg: string | null;
 }
 
 const initialState = {
+  pending: false,
   initialised: false,
   token: null,
+  errMsg: null,
+  okMsg: null,
 };
 
 function reducerApp(state: AppReducerState = initialState, action: any) {
@@ -30,17 +34,20 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
         ...state,
         pending: false,
         errMsg: null,
+        okMsg: null,
       };
     case REGISTER:
       return {
         ...state,
         pending: true,
         errMsg: null,
+        okMsg: null,
       };
     case REGISTER_OK:
       return {
         ...state,
         pending: false,
+        okMsg: action.payload.okMsg,
       };
     case REGISTER_ERR:
       return {

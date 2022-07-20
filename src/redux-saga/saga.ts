@@ -12,7 +12,7 @@ import { INIT, REGISTER, LOGIN, LOGOUT } from "../common/constants/action-type";
 import { initialize } from "../common/api/app";
 import { register } from "../common/api/clinic";
 
-function* registerClinic(action: any) {
+function* registerClinic(action: any): any {
   const { name, address, postcode, email } = action.payload;
   const res = yield call(register, {
     name,
@@ -21,17 +21,17 @@ function* registerClinic(action: any) {
     email,
   });
   if (!res) {
-    yield put(registerErr());
+    yield put(registerErr({ errMsg: res.message }));
     return;
   }
   if (res.status === "Error") {
     yield put(registerErr({ errMsg: res.message }));
     return;
   }
-  yield put(registerOK());
+  yield put(registerOK({ okMsg: res.message }));
 }
 
-function* init() {
+function* init(): any {
   const res = yield call(initialize);
   if (!res) {
     yield put(initErr());

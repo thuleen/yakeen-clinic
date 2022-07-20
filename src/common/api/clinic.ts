@@ -4,7 +4,7 @@ import { Register } from "../constants/payload-type";
 const register = async (payload: Register) => {
   const { name, address, postcode, email } = payload;
   try {
-    const { data } = await axios.post<RegisterClinic>(
+    const { data } = await axios.post<Register>(
       `${import.meta.env.VITE_APP_API_URL}/register-clinic`,
       {
         password: import.meta.env.VITE_APP_PWD,

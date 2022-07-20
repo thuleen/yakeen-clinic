@@ -1,3 +1,7 @@
+export interface Initialize {
+  password: string;
+}
+
 export interface Sample {
   testType: string;
   tagNo: string;
@@ -14,25 +18,27 @@ export interface Sample {
   shareLink: string;
 }
 
-export interface ResponseError {
+export interface RegisterErr {
   errMsg: string;
+}
+
+export interface RegisterOK {
+  okMsg: string;
 }
 
 export interface Register {
   name: string;
   address: string;
   postcode: string;
-  email: email;
+  email: string;
 }
-
-export interface ResponseError extends ResponseError {}
 
 export interface Login {
   clinicId: string;
   password: string;
 }
 
-export interface LoginOk {
+export interface LoginOK {
   token: string;
 }
 

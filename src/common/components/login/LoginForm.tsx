@@ -13,9 +13,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../redux-saga/actions";
+import { Login } from "../../constants/payload-type";
 
 type FormValues = {
-  clinicId: string;
+  email: string;
   password: string;
 };
 
@@ -34,15 +35,13 @@ const LoginForm = (props: LoginFormProps) => {
     // resolver: yupResolver(schema),
   });
   const dispatch = useDispatch();
-  const loginUser = (payload: LoginPayload) => dispatch(login(payload));
+  const loginUser = (payload: Login) => dispatch(login(payload));
 
   const toggleShowPassword = () => {
     setShowPassword((prevVal) => !prevVal);
   };
 
   const onSubmit = handleSubmit((data) => {
-    // console.log(data);
-    // handleDummyLogin();
     loginUser(data);
   });
 
@@ -51,12 +50,12 @@ const LoginForm = (props: LoginFormProps) => {
       <form id="login-form" onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
-            name="clinicId"
+            name="email"
             defaultValue=""
             control={control}
             render={({ field }) => (
               <OutlinedInput
-                placeholder="Clinic id"
+                placeholder="Email"
                 sx={{
                   border: "1pt solid white",
                 }}
@@ -65,8 +64,8 @@ const LoginForm = (props: LoginFormProps) => {
                     color: "white",
                   },
                 }}
-                id="clinicId"
-                label="Clinic id"
+                id="email"
+                label="Email"
                 {...field}
               />
             )}

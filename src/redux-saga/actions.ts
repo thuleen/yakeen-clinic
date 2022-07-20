@@ -19,6 +19,7 @@ import {
   SampleSelection,
   Register,
   RegisterErr,
+  RegisterOK,
   Login,
   LoginOK,
 } from "../common/constants/payload-type";
@@ -44,8 +45,9 @@ export const register = (payload: Register) => ({
   payload,
 });
 
-export const registerOK = () => ({
+export const registerOK = (payload: RegisterOK) => ({
   type: REGISTER_OK,
+  payload,
 });
 
 export const registerErr = (payload: RegisterErr) => ({
@@ -58,7 +60,7 @@ export const login = (payload: Login) => ({
   payload,
 });
 
-export const loginOK = (payload: LoginOk) => ({
+export const loginOK = (payload: LoginOK) => ({
   type: LOGIN_OK,
   payload,
 });
