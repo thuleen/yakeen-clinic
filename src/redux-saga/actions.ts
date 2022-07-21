@@ -14,6 +14,10 @@ import {
   SELECT_SAMPLE,
   BACK_STEP,
   NEXT_STEP,
+  SAVE_PATIENT,
+  SAVE_PATIENT_OK,
+  SAVE_PHOTO,
+  SAVE_PHOTO_OK,
 } from "../common/constants/action-type";
 import {
   Sample,
@@ -92,5 +96,25 @@ export const backStep = (payload: Sample) => ({
 
 export const nextStep = (payload: Sample) => ({
   type: NEXT_STEP,
+  payload,
+});
+
+export const savePatient = (payload: Sample) => ({
+  type: SAVE_PATIENT,
+  payload,
+});
+
+export const savePatientOK = (payload: Sample) => ({
+  type: SAVE_PATIENT_OK,
+  payload,
+});
+
+export const savePhoto = (payload: Sample) => ({
+  type: SAVE_PHOTO,
+  payload,
+});
+
+export const savePhotoOK = (payload: Sample) => ({
+  type: SAVE_PHOTO_OK,
   payload,
 });

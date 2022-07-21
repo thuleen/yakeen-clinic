@@ -49,7 +49,7 @@ const TestkitPreview = (props: TestkitPreviewProps) => {
         <div style={styles.previewPhotoTakenAt}>{photoTakenAt}</div>
         <img
           style={{ width: "100%", height: "auto" }}
-          src={sample.samplePhotoDataUri ? sample.samplePhotoDataUri : ""}
+          src={sample.photoUri ? sample.photoUri : ""}
         />
       </div>
       <div style={{ marginTop: "1rem" }} />

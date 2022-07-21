@@ -24,7 +24,8 @@ export const NEW_SAMPLE_OK = "NEW_SAMPLE_OK"; //created!
 export const SAVE_PATIENT = "SAVE_PATIENT";
 export const SAVE_PATIENT_OK = "SAVE_PATIENT_OK";
 
-export const SET_SMPLPHOTO_DATAURI = "SET_SMPLPHOTO_DATAURI";
+export const SAVE_PHOTO = "SAVE_PHOTO";
+export const SAVE_PHOTO_OK = "SAVE_PHOTO_OK";
 
 export const INTERPRET = "INTERPRET";
 export const INTERPRET_OK = "INTERPRET_OK";

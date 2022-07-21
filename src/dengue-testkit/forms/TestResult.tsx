@@ -81,7 +81,7 @@ const TestResult = (props: FormProps) => {
       <PreviewDlg
         open={openPreview}
         handleClose={togglePreview}
-        photoDataUri={activeSample.samplePhotoDataUri}
+        photoDataUri={activeSample.photoUri}
         tagNo={tagNo}
         photoTakenAt={photoTakenAt}
       />

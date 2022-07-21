@@ -3,13 +3,14 @@ export interface Initialize {
 }
 
 export interface Sample {
+  id?: number; // generated at API level
   testType: string;
   tagNo: string;
   name: string | null; // patient name
   mobileNo: string;
   socialId: string;
   idType: string;
-  samplePhotoDataUri: string | null;
+  photoUri: string | null;
   pending: boolean;
   lastActiveStep: number;
   createAt: string;
@@ -57,3 +58,15 @@ export interface Register {
 export interface SampleSelection {
   tagNo: string;
 }
+
+export interface SampleCreation {
+  clinicId: number;
+  tagNo: string;
+  testType: string;
+  name: string; // patient name
+  mobileNo: string;
+  idType: string;
+  socialId: string;
+}
+
+export interface UpdateSamplePhoto extends SampleCreation {}

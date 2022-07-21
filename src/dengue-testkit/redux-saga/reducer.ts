@@ -3,8 +3,10 @@ import {
   NEXT_STEP,
   NEW_SAMPLE,
   NEW_SAMPLE_OK,
+  SAVE_PATIENT,
   SAVE_PATIENT_OK,
-  SET_SMPLPHOTO_DATAURI,
+  SAVE_PHOTO,
+  SAVE_PHOTO_OK,
   INTERPRET_OK,
   SELECT_SAMPLE,
 } from "../../common/constants/action-type";
@@ -76,6 +78,7 @@ export default function dengueReducer(
       let sampleWithPatient = nuSamples.filter(
         (s) => s.tagNo === action.payload.tagNo
       )[0];
+      sampleWithPatient.id = action.payload.id;
       sampleWithPatient.name = action.payload.name;
       sampleWithPatient.idType = action.payload.idType;
       sampleWithPatient.socialId = action.payload.socialId;
@@ -87,19 +90,19 @@ export default function dengueReducer(
         samples: nuSamples,
       };
 
-    case SET_SMPLPHOTO_DATAURI:
+    case SAVE_PHOTO_OK:
       nuSamples = [...state.samples];
       let sampleWithPhoto = nuSamples.filter(
         (s) => s.tagNo === action.payload.tagNo
       )[0];
-      sampleWithPhoto.samplePhotoDataUri = action.payload.dataUri;
+      sampleWithPhoto.photoUri = action.payload.photoUri;
       sampleWithPhoto.photoTakenAt = action.payload.photoTakenAt;
       sampleWithPhoto.lastActiveStep = 2;
       nuSamples = [...nuSamples, { ...sampleWithPhoto }];
       return {
         ...state,
         activeSample: sampleWithPhoto,
-        selectSmplPhoto: action.payload.dataUri,
+        selectSmplPhoto: action.payload.photoUri,
       };
 
     case INTERPRET_OK:

@@ -1,8 +1,7 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { createSampleOK, savePatientOK, saveInterpretation } from "./actions";
+import { createSampleOK, saveInterpretation } from "./actions";
 import {
   NEW_SAMPLE,
-  SAVE_PATIENT,
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
@@ -97,7 +96,7 @@ function* createSample() {
       cC: false,
       ns1Ag: false,
       interpretation: "",
-      samplePhotoDataUri: null,
+      photoUri: null,
       lastActiveStep: 0,
       createAt: createAt,
       interpretAt: createAt,
@@ -107,15 +106,7 @@ function* createSample() {
   );
 }
 
-function* savePatient(action: any) {
-  // yield console.log(action);
-  // Fetch api to register the patient
-  //
-  yield put(savePatientOK({ ...action.payload }));
-}
-
 export default function* dengueSaga() {
   yield takeEvery(NEW_SAMPLE, createSample);
-  yield takeEvery(SAVE_PATIENT, savePatient);
   yield takeEvery(INTERPRET, interpret);
 }

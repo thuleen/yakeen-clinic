@@ -4,14 +4,14 @@ import Alert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import Camera, { FACING_MODES } from "react-html5-camera-photo";
+import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
-import { setSamplePhotoDataUri } from "../redux-saga/actions";
 import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
+import { savePhoto } from "../../redux-saga/actions";
 
 type FormValues = {
   patientName: string;
@@ -23,7 +23,7 @@ type FormProps = {
 
 const CapturePhoto = (props: FormProps) => {
   const [startCamera, setStartCamera] = React.useState<boolean>(false);
-  const [localDataUri, setLocalDataUri] = React.useState<string | null>(null);
+  const [localPhotoUri, setLocalPhotoUri] = React.useState<string | null>(null);
   const [photoTakenAt, setPhotoTakenAt] = React.useState<string>(
     mysqlDateFormatter(new Date())
   );
@@ -39,35 +39,35 @@ const CapturePhoto = (props: FormProps) => {
   );
   const { tagNo } = activeSample;
   const dispatch = useDispatch();
-  const setDataUri = (payload: any) => dispatch(setSamplePhotoDataUri(payload));
+  const handleSavePhoto = (payload: any) => dispatch(savePhoto(payload));
 
   const toggleCamera = () => {
     setStartCamera((old) => !old);
   };
 
   const onSubmit = handleSubmit((data: any) => {
-    setDataUri({
-      tagNo: tagNo,
-      dataUri: localDataUri,
+    handleSavePhoto({
+      ...activeSample,
+      photoUri: localPhotoUri,
       photoTakenAt: photoTakenAt,
     });
   });
 
   function handleTakePhoto(dataUri: string) {
-    setLocalDataUri(dataUri);
+    setLocalPhotoUri(dataUri);
     setPhotoTakenAt(mysqlDateFormatter(new Date()));
   }
 
-  if (localDataUri) {
+  if (localPhotoUri) {
     return (
       <div>
         <PhotoPreview
-          dataUri={localDataUri}
+          dataUri={localPhotoUri}
           tagNo={tagNo}
           photoTakenAt={photoTakenAt}
         />
         <div style={{ margin: "0.5rem", textAlign: "center" }}>
-          <Button variant="outlined" onClick={() => setLocalDataUri(null)}>
+          <Button variant="outlined" onClick={() => setLocalPhotoUri(null)}>
             retake
           </Button>
         </div>
@@ -79,6 +79,8 @@ const CapturePhoto = (props: FormProps) => {
   if (startCamera) {
     return (
       <Camera
+        // sizeFactor={0.7}
+        imageType={IMAGE_TYPES.JPG}
         idealFacingMode={FACING_MODES.ENVIRONMENT}
         onTakePhoto={(dataUri) => {
           handleTakePhoto(dataUri);
