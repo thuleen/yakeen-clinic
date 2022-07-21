@@ -60,13 +60,9 @@ function* logout() {
   yield put(logoutOK());
 }
 
-function* appSaga() {
+export default function* appSaga() {
   yield takeEvery(INIT, init);
   yield takeEvery(REGISTER, registerClinic);
   yield takeEvery(LOGIN, login);
   yield takeEvery(LOGOUT, logout);
-}
-
-export default function* rootSaga() {
-  yield all([appSaga(), dengueSaga()]);
 }

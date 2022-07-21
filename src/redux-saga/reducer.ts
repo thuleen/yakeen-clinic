@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-import reducerDengue from "../dengue-testkit/redux-saga/reducer";
 import {
   INIT_OK,
   INIT_ERR,
@@ -95,9 +93,4 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
   }
 }
 
-const reducer = combineReducers({
-  app: reducerApp,
-  dengue: reducerDengue,
-});
-
-export default reducer;
+export default reducerApp;

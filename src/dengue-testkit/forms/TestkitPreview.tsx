@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import styles from "./styles";
 import testKit from "../../assets/img/dengue-testkit-diagram.jpg";
-import { DengueState } from "../../redux-saga/store";
+import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
 import Info from "../../common/components/alert/Info";
 

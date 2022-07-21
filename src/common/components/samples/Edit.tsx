@@ -4,7 +4,7 @@ import Menubar from "../menubar";
 import { logout } from "../../../redux-saga/actions";
 // dengue
 import DengueForm from "../../../dengue-testkit/DengueForm";
-import { DengueState } from "../../../redux-saga/store";
+import { DengueState } from "../../../store";
 
 const EditForm = () => {
   const navigate = useNavigate();

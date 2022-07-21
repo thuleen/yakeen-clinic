@@ -9,7 +9,7 @@ import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
 import { setSamplePhotoDataUri } from "../redux-saga/actions";
-import { DengueState } from "../../redux-saga/store";
+import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
 

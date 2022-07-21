@@ -15,7 +15,7 @@ import { TransitionProps } from "@mui/material/transitions";
 import { useSelector } from "react-redux";
 import TestkitPreview from "./TestkitPreview";
 import { DengueSample } from "../redux-saga/payload-type";
-import { DengueState } from "../../redux-saga/store";
+import { DengueState } from "../../store";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {

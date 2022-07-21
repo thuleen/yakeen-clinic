@@ -7,7 +7,7 @@ import styles from "./styles";
 import Testkit from "./Testkit";
 import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
-import { DengueState } from "../../redux-saga/store";
+import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
 import { nextStep } from "../../redux-saga/actions";
 import { interpretTest } from "../redux-saga/actions";

@@ -10,7 +10,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
-import { DengueState } from "../../../redux-saga/store";
+import { DengueState } from "../../../store";
 import { logout, selectSample } from "../../../redux-saga/actions";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";

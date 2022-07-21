@@ -2,7 +2,7 @@ import React from "react";
 import Drawer from "@mui/material/Drawer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { DengueState } from "../redux-saga/store";
+import { DengueState } from "../store";
 import Menubar from "../common/components/menubar";
 import StepsForm from "./forms/StepsForm";
 import { DengueSample } from "./redux-saga/payload-type";

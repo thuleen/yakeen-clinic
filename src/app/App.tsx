@@ -18,7 +18,7 @@ import DengueForm from "../dengue-testkit/DengueForm";
 import EditForm from "../common/components/samples/Edit";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
-import { AppState } from "../redux-saga/store";
+import { AppState } from "../store";
 import { init } from "../redux-saga/actions";
 
 type HomeProps = {

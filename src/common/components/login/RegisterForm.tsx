@@ -16,7 +16,8 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../../../redux-saga/actions";
 import { Register } from "../../constants/payload-type";
-import { AppState } from "../../../redux-saga/store";
+import { AppState } from "../../../store";
+import Loader from "../loader/Loader";
 
 type FormValues = {
   email: string;
@@ -71,12 +72,12 @@ const RegisterForm = (props: RegisterFormProps) => {
     );
   }
 
-  if (pending) {
-    return <Paper sx={{ padding: "1rem" }}>Loading...</Paper>;
-  }
-
   return (
     <Paper sx={{ padding: "1rem" }}>
+      <Loader
+        open={pending}
+        handleClose={() => console.log("close backdrop!")}
+      />
       <form id="register-form" onSubmit={onSubmit}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
