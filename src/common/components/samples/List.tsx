@@ -11,10 +11,14 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
 import { DengueState } from "../../../store";
-import { logout, selectSample } from "../../../redux-saga/actions";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
 import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";
+import {
+  logout,
+  selectSample,
+  getSamples,
+} from "../../../common/redux-saga/actions";
 
 type ListProps = {};
 
@@ -109,6 +113,10 @@ export default function SampleList(props: ListProps) {
   const { samples } = useSelector((state: DengueState) => state.dengue);
   const handleLogout = () => dispatch(logout());
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
+
+  React.useEffect(() => {
+    console.log("Fetch List of samples from API");
+  }, []);
 
   const handleNew = () => {
     navigate("/");

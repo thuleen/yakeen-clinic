@@ -14,9 +14,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import Typography from "@mui/material/Typography";
 import styles from "./styles";
-import { savePatient } from "../../redux-saga/actions";
 import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
+import { savePatient } from "../../common/redux-saga/actions";
 
 type FormValues = {
   name: string;
@@ -62,6 +62,7 @@ const Patient = (props: FormProps) => {
       idType: idType,
       tagNo: tagNo,
       testType: activeSample.testType,
+      lastActiveStep: activeSample.lastActiveStep + 1,
     });
   });
 

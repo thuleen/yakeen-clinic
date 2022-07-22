@@ -9,9 +9,9 @@ import "react-html5-camera-photo/build/css/index.css";
 import styles from "./styles";
 import PhotoPreview from "../../common/components/photo/Preview";
 import { DengueState } from "../../store";
-import { DengueSample } from "../redux-saga/payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
-import { savePhoto } from "../../redux-saga/actions";
+import { savePhoto } from "../../common/redux-saga/actions";
+import { DengueSample } from "../redux-saga/payload-type";
 
 type FormValues = {
   patientName: string;
@@ -50,6 +50,7 @@ const CapturePhoto = (props: FormProps) => {
       ...activeSample,
       photoUri: localPhotoUri,
       photoTakenAt: photoTakenAt,
+      lastActiveStep: activeSample.lastActiveStep + 1,
     });
   });
 

@@ -19,7 +19,7 @@ import EditForm from "../common/components/samples/Edit";
 import SampleList from "../common/components/samples/List";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../store";
-import { init } from "../redux-saga/actions";
+import { init } from "../common/redux-saga/actions";
 
 type HomeProps = {
   toggleHome: () => void;

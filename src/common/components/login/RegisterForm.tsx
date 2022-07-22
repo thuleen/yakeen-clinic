@@ -14,7 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { register, reset } from "../../../redux-saga/actions";
+import { register, reset } from "../../../common/redux-saga/actions";
 import { Register } from "../../constants/payload-type";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";

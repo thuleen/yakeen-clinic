@@ -9,8 +9,8 @@ import {
   LOGIN_OK,
   LOGIN_ERR,
   LOGOUT_OK,
-} from "../common/constants/action-type";
-import { Clinic } from "../common/constants/payload-type";
+} from "../constants/action-type";
+import { Clinic } from "../constants/payload-type";
 
 export interface AppReducerState {
   pending: boolean;

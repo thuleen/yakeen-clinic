@@ -9,7 +9,7 @@ import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
 import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
-import { nextStep } from "../../redux-saga/actions";
+import { nextStep } from "../../common/redux-saga/actions";
 import { interpretTest } from "../redux-saga/actions";
 import ConfirmSubmitDlg from "./ConfirmSubmitDlg";
 import { Indicator, IndicatorValues } from "./Testkit";

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
-import { logout } from "../../../redux-saga/actions";
+import { logout } from "../../../common/redux-saga/actions";
 // dengue
 import DengueForm from "../../../dengue-testkit/DengueForm";
 import { DengueState } from "../../../store";

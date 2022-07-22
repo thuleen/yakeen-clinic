@@ -83,13 +83,12 @@ export default function dengueReducer(
       sampleWithPatient.idType = action.payload.idType;
       sampleWithPatient.socialId = action.payload.socialId;
       sampleWithPatient.mobileNo = action.payload.mobileNo;
-      sampleWithPatient.lastActiveStep = 1;
+      sampleWithPatient.lastActiveStep = action.payload.lastActiveStep;
       return {
         ...state,
         activeSample: sampleWithPatient,
         samples: nuSamples,
       };
-
     case SAVE_PHOTO_OK:
       nuSamples = [...state.samples];
       let sampleWithPhoto = nuSamples.filter(
@@ -97,7 +96,7 @@ export default function dengueReducer(
       )[0];
       sampleWithPhoto.photoUri = action.payload.photoUri;
       sampleWithPhoto.photoTakenAt = action.payload.photoTakenAt;
-      sampleWithPhoto.lastActiveStep = 2;
+      sampleWithPhoto.lastActiveStep = action.payload.lastActiveStep;
       nuSamples = [...nuSamples, { ...sampleWithPhoto }];
       return {
         ...state,

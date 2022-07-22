@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import dengueSaga from "../dengue-testkit/redux-saga/saga";
+import dengueSaga from "../../dengue-testkit/redux-saga/saga";
 import {
   registerOK,
   registerErr,
@@ -19,11 +19,11 @@ import {
   LOGOUT,
   SAVE_PATIENT,
   SAVE_PHOTO,
-} from "../common/constants/action-type";
-import { initialize } from "../common/api/app";
-import { register, apiLogin } from "../common/api/clinic";
-import { apiCreateSample, apiSavePhoto } from "../common/api/sample";
-import store from "../store";
+} from "../constants/action-type";
+import { initialize } from "../api/app";
+import { register, apiLogin } from "../api/clinic";
+import { apiCreateSample, apiSavePhoto } from "../api/sample";
+import store from "../../store";
 
 function* registerClinic(action: any): any {
   const { name, address, postcode, email } = action.payload;
@@ -78,15 +78,7 @@ function* savePatient(action: any): any {
   payload = { ...payload, clinicId: clinicId };
   const res = yield call(apiCreateSample, { ...payload }); // at API level a sample is only created when patient info is submitted
   const { sample } = res.result;
-  yield put(
-    savePatientOK({
-      ...sample,
-      idType: sample.pIdType,
-      mobileNo: sample.pMobileNo,
-      name: sample.pName,
-      socialId: sample.pSocId,
-    })
-  );
+  yield put(savePatientOK({ ...sample }));
 }
 
 function arrayBufferToBase64(buffer: any) {
@@ -103,16 +95,16 @@ function* savePhoto(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
+  console.log(payload);
   const res = yield call(apiSavePhoto, { ...payload }); // at API level a sample is only created when patient info is submitted
-  // console.log(res.result.sample.photoUri);
-  // const arrayBuffer = res.result.sample.photoUri;
-  // const photoUri = Buffer.from(arrayBuffer).toString("base64");
-  // console.log(photoUri);
+
+  if (!res) {
+    return;
+  }
 
   yield put(
     savePhotoOK({
       ...res.result.sample,
-      photoUri: res.result.sample.photoUri,
     })
   );
 }

@@ -60,6 +60,7 @@ export interface SampleSelection {
 }
 
 export interface SampleCreation {
+  lastActiveStep: number;
   clinicId: number;
   tagNo: string;
   testType: string;
@@ -70,3 +71,10 @@ export interface SampleCreation {
 }
 
 export interface UpdateSamplePhoto extends SampleCreation {}
+
+export interface GetSamples {
+  clinicId: number;
+}
+export interface GetSamplesOK {
+  samples: Array<Sample>;
+}

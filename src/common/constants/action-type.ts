@@ -30,4 +30,7 @@ export const SAVE_PHOTO_OK = "SAVE_PHOTO_OK";
 export const INTERPRET = "INTERPRET";
 export const INTERPRET_OK = "INTERPRET_OK";
 
+export const GET_SAMPLES = "GET_SAMPLES";
+export const GET_SAMPLES_OK = "GET_SAMPLES_OK";
+
 export const SELECT_SAMPLE = "SELECT_SAMPLE";

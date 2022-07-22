@@ -12,13 +12,15 @@ import {
   LOGOUT,
   LOGOUT_OK,
   SELECT_SAMPLE,
+  GET_SAMPLES,
+  GET_SAMPLES_OK,
   BACK_STEP,
   NEXT_STEP,
   SAVE_PATIENT,
   SAVE_PATIENT_OK,
   SAVE_PHOTO,
   SAVE_PHOTO_OK,
-} from "../common/constants/action-type";
+} from "../constants/action-type";
 import {
   Sample,
   SampleSelection,
@@ -28,7 +30,9 @@ import {
   Login,
   LoginOK,
   LoginErr,
-} from "../common/constants/payload-type";
+  GetSamples,
+  GetSamplesOK,
+} from "../constants/payload-type";
 
 export const init = () => ({
   type: INIT,
@@ -116,5 +120,15 @@ export const savePhoto = (payload: Sample) => ({
 
 export const savePhotoOK = (payload: Sample) => ({
   type: SAVE_PHOTO_OK,
+  payload,
+});
+
+export const getSamples = (payload: GetSamples) => ({
+  type: GET_SAMPLES,
+  payload,
+});
+
+export const getSamplesOK = (payload: GetSamplesOK) => ({
+  type: GET_SAMPLES_OK,
   payload,
 });

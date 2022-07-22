@@ -12,7 +12,7 @@ import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../redux-saga/actions";
+import { login } from "../../../common/redux-saga/actions";
 import { Login } from "../../constants/payload-type";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";
