@@ -1,7 +1,11 @@
 import axios from "axios";
-import { SampleCreation, UpdateSamplePhoto } from "../constants/payload-type";
+import {
+  SampleCreation,
+  UpdateSamplePhoto,
+  GetSamples,
+} from "../constants/payload-type";
 
-const apiCreateSample = async (payload: SampleCreation) => {
+const create = async (payload: SampleCreation) => {
   // const { clinicId, tagNo, testType, name, mobileNo, idType, socialId } = payload;
   try {
     const { data } = await axios.post<SampleCreation>(
@@ -23,9 +27,9 @@ const apiCreateSample = async (payload: SampleCreation) => {
     return null;
   }
 };
-export { apiCreateSample };
+export { create };
 
-const apiSavePhoto = async (payload: UpdateSamplePhoto) => {
+const savePhoto = async (payload: UpdateSamplePhoto) => {
   try {
     const { data } = await axios.put<SampleCreation>(
       `${import.meta.env.VITE_APP_API_URL}/update-sample-photo`,
@@ -46,4 +50,27 @@ const apiSavePhoto = async (payload: UpdateSamplePhoto) => {
     return null;
   }
 };
-export { apiSavePhoto };
+export { savePhoto };
+
+const getSamples = async (payload: GetSamples) => {
+  try {
+    const { data } = await axios.post<SampleCreation>(
+      `${import.meta.env.VITE_APP_API_URL}/samples`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { getSamples };

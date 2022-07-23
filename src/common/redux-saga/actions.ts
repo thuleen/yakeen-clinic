@@ -30,7 +30,6 @@ import {
   Login,
   LoginOK,
   LoginErr,
-  GetSamples,
   GetSamplesOK,
 } from "../constants/payload-type";
 
@@ -123,9 +122,8 @@ export const savePhotoOK = (payload: Sample) => ({
   payload,
 });
 
-export const getSamples = (payload: GetSamples) => ({
+export const getSamples = () => ({
   type: GET_SAMPLES,
-  payload,
 });
 
 export const getSamplesOK = (payload: GetSamplesOK) => ({

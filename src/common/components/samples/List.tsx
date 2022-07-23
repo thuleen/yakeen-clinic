@@ -113,9 +113,10 @@ export default function SampleList(props: ListProps) {
   const { samples } = useSelector((state: DengueState) => state.dengue);
   const handleLogout = () => dispatch(logout());
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
+  const handleGetSamples = () => dispatch(getSamples());
 
   React.useEffect(() => {
-    console.log("Fetch List of samples from API");
+    handleGetSamples();
   }, []);
 
   const handleNew = () => {
@@ -149,7 +150,7 @@ export default function SampleList(props: ListProps) {
           patientName={s.name ? s.name : "-"}
           idType={s.idType}
           socialId={s.socialId}
-          mysqlDatetime={s.createAt}
+          mysqlDatetime={s.createdAt}
           interpretation={s.interpretation.length > 0 ? s.interpretation : "-"}
         />
         <Divider />

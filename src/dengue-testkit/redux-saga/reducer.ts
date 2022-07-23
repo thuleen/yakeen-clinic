@@ -105,7 +105,7 @@ export default function dengueReducer(
       };
 
     case INTERPRET_OK:
-      const interpretAt = mysqlDateFormatter(new Date());
+      const interpretedAt = mysqlDateFormatter(new Date());
       nuSamples = [...state.samples];
       let sampleWithTag = nuSamples.filter(
         (i) => i.tagNo === action.payload.tagNo
@@ -116,7 +116,7 @@ export default function dengueReducer(
       sampleWithTag.igG = action.payload.igG;
       sampleWithTag.igM = action.payload.igM;
       sampleWithTag.ns1Ag = action.payload.ns1Ag;
-      sampleWithTag.interpretAt = interpretAt;
+      sampleWithTag.interpretedAt = interpretedAt;
       return {
         ...state,
         activeSample: sampleWithTag,

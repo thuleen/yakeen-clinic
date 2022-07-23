@@ -5,7 +5,12 @@ import {
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
-import { mysqlDateFormatter } from "../../utils/datetime-formatter";
+import {
+  mysqlDateFormatter,
+  formatFromMysqlDtString,
+} from "../../utils/datetime-formatter";
+import store from "../../store";
+import * as apiSample from "../../common/api/sample";
 
 const PATIENT_APP_URL = import.meta.env.VITE_APP_URL_PATIENT;
 
@@ -78,14 +83,27 @@ const generataRandTagNo = () => {
   return Math.floor(1000000 + Math.random() * 9000000);
 };
 
-function* createSample() {
+function* createSample(): any {
+  const clinicId = store.getState().app.clinic.id;
   const tagNo = generataRandTagNo();
-  const createAt = `${mysqlDateFormatter(new Date())}`;
+  const payload = {
+    clinicId: clinicId,
+    testType: "DengueIgM/G/NS1",
+    tagNo: tagNo.toString(),
+    lastActiveStep: 0,
+  };
+  const res = yield call(apiSample.create, { ...payload });
+  if (!res) {
+    console.log("Todo - handle error.");
+    return;
+  }
+
+  const { sample } = res.result;
+
+  const createdAt = formatFromMysqlDtString(sample.createdAt);
   yield put(
     createSampleOK({
-      testType: "DengueIgM/G/NS1",
-      pending: true,
-      tagNo: tagNo.toString(),
+      ...sample,
       name: "",
       mobileNo: "",
       socialId: "",
@@ -98,9 +116,9 @@ function* createSample() {
       interpretation: "",
       photoUri: null,
       lastActiveStep: 0,
-      createAt: createAt,
-      interpretAt: createAt,
-      photoTakenAt: createAt,
+      createdAt: createdAt,
+      interpretedAt: createdAt,
+      photoTakenAt: createdAt,
       shareLink: `${PATIENT_APP_URL}/123`,
     })
   );

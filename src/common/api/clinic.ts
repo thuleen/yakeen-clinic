@@ -28,7 +28,7 @@ const register = async (payload: Register) => {
 };
 export { register };
 
-const apiLogin = async (payload: Login) => {
+const login = async (payload: Login) => {
   const { email, password } = payload;
   try {
     const { data } = await axios.post<Register>(
@@ -51,4 +51,4 @@ const apiLogin = async (payload: Login) => {
     return null;
   }
 };
-export { apiLogin };
+export { login };

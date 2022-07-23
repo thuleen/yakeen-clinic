@@ -13,8 +13,8 @@ export interface Sample {
   photoUri: string | null;
   pending: boolean;
   lastActiveStep: number;
-  createAt: string;
-  interpretAt: string;
+  createdAt: string;
+  interpretedAt: string;
   photoTakenAt: string; // date time photo was taken
   shareLink: string;
 }
@@ -64,10 +64,6 @@ export interface SampleCreation {
   clinicId: number;
   tagNo: string;
   testType: string;
-  name: string; // patient name
-  mobileNo: string;
-  idType: string;
-  socialId: string;
 }
 
 export interface UpdateSamplePhoto extends SampleCreation {}

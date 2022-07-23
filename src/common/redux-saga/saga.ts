@@ -19,15 +19,16 @@ import {
   LOGOUT,
   SAVE_PATIENT,
   SAVE_PHOTO,
+  GET_SAMPLES,
 } from "../constants/action-type";
-import { initialize } from "../api/app";
-import { register, apiLogin } from "../api/clinic";
-import { apiCreateSample, apiSavePhoto } from "../api/sample";
+import * as apiApp from "../api/app";
+import * as apiClinic from "../api/clinic";
+import * as apiSample from "../api/sample";
 import store from "../../store";
 
 function* registerClinic(action: any): any {
   const { name, address, postcode, email } = action.payload;
-  const res = yield call(register, {
+  const res = yield call(apiClinic.register, {
     name,
     address,
     postcode,
@@ -45,7 +46,7 @@ function* registerClinic(action: any): any {
 }
 
 function* init(): any {
-  const res = yield call(initialize);
+  const res = yield call(apiApp.initialize);
   if (!res) {
     yield put(initErr());
     return;
@@ -55,7 +56,7 @@ function* init(): any {
 
 function* login(action: any): any {
   const { email, password } = action.payload;
-  const res = yield call(apiLogin, { email: email, password: password });
+  const res = yield call(apiClinic.login, { email: email, password: password });
   if (!res) {
     yield put(loginErr({ errMsg: res.message }));
     return;
@@ -76,7 +77,7 @@ function* savePatient(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
-  const res = yield call(apiCreateSample, { ...payload }); // at API level a sample is only created when patient info is submitted
+  const res = yield call(apiSample.create, { ...payload }); // at API level a sample is only created when patient info is submitted
   const { sample } = res.result;
   yield put(savePatientOK({ ...sample }));
 }
@@ -96,7 +97,7 @@ function* savePhoto(action: any): any {
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
   console.log(payload);
-  const res = yield call(apiSavePhoto, { ...payload }); // at API level a sample is only created when patient info is submitted
+  const res = yield call(apiSample.savePhoto, { ...payload }); // at API level a sample is only created when patient info is submitted
 
   if (!res) {
     return;
@@ -109,11 +110,18 @@ function* savePhoto(action: any): any {
   );
 }
 
+function* getSamples(): any {
+  const clinicId = store.getState().app.clinic.id;
+  const res = yield call(apiSample.getSamples, { clinicId });
+  console.log(res);
+}
+
 export default function* appSaga() {
   yield takeEvery(INIT, init);
   yield takeEvery(REGISTER, registerClinic);
   yield takeEvery(LOGIN, login);
   yield takeEvery(SAVE_PATIENT, savePatient);
   yield takeEvery(SAVE_PHOTO, savePhoto);
+  yield takeEvery(GET_SAMPLES, getSamples);
   yield takeEvery(LOGOUT, logout);
 }
