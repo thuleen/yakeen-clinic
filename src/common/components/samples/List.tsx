@@ -10,15 +10,15 @@ import DoneIcon from "@mui/icons-material/Done";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import Menubar from "../menubar";
-import { DengueState } from "../../../store";
+import { AppState, DengueState } from "../../../store";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
-import { formatFromMysqlDtString } from "../../../utils/datetime-formatter";
 import {
   logout,
   selectSample,
   getSamples,
 } from "../../../common/redux-saga/actions";
+import { formatUTC } from "../../../utils/datetime-formatter";
 
 type ListProps = {};
 
@@ -111,6 +111,7 @@ export default function SampleList(props: ListProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { samples } = useSelector((state: DengueState) => state.dengue);
+  const { clinic } = useSelector((state: AppState) => state.app);
   const handleLogout = () => dispatch(logout());
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
   const handleGetSamples = () => dispatch(getSamples());
@@ -150,8 +151,8 @@ export default function SampleList(props: ListProps) {
           patientName={s.name ? s.name : "-"}
           idType={s.idType}
           socialId={s.socialId}
-          mysqlDatetime={s.createdAt}
-          interpretation={s.interpretation.length > 0 ? s.interpretation : "-"}
+          mysqlDatetime={formatUTC(s.createdAt)}
+          interpretation={s.interpretation ? s.interpretation : "-"}
         />
         <Divider />
       </div>

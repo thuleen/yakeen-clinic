@@ -11,6 +11,7 @@ import {
   logoutOK,
   savePatientOK,
   savePhotoOK,
+  getSamplesOK,
 } from "./actions";
 import {
   INIT,
@@ -116,7 +117,11 @@ function* savePhoto(action: any): any {
 function* getSamples(): any {
   const clinicId = store.getState().app.clinic.id;
   const res = yield call(apiSample.getSamples, { clinicId });
-  console.log(res);
+  if (!res) {
+    console.log("Todo implement error getSamples");
+    return;
+  }
+  yield put(getSamplesOK(res.result.samples));
 }
 
 export default function* appSaga() {

@@ -9,6 +9,7 @@ import {
   SAVE_PHOTO_OK,
   INTERPRET_OK,
   SELECT_SAMPLE,
+  GET_SAMPLES_OK,
 } from "../../common/constants/action-type";
 import { DengueSample } from "./payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
@@ -121,6 +122,12 @@ export default function dengueReducer(
       return {
         ...state,
         activeSample: sampleWithTag,
+        samples: nuSamples,
+      };
+    case GET_SAMPLES_OK:
+      nuSamples = action.payload;
+      return {
+        ...state,
         samples: nuSamples,
       };
     default:

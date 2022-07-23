@@ -5,10 +5,6 @@ import {
   INTERPRET,
   INTERPRET_OK,
 } from "../../common/constants/action-type";
-import {
-  mysqlDateFormatter,
-  formatFromMysqlDtString,
-} from "../../utils/datetime-formatter";
 import store from "../../store";
 import * as apiSample from "../../common/api/sample";
 
@@ -100,7 +96,7 @@ function* createSample(): any {
 
   const { sample } = res.result;
 
-  const createdAt = formatFromMysqlDtString(sample.createdAt);
+  const createdAt = sample.createdAt;
   yield put(
     createSampleOK({
       ...sample,

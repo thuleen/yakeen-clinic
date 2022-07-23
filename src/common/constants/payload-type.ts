@@ -72,5 +72,5 @@ export interface GetSamples {
   clinicId: number;
 }
 export interface GetSamplesOK {
-  samples: Array<Sample>;
+  samples: Sample[];
 }

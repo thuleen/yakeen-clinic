@@ -5,8 +5,9 @@ const mysqlDateFormatter = (date: Date): string => {
 };
 export { mysqlDateFormatter };
 
-const formatFromMysqlDtString = (date: string): string => {
+//format to readable string from universal time coordinated
+const formatUTC = (date: string): string => {
   let d = parseISO(date);
   return format(d, "dd/MM/yy HH:MM:ss");
 };
-export { formatFromMysqlDtString };
+export { formatUTC };
