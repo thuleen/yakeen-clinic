@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   SampleCreation,
   UpdateSamplePhoto,
+  UpdateSamplePatient,
   GetSamples,
 } from "../constants/payload-type";
 
@@ -28,6 +29,30 @@ const create = async (payload: SampleCreation) => {
   }
 };
 export { create };
+
+const savePatient = async (payload: UpdateSamplePatient) => {
+  // const { clinicId, tagNo, testType, name, mobileNo, idType, socialId } = payload;
+  try {
+    const { data } = await axios.put<UpdateSamplePatient>(
+      `${import.meta.env.VITE_APP_API_URL}/update-patient`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { savePatient };
 
 const savePhoto = async (payload: UpdateSamplePhoto) => {
   try {

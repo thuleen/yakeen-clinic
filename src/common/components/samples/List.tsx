@@ -99,7 +99,7 @@ const Item = ({
             {testType}
           </Typography>
           <Typography variant="caption" style={styles.listItemTestType}>
-            {formatFromMysqlDtString(mysqlDatetime)}
+            {mysqlDatetime}
           </Typography>
         </div>
       </div>

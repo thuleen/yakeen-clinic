@@ -59,6 +59,7 @@ const Patient = (props: FormProps) => {
   const onSubmit = handleSubmit((data: any) => {
     handleSavePatient({
       ...data,
+      id: activeSample.id,
       idType: idType,
       tagNo: tagNo,
       testType: activeSample.testType,

@@ -102,6 +102,7 @@ export default function dengueReducer(
         ...state,
         activeSample: sampleWithPhoto,
         selectSmplPhoto: action.payload.photoUri,
+        samples: nuSamples,
       };
 
     case INTERPRET_OK:

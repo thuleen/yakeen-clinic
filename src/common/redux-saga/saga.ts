@@ -74,10 +74,13 @@ function* logout() {
 }
 
 function* savePatient(action: any): any {
-  let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
-  payload = { ...payload, clinicId: clinicId };
-  const res = yield call(apiSample.create, { ...payload }); // at API level a sample is only created when patient info is submitted
+  let payload = { ...action.payload, clinicId: clinicId };
+  const res = yield call(apiSample.savePatient, { ...payload }); // at API level a sample is only created when patient info is submitted
+  if (!res) {
+    console.log("Todo: implement error savePatietErr");
+    return;
+  }
   const { sample } = res.result;
   yield put(savePatientOK({ ...sample }));
 }
@@ -96,8 +99,8 @@ function* savePhoto(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
-  console.log(payload);
   const res = yield call(apiSample.savePhoto, { ...payload }); // at API level a sample is only created when patient info is submitted
+  console.log(res.result);
 
   if (!res) {
     return;
