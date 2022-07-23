@@ -1,4 +1,6 @@
 import * as React from "react";
+import LinearProgress from '@mui/material/LinearProgress';
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
@@ -44,9 +46,10 @@ const Item = ({
   interpretation,
   mysqlDatetime,
   toggleDetails,
+  id,
 }: ItemProps) => {
   return (
-    <ListItem button onClick={() => toggleDetails(tagNo, pending)}>
+    <ListItem>
       <div style={styles.listItem}>
         <div style={styles.listItemFirstCol}>
           <Typography variant="body1" style={styles.listItemPatientName}>
@@ -61,6 +64,7 @@ const Item = ({
         </div>
         <div style={styles.listItemSecondCol}>
           <div
+            onClick={() => toggleDetails(tagNo, pending)}
             style={{
               display: "flex",
               flexDirection: "row",
@@ -110,7 +114,9 @@ const Item = ({
 export default function SampleList(props: ListProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { samples } = useSelector((state: DengueState) => state.dengue);
+  const { pending, samples } = useSelector(
+    (state: DengueState) => state.dengue
+  );
   const { clinic } = useSelector((state: AppState) => state.app);
   const handleLogout = () => dispatch(logout());
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
@@ -142,8 +148,9 @@ export default function SampleList(props: ListProps) {
 
   let sampleList = samples.map((s: DengueSample, index: number) => {
     return (
-      <div key={index}>
+      <div key={index} style={{ margin: "0.5rem" }}>
         <Item
+          id={s.id}
           testType={s.testType}
           toggleDetails={() => toggleDetails(s.tagNo)}
           pending={s.pending}
@@ -162,6 +169,7 @@ export default function SampleList(props: ListProps) {
   return (
     <>
       <Menubar handleNew={handleNew} handleLogout={handleLogout} />
+      {pending ? <LinearProgress /> : null}
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {sampleList}
       </List>

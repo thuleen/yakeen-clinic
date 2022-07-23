@@ -56,7 +56,7 @@ export { savePatient };
 
 const savePhoto = async (payload: UpdateSamplePhoto) => {
   try {
-    const { data } = await axios.put<SampleCreation>(
+    const { data } = await axios.put<UpdateSamplePhoto>(
       `${import.meta.env.VITE_APP_API_URL}/update-sample-photo`,
       {
         password: import.meta.env.VITE_APP_PWD,
@@ -79,7 +79,7 @@ export { savePhoto };
 
 const getSamples = async (payload: GetSamples) => {
   try {
-    const { data } = await axios.post<SampleCreation>(
+    const { data } = await axios.post<GetSamples>(
       `${import.meta.env.VITE_APP_API_URL}/samples`,
       {
         password: import.meta.env.VITE_APP_PWD,

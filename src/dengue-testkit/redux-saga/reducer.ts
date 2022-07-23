@@ -9,6 +9,7 @@ import {
   SAVE_PHOTO_OK,
   INTERPRET_OK,
   SELECT_SAMPLE,
+  GET_SAMPLES,
   GET_SAMPLES_OK,
 } from "../../common/constants/action-type";
 import { DengueSample } from "./payload-type";
@@ -18,12 +19,14 @@ export interface AppReducerState {
   selectSmplPhoto: string | null;
   activeSample: DengueSample | null;
   samples: DengueSample[];
+  pending: boolean;
 }
 
 const initialState = {
   selectSmplPhoto: null,
   activeSample: null,
   samples: [],
+  pending: false,
 };
 
 export default function dengueReducer(
@@ -124,11 +127,17 @@ export default function dengueReducer(
         activeSample: sampleWithTag,
         samples: nuSamples,
       };
+    case GET_SAMPLES:
+      return {
+        ...state,
+        pending: true,
+      };
     case GET_SAMPLES_OK:
       nuSamples = action.payload;
       return {
         ...state,
         samples: nuSamples,
+        pending: false,
       };
     default:
       return state;
