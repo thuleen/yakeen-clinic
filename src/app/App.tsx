@@ -19,6 +19,7 @@ import DenguePage from "../dengue-testkit/DenguePage";
 import EditPage from "../common/components/samples/EditPage";
 import SamplesPage from "../common/components/samples/SamplesPage";
 import LogSignForm from "../common/components/login/";
+import UserPage from "../common/components/user/UserPage";
 import { AppState } from "../store";
 import * as actionsApp from "../common/redux-saga/actions";
 import * as actionsDengue from "../dengue-testkit/redux-saga/actions";
@@ -117,6 +118,7 @@ function App() {
         <Route path="/edit/:tagNo" element={<EditPage />} />
         <Route path="/samples" element={<SamplesPage />} />
         <Route path="/dengue" element={<DenguePage />} />
+        <Route path="/user" element={<UserPage />} />
       </Routes>
     </>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Drawer from "@mui/material/Drawer";
-import LinearProgress from "@mui/material/LinearProgress"
+import LinearProgress from "@mui/material/LinearProgress";
 import { useDispatch, useSelector } from "react-redux";
 import { DengueState } from "../store";
 import StepsForm from "./forms/StepsForm";

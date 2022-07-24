@@ -93,8 +93,8 @@ const HomeAppbar = (props: AppbarProps) => {
                 Samples
               </MenuItem>
               <Divider />
-              <MenuItem onClick={() => toggleMenuItem("/account")}>
-                User account...
+              <MenuItem onClick={() => toggleMenuItem("/user")}>
+                My account...
               </MenuItem>
               <Divider />
               <MenuItem onClick={() => onLogout()}>Sign out...</MenuItem>

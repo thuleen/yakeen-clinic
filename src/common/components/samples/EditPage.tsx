@@ -8,11 +8,7 @@ const EditPage = () => {
   const { activeSample } = useSelector((state: DengueState) => state.dengue);
 
   if (!activeSample) {
-    return (
-      <>
-        No sample found.
-      </>
-    );
+    return <>No sample found.</>;
   }
 
   // if(sample.testType==="Dengue/NS1")
