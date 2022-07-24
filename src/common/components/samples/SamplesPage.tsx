@@ -1,5 +1,5 @@
 import * as React from "react";
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress from "@mui/material/LinearProgress";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import Typography from "@mui/material/Typography";
@@ -11,7 +11,6 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import DoneIcon from "@mui/icons-material/Done";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
-import Menubar from "../menubar";
 import { AppState, DengueState } from "../../../store";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
@@ -25,6 +24,7 @@ import { formatUTC } from "../../../utils/datetime-formatter";
 type ListProps = {};
 
 type ItemProps = {
+  id?: number;
   pending: boolean;
   patientName: string;
   idType: string;
@@ -111,24 +111,19 @@ const Item = ({
   );
 };
 
-export default function SampleList(props: ListProps) {
+export default function SamplesPage(props: ListProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { pending, samples } = useSelector(
     (state: DengueState) => state.dengue
   );
   const { clinic } = useSelector((state: AppState) => state.app);
-  const handleLogout = () => dispatch(logout());
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
   const handleGetSamples = () => dispatch(getSamples());
 
   React.useEffect(() => {
     handleGetSamples();
   }, []);
-
-  const handleNew = () => {
-    navigate("/");
-  };
 
   const toggleDetails = (tagNo: string) => {
     handleSelect(tagNo);
@@ -138,7 +133,6 @@ export default function SampleList(props: ListProps) {
   if (samples.length === 0) {
     return (
       <>
-        <Menubar handleNew={handleNew} handleLogout={handleLogout} />
         <div style={styles.container}>
           <Typography variant="body1">No sample</Typography>
         </div>
@@ -168,7 +162,6 @@ export default function SampleList(props: ListProps) {
 
   return (
     <>
-      <Menubar handleNew={handleNew} handleLogout={handleLogout} />
       {pending ? <LinearProgress /> : null}
       <List sx={{ width: "100%", bgcolor: "background.paper" }}>
         {sampleList}

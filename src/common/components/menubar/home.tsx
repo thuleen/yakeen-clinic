@@ -14,8 +14,6 @@ import styles from "./styles";
 import logo from "../../../assets/img/yaqeen-logo.png";
 import ConfirmLogoutDlg from "./ConfirmLogoutDlg";
 
-// const APPNAME = import.meta.env.VITE_APPNAME;
-
 type AppbarProps = {
   handleNew: () => void;
   handleLogout: () => void;
@@ -93,6 +91,10 @@ const HomeAppbar = (props: AppbarProps) => {
             >
               <MenuItem onClick={() => toggleMenuItem("/samples")}>
                 Samples
+              </MenuItem>
+              <Divider />
+              <MenuItem onClick={() => toggleMenuItem("/account")}>
+                User account...
               </MenuItem>
               <Divider />
               <MenuItem onClick={() => onLogout()}>Sign out...</MenuItem>

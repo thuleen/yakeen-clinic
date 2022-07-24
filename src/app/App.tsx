@@ -13,13 +13,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assets/img/yaqeen-logo.png";
 import "./App.css";
+import Menubar from "../common/components/menubar";
 import StartPage from "./StartPage";
-import DengueForm from "../dengue-testkit/DengueForm";
-import EditForm from "../common/components/samples/Edit";
-import SampleList from "../common/components/samples/List";
+import DenguePage from "../dengue-testkit/DenguePage";
+import EditPage from "../common/components/samples/EditPage";
+import SamplesPage from "../common/components/samples/SamplesPage";
 import LogSignForm from "../common/components/login/";
 import { AppState } from "../store";
-import { init } from "../common/redux-saga/actions";
+import * as actionsApp from "../common/redux-saga/actions";
+import * as actionsDengue from "../dengue-testkit/redux-saga/actions";
 
 type HomeProps = {
   toggleHome: () => void;
@@ -69,11 +71,18 @@ function App() {
   const navigate = useNavigate();
   const { clinic, initialised } = useSelector((state: AppState) => state.app);
   const dispatch = useDispatch();
-  const handleInit = () => dispatch(init());
+  const handleInit = () => dispatch(actionsApp.init());
+  const handleLogout = () => dispatch(actionsApp.logout());
+  const createNewSample = () => dispatch(actionsDengue.createSample());
 
   useEffect(() => {
     handleInit();
   }, []);
+
+  const handleNew = () => {
+    createNewSample();
+    navigate("/dengue");
+  };
 
   const toggleHome = () => {
     navigate("/");
@@ -90,23 +99,26 @@ function App() {
     }
   };
 
-  if (clinic) {
+  if (!clinic) {
     return (
-      <Routes>
-        <Route path="/" element={<StartPage />} />
-        <Route path="/edit/:tagNo" element={<EditForm />} />
-        <Route path="/samples" element={<SampleList />} />
-        <Route path="/dengue" element={<DengueForm />} />
-      </Routes>
+      <Home
+        initialised={initialised}
+        toggleHome={toggleHome}
+        toggleUpdate={toggleUpdate}
+      />
     );
   }
 
   return (
-    <Home
-      initialised={initialised}
-      toggleHome={toggleHome}
-      toggleUpdate={toggleUpdate}
-    />
+    <>
+      <Menubar handleNew={handleNew} handleLogout={handleLogout} />
+      <Routes>
+        <Route path="/" element={<StartPage handleNew={handleNew} />} />
+        <Route path="/edit/:tagNo" element={<EditPage />} />
+        <Route path="/samples" element={<SamplesPage />} />
+        <Route path="/dengue" element={<DenguePage />} />
+      </Routes>
+    </>
   );
 }
 
