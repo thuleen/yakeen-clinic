@@ -9,6 +9,9 @@
 
 .App-header {
   background-color: #079992;
+  background: url("../assets/img/app-background.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

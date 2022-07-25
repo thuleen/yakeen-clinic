@@ -19,6 +19,8 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useSelector } from "react-redux";
+import { AppState } from "../../../store";
 
 import ChangePassword from "./ChangePassword";
 import EditName from "./EditName";
@@ -42,6 +44,7 @@ const Secondary = ({ value }) => {
 const UserPage = () => {
   const [editName, setEditName] = React.useState<boolean>(false);
   const [changePassword, setChangePassword] = React.useState<boolean>(false);
+  const { clinic, user } = useSelector((state: AppState) => state.app);
 
   const toggleNameEdit = () => setEditName((en) => !en);
   const toggleChangePassword = () => setChangePassword((cp) => !cp);
@@ -59,8 +62,25 @@ const UserPage = () => {
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemText
+            primary={<Primary label="Clinic" />}
+            secondary={<Secondary value={clinic.name} />}
+          />
+        </ListItemButton>
+      </ListItem>
+
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemText
+            primary={<Primary label="Address" />}
+            secondary={<Secondary value={clinic.address} />}
+          />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemText
             primary={<Primary label="Email" />}
-            secondary={<Secondary value="email@com.my" />}
+            secondary={<Secondary value={user.email} />}
           />
         </ListItemButton>
       </ListItem>
@@ -69,7 +89,7 @@ const UserPage = () => {
         <ListItemButton onClick={toggleNameEdit}>
           <ListItemText
             primary={<Primary label="Name" />}
-            secondary={<Secondary value="" />}
+            secondary={<Secondary value={user.name} />}
           />
           <ChevronRightIcon color="primary" />
         </ListItemButton>

@@ -104,6 +104,7 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
       return {
         ...state,
         pending: false,
+        user: action.payload.user,
       };
     default:
       return state;

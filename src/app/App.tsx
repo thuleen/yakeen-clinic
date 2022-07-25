@@ -36,12 +36,12 @@ const Home = (props: HomeProps) => {
   return (
     <div className="App">
       <header className="App-header">
-        <div style={{ marginBottom: "15rem" }}>
+        <div style={{ marginBottom: "3rem" }}>
           <img src={logo} className="App-logo" />
           <Typography variant="body1" className="App-subheader">
             "keep evidence gathering & facts organised"
           </Typography>
-          <div style={{ marginTop: "0.5rem" }}>
+          <div style={{ marginTop: "3rem" }}>
             <LogSignForm />
           </div>
         </div>

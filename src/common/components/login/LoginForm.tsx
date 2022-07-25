@@ -55,45 +55,31 @@ const LoginForm = (props: LoginFormProps) => {
         handleClose={() => console.log("close backdrop!")}
       />
       <form id="login-form" onSubmit={onSubmit}>
-        <FormControl fullWidth margin="normal" variant="outlined">
-          <Controller
-            name="email"
-            defaultValue=""
-            control={control}
-            render={({ field }) => (
+        <Controller
+          name="email"
+          defaultValue=""
+          control={control}
+          render={({ field }) => (
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel htmlFor="email">Email</InputLabel>
               <OutlinedInput
                 placeholder="Email"
-                sx={{
-                  border: "1pt solid white",
-                }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
-                }}
                 id="email"
                 label="Email"
                 {...field}
               />
-            )}
-          />
-        </FormControl>
-        <FormControl fullWidth margin="normal" variant="outlined">
-          <Controller
-            name="password"
-            defaultValue=""
-            control={control}
-            render={({ field }) => (
+            </FormControl>
+          )}
+        />
+        <Controller
+          name="password"
+          defaultValue=""
+          control={control}
+          render={({ field }) => (
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel htmlFor="password">Password</InputLabel>
               <OutlinedInput
                 placeholder="Password"
-                sx={{
-                  border: "1pt solid white",
-                }}
-                inputProps={{
-                  style: {
-                    color: "white",
-                  },
-                }}
                 id="password"
                 label="Password"
                 type={showPassword ? "text" : "password"}
@@ -110,9 +96,9 @@ const LoginForm = (props: LoginFormProps) => {
                 }
                 {...field}
               />
-            )}
-          />
-        </FormControl>
+            </FormControl>
+          )}
+        />
       </form>
       <div>
         <Button

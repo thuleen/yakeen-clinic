@@ -10,6 +10,8 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUsr } from "../../redux-saga/actions";
 import { AppState } from "../../../store";
@@ -85,6 +87,24 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
   return (
     <div style={{ margin: "1rem" }}>
       <Loader open={pending} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <IconButton
+          color="primary"
+          aria-label="back"
+          onClick={toggleChangePassword}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+        <Button type="submit" form="changePassword">
+          submit
+        </Button>
+      </div>
       <form id="changePassword" onSubmit={handleSubmit(onSubmit)}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel htmlFor="usrPassword">Existing password</InputLabel>
@@ -159,9 +179,6 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
           ) : null}
         </FormControl>
       </form>
-      <Button variant="contained" type="submit" form="changePassword">
-        submit
-      </Button>
     </div>
   );
 };

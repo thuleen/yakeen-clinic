@@ -12,7 +12,7 @@ import {
   savePatientOK,
   savePhotoOK,
   getSamplesOK,
-  updateUsrOK
+  updateUsrOK,
 } from "./actions";
 import {
   INIT,
@@ -141,7 +141,7 @@ function* updateUsr(action: any): any {
     clinicId: clinicId,
   };
   const res = yield call(apiClinic.update, { ...payload });
-  yield put(updateUsrOK({ ...res.result.user }));
+  yield put(updateUsrOK({ user: res.result.user }));
 }
 
 export default function* appSaga() {

@@ -11,7 +11,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import styles from "./styles";
-import logo from "../../../assets/img/yaqeen-logo.png";
+import logo from "../../../assets/img/yaqeen-logo-white.png";
 import ConfirmLogoutDlg from "./ConfirmLogoutDlg";
 
 type AppbarProps = {

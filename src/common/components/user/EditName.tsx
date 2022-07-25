@@ -10,6 +10,12 @@ import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import IconButton from "@mui/material/IconButton";
+import { updateUsr } from "../../redux-saga/actions";
+import { AppState } from "../../../store";
+import Loader from "../loader/Loader";
 
 const schema = Yup.object().shape({
   name: Yup.string().required("name is required"),
@@ -22,6 +28,9 @@ export interface IChangePassword {
 
 const EditName = (props: { toggleNameEdit: () => void }) => {
   const { toggleNameEdit } = props;
+  const dispatch = useDispatch();
+  const handleChangeName = (payload: any) => dispatch(updateUsr(payload));
+  const { user, pending } = useSelector((state: AppState) => state.app);
 
   const {
     reset,
@@ -30,14 +39,32 @@ const EditName = (props: { toggleNameEdit: () => void }) => {
     formState: { errors },
   } = useForm<ShowSeedphrasePayload>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: user.name ? user.name : "",
+    },
   });
 
   const onSubmit: SubmitHandler<IChangePassword> = (payload) => {
-    toggleNameEdit();
+    handleChangeName({ ...payload });
   };
 
   return (
     <div style={{ margin: "1rem" }}>
+      <Loader open={pending} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <IconButton color="primary" aria-label="back" onClick={toggleNameEdit}>
+          <ChevronLeftIcon />
+        </IconButton>
+        <Button type="submit" form="editName">
+          submit
+        </Button>
+      </div>
       <form id="editName" onSubmit={handleSubmit(onSubmit)}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <Controller
@@ -60,9 +87,6 @@ const EditName = (props: { toggleNameEdit: () => void }) => {
             <FormHelperText error={true}>{errors.name.message}</FormHelperText>
           ) : null}
         </FormControl>
-        <Button type="submit" form="editName">
-          submit
-        </Button>
       </form>
     </div>
   );
