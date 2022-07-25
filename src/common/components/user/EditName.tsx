@@ -46,7 +46,7 @@ const EditName = (props: { toggleNameEdit: () => void }) => {
             control={control}
             render={({ field }) => (
               <TextField
-            placeholder="Your full name (optional)"
+                placeholder="Your full name (optional)"
                 InputLabelProps={{
                   shrink: true,
                 }}

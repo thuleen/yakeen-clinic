@@ -10,33 +10,37 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUsr } from "../../redux-saga/actions";
+import { AppState } from "../../../store";
+import Loader from "../loader/Loader";
 
 const schema = Yup.object().shape({
   usrPassword: Yup.string()
     .matches(/^\S*$/, "Whitespace is not allowed")
-    .matches(
-      new RegExp(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^&*()+=]).{8,20}$"
-      ),
-      `Min 8 characters and at most max 20 characters,\n
-      at least a digit,\n
-      upper case alphabet,\n
-      one lower case alphabet,\n
-      and one special character which includes !@#$%&*()+=^`
-    )
+    // .matches(
+    //   new RegExp(
+    //     "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^&*()+=]).{8,20}$"
+    //   ),
+    //   `Min 8 characters and at most max 20 characters,\n
+    //   at least a digit,\n
+    //   upper case alphabet,\n
+    //   one lower case alphabet,\n
+    //   and one special character which includes !@#$%&*()+=^`
+    // )
     .required("password is required"),
   usrNewPassword: Yup.string()
     .matches(/^\S*$/, "Whitespace is not allowed")
-    .matches(
-      new RegExp(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^&*()+=]).{8,20}$"
-      ),
-      `Min 8 characters and at most max 20 characters,\n
-      at least a digit,\n
-      upper case alphabet,\n
-      one lower case alphabet,\n
-      and one special character which includes !@#$%&*()+=^`
-    )
+    // .matches(
+    //   new RegExp(
+    //     "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^&*()+=]).{8,20}$"
+    //   ),
+    //   `Min 8 characters and at most max 20 characters,\n
+    //   at least a digit,\n
+    //   upper case alphabet,\n
+    //   one lower case alphabet,\n
+    //   and one special character which includes !@#$%&*()+=^`
+    // )
     .required("password is required"),
 });
 
@@ -47,7 +51,13 @@ export interface IChangePassword {
 
 const ChangePassword = (props: { toggleChangePassword: () => void }) => {
   const { toggleChangePassword } = props;
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+  const [showUsrPassword, setShowUsrPassword] = React.useState<boolean>(false);
+  const [showUsrNewPassword, setShowUsrNewPassword] =
+    React.useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const handleChangePassword = (payload: any) => dispatch(updateUsr(payload));
+  const { pending } = useSelector((state: AppState) => state.app);
 
   const {
     reset,
@@ -58,16 +68,23 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
     resolver: yupResolver(schema),
   });
 
-  const toggleShowPassword = () => {
-    setShowPassword((prevVal) => !prevVal);
+  const toggleShowUsrPassword = () => {
+    setShowUsrPassword((prevVal) => !prevVal);
+  };
+
+  const toggleShowUsrNewPassword = () => {
+    setShowUsrNewPassword((prevVal) => !prevVal);
   };
 
   const onSubmit: SubmitHandler<IChangePassword> = (payload) => {
-    toggleChangePassword();
+    // toggleChangePassword();
+    // console.log(payload);
+    handleChangePassword(payload);
   };
 
   return (
     <div style={{ margin: "1rem" }}>
+      <Loader open={pending} />
       <form id="changePassword" onSubmit={handleSubmit(onSubmit)}>
         <FormControl fullWidth margin="normal" variant="outlined">
           <InputLabel htmlFor="usrPassword">Existing password</InputLabel>
@@ -80,11 +97,14 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
                 error={errors.password ? true : false}
                 id="usrPassword"
                 label="Existing password"
-                type={showPassword ? "text" : "password"}
+                type={showUsrPassword ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
-                    <Button form="show.password" onClick={toggleShowPassword}>
-                      {showPassword ? (
+                    <Button
+                      form="show.password"
+                      onClick={toggleShowUsrPassword}
+                    >
+                      {showUsrPassword ? (
                         <VisibilityIcon />
                       ) : (
                         <VisibilityOffIcon />
@@ -113,11 +133,14 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
                 error={errors.password ? true : false}
                 id="usrNewPassword"
                 label="New password"
-                type={showPassword ? "text" : "password"}
+                type={showUsrNewPassword ? "text" : "password"}
                 endAdornment={
                   <InputAdornment position="end">
-                    <Button form="show.password" onClick={toggleShowPassword}>
-                      {showPassword ? (
+                    <Button
+                      form="show.password"
+                      onClick={toggleShowUsrNewPassword}
+                    >
+                      {showUsrNewPassword ? (
                         <VisibilityIcon />
                       ) : (
                         <VisibilityOffIcon />
@@ -135,10 +158,10 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
             </FormHelperText>
           ) : null}
         </FormControl>
-        <Button type="submit" form="changePassword">
-          submit
-        </Button>
       </form>
+      <Button variant="contained" type="submit" form="changePassword">
+        submit
+      </Button>
     </div>
   );
 };

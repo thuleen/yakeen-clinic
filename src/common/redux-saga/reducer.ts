@@ -9,8 +9,10 @@ import {
   LOGIN_OK,
   LOGIN_ERR,
   LOGOUT_OK,
+  UPDATE_USR,
+  UPDATE_USR_OK,
 } from "../constants/action-type";
-import { Clinic } from "../constants/payload-type";
+import { Clinic, User } from "../constants/payload-type";
 
 export interface AppReducerState {
   pending: boolean;
@@ -18,6 +20,7 @@ export interface AppReducerState {
   errMsg: string | null;
   okMsg: string | null;
   clinic: Clinic | null;
+  user: User | null;
 }
 
 const initialState = {
@@ -26,6 +29,7 @@ const initialState = {
   errMsg: null,
   okMsg: null,
   clinic: null,
+  user: null,
 };
 
 function reducerApp(state: AppReducerState = initialState, action: any) {
@@ -71,12 +75,14 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
         ...state,
         pending: true,
         clinic: null,
+        user: null,
       };
     case LOGIN_OK:
       return {
         ...state,
         pending: false,
         clinic: action.payload.clinic,
+        user: action.payload.user,
       };
     case LOGIN_ERR:
       return {
@@ -87,6 +93,17 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
       return {
         ...state,
         clinic: null,
+        user: null,
+      };
+    case UPDATE_USR:
+      return {
+        ...state,
+        pending: true,
+      };
+    case UPDATE_USR_OK:
+      return {
+        ...state,
+        pending: false,
       };
     default:
       return state;

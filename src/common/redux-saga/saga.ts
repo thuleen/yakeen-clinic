@@ -12,6 +12,7 @@ import {
   savePatientOK,
   savePhotoOK,
   getSamplesOK,
+  updateUsrOK
 } from "./actions";
 import {
   INIT,
@@ -21,6 +22,7 @@ import {
   SAVE_PATIENT,
   SAVE_PHOTO,
   GET_SAMPLES,
+  UPDATE_USR,
 } from "../constants/action-type";
 import * as apiApp from "../api/app";
 import * as apiClinic from "../api/clinic";
@@ -66,7 +68,13 @@ function* login(action: any): any {
     yield put(loginErr({ errMsg: res.message }));
     return;
   }
-  yield put(loginOK({ okMsg: res.message, clinic: res.result.clinic }));
+  yield put(
+    loginOK({
+      okMsg: res.message,
+      clinic: res.result.clinic,
+      user: res.result.user,
+    })
+  );
 }
 
 function* logout() {
@@ -124,6 +132,18 @@ function* getSamples(): any {
   yield put(getSamplesOK(res.result.samples));
 }
 
+function* updateUsr(action: any): any {
+  const clinicId = store.getState().app.clinic.id;
+  const email = store.getState().app.user.email;
+  const payload = {
+    ...action.payload,
+    email: email,
+    clinicId: clinicId,
+  };
+  const res = yield call(apiClinic.update, { ...payload });
+  yield put(updateUsrOK({ ...res.result.user }));
+}
+
 export default function* appSaga() {
   yield takeEvery(INIT, init);
   yield takeEvery(REGISTER, registerClinic);
@@ -131,5 +151,6 @@ export default function* appSaga() {
   yield takeEvery(SAVE_PATIENT, savePatient);
   yield takeEvery(SAVE_PHOTO, savePhoto);
   yield takeEvery(GET_SAMPLES, getSamples);
+  yield takeEvery(UPDATE_USR, updateUsr);
   yield takeEvery(LOGOUT, logout);
 }

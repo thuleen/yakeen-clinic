@@ -52,3 +52,26 @@ const login = async (payload: Login) => {
   }
 };
 export { login };
+
+const update = async (payload: Login) => {
+  try {
+    const { data } = await axios.put<Register>(
+      `${import.meta.env.VITE_APP_API_URL}/update-clinic-user`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { update };

@@ -26,6 +26,12 @@ export interface Clinic {
   postcode: string;
 }
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 export interface Login {
   email: string;
   password: string;
@@ -34,6 +40,7 @@ export interface Login {
 export interface LoginOK {
   okMsg: string;
   clinic: Clinic | null;
+  user: User | null;
 }
 
 export interface LoginErr {

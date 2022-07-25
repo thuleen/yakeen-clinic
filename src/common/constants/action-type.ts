@@ -34,3 +34,6 @@ export const GET_SAMPLES = "GET_SAMPLES";
 export const GET_SAMPLES_OK = "GET_SAMPLES_OK";
 
 export const SELECT_SAMPLE = "SELECT_SAMPLE";
+
+export const UPDATE_USR = "UPDATE_USR";
+export const UPDATE_USR_OK = "UPDATE_USR_OK";

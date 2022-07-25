@@ -21,7 +21,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import ChangePassword from "./ChangePassword";
-import EditName from "./EditName"
+import EditName from "./EditName";
 
 const Primary = ({ label }) => {
   return (

@@ -20,6 +20,8 @@ import {
   SAVE_PATIENT_OK,
   SAVE_PHOTO,
   SAVE_PHOTO_OK,
+  UPDATE_USR,
+  UPDATE_USR_OK,
 } from "../constants/action-type";
 import {
   Sample,
@@ -128,5 +130,20 @@ export const getSamples = () => ({
 
 export const getSamplesOK = (payload: GetSamplesOK) => ({
   type: GET_SAMPLES_OK,
+  payload,
+});
+
+export const updateUsr = (payload: {
+  email: string;
+  name?: string;
+  usrPassword?: string;
+  usrNewPassword?: string;
+}) => ({
+  type: UPDATE_USR,
+  payload,
+});
+
+export const updateUsrOK = (payload: { name?: string }) => ({
+  type: UPDATE_USR_OK,
   payload,
 });
