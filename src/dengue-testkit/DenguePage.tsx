@@ -8,6 +8,8 @@ import { DengueSample } from "./redux-saga/payload-type";
 import { logout, backStep } from "../common/redux-saga/actions";
 import Qrcode from "../common/components/share/Qrcode";
 
+const PATIENT_LINK = import.meta.env.VITE_APP_URL_PATIENT;
+
 type DenguePageProps = {
   sample?: DengueSample;
 };
@@ -54,7 +56,7 @@ const DenguePage = (props: DenguePageProps) => {
             alignItems: "center",
           }}
         >
-          <Qrcode shareLink={activeSample.shareLink} />
+          <Qrcode shareLink={`${PATIENT_LINK}/${activeSample.id}`} />
         </div>
       </Drawer>
     </div>
