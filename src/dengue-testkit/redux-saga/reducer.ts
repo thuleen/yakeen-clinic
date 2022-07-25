@@ -7,6 +7,8 @@ import {
   SAVE_PATIENT_OK,
   SAVE_PHOTO,
   SAVE_PHOTO_OK,
+  SAVE_RESULT,
+  SAVE_RESULT_OK,
   INTERPRET_OK,
   SELECT_SAMPLE,
   GET_SAMPLES,
@@ -69,8 +71,7 @@ export default function dengueReducer(
         samples: nuSamples,
       };
     case NEW_SAMPLE_OK:
-      // console.log(action);
-      nuSamples = [...state.samples, { ...action.payload }];
+      nuSamples = [{ ...action.payload }, ...state.samples];
       return {
         ...state,
         samples: nuSamples,
@@ -126,6 +127,16 @@ export default function dengueReducer(
         ...state,
         activeSample: sampleWithTag,
         samples: nuSamples,
+      };
+    case SAVE_RESULT:
+      return {
+        ...state,
+        pending: true,
+      };
+    case SAVE_RESULT_OK:
+      return {
+        ...state,
+        pending: false,
       };
     case GET_SAMPLES:
       return {

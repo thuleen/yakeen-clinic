@@ -20,6 +20,8 @@ import {
   SAVE_PATIENT_OK,
   SAVE_PHOTO,
   SAVE_PHOTO_OK,
+  SAVE_RESULT,
+  SAVE_RESULT_OK,
   UPDATE_USR,
   UPDATE_USR_OK,
 } from "../constants/action-type";
@@ -121,6 +123,16 @@ export const savePhoto = (payload: Sample) => ({
 
 export const savePhotoOK = (payload: Sample) => ({
   type: SAVE_PHOTO_OK,
+  payload,
+});
+
+export const saveResult = (payload: Sample) => ({
+  type: SAVE_RESULT,
+  payload,
+});
+
+export const saveResultOK = (payload: Sample) => ({
+  type: SAVE_RESULT_OK,
   payload,
 });
 

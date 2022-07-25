@@ -57,7 +57,7 @@ export { savePatient };
 const savePhoto = async (payload: UpdateSamplePhoto) => {
   try {
     const { data } = await axios.put<UpdateSamplePhoto>(
-      `${import.meta.env.VITE_APP_API_URL}/update-sample-photo`,
+      `${import.meta.env.VITE_APP_API_URL}/update-photo`,
       {
         password: import.meta.env.VITE_APP_PWD,
         ...payload,
@@ -76,6 +76,29 @@ const savePhoto = async (payload: UpdateSamplePhoto) => {
   }
 };
 export { savePhoto };
+
+const saveResult = async (payload: UpdateSampleResult) => {
+  try {
+    const { data } = await axios.put<UpdateSampleResult>(
+      `${import.meta.env.VITE_APP_API_URL}/update-result`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { saveResult };
 
 const getSamples = async (payload: GetSamples) => {
   try {

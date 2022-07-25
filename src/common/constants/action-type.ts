@@ -27,6 +27,9 @@ export const SAVE_PATIENT_OK = "SAVE_PATIENT_OK";
 export const SAVE_PHOTO = "SAVE_PHOTO";
 export const SAVE_PHOTO_OK = "SAVE_PHOTO_OK";
 
+export const SAVE_RESULT = "SAVE_RESULT";
+export const SAVE_RESULT_OK = "SAVE_RESULT_OK";
+
 export const INTERPRET = "INTERPRET";
 export const INTERPRET_OK = "INTERPRET_OK";
 

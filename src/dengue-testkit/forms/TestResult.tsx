@@ -9,13 +9,24 @@ import Info from "../../common/components/alert/Info";
 import PreviewDlg from "../../common/components/photo/PreviewDlg";
 import { DengueState } from "../../store";
 import { DengueSample } from "../redux-saga/payload-type";
-import { nextStep } from "../../common/redux-saga/actions";
+import { nextStep, saveResult } from "../../common/redux-saga/actions";
 import { interpretTest } from "../redux-saga/actions";
 import ConfirmSubmitDlg from "./ConfirmSubmitDlg";
 import { Indicator, IndicatorValues } from "./Testkit";
 
 type FormProps = {
   formId: string;
+};
+
+const composeResult = (sample: DengueSample) => {
+  let result: string = "";
+  result = `c=${sample.c ? "true" : "false"}/`;
+  result += `igM=${sample.igM ? "true" : "false"}/`;
+  result += `igG=${sample.igG ? "true" : "false"}/`;
+  result += `cC=${sample.cC ? "true" : "false"}/`;
+  result += `ns1Ag=${sample.ns1Ag ? "true" : "false"}/`;
+  result += `${sample.interpretation}`;
+  return result;
 };
 
 const TestResult = (props: FormProps) => {
@@ -33,6 +44,7 @@ const TestResult = (props: FormProps) => {
   const dispatch = useDispatch();
   const next = (sample: DengueSample) => dispatch(nextStep(sample));
   const interpret = (payload: any) => dispatch(interpretTest(payload));
+  const handleSaveResult = (payload: any) => dispatch(saveResult(payload));
 
   const [indicators, setIndicators] = useState<IndicatorValues>({
     c: activeSample.c,
@@ -49,7 +61,8 @@ const TestResult = (props: FormProps) => {
 
   const onSubmit = () => {
     setOpenConfDlg(false);
-    next(activeSample);
+    let result: string = "hola";
+    handleSaveResult({ ...activeSample, result: composeResult(activeSample) });
   };
 
   const togglePreview = () => {

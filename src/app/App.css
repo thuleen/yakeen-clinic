@@ -8,10 +8,18 @@
 }
 
 .App-header {
-  background-color: #079992;
-  background: url("../assets/img/app-background.jpg");
-  background-repeat: no-repeat;
-  background-size: auto;
+  background: #44a08d; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #093637,
+    #44a08d
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #093637,
+    #44a08d
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;

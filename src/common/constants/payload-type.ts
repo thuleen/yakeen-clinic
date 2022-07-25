@@ -75,6 +75,7 @@ export interface SampleCreation {
 
 export interface UpdateSamplePhoto extends SampleCreation {}
 export interface UpdateSamplePatient extends SampleCreation {}
+export interface UpdateSampleResult extends SampleCreation {}
 
 export interface GetSamples {
   clinicId: number;

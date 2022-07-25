@@ -23,6 +23,7 @@ import {
   SAVE_PHOTO,
   GET_SAMPLES,
   UPDATE_USR,
+  SAVE_RESULT,
 } from "../constants/action-type";
 import * as apiApp from "../api/app";
 import * as apiClinic from "../api/clinic";
@@ -94,32 +95,27 @@ function* savePatient(action: any): any {
   yield put(savePatientOK({ ...sample }));
 }
 
-function arrayBufferToBase64(buffer: any) {
-  var binary = "";
-  var bytes = new Uint8Array(buffer);
-  var len = bytes.byteLength;
-  for (var i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  return window.btoa(binary);
-}
-
 function* savePhoto(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
   const res = yield call(apiSample.savePhoto, { ...payload }); // at API level a sample is only created when patient info is submitted
   console.log(res.result);
-
   if (!res) {
     return;
   }
-
   yield put(
     savePhotoOK({
       ...res.result.sample,
     })
   );
+}
+
+function* saveResult(action: any): any {
+  let payload = action.payload;
+  const clinicId = store.getState().app.clinic.id;
+  payload = { ...payload, clinicId: clinicId };
+  console.log(payload);
 }
 
 function* getSamples(): any {
@@ -150,6 +146,7 @@ export default function* appSaga() {
   yield takeEvery(LOGIN, login);
   yield takeEvery(SAVE_PATIENT, savePatient);
   yield takeEvery(SAVE_PHOTO, savePhoto);
+  yield takeEvery(SAVE_RESULT, saveResult);
   yield takeEvery(GET_SAMPLES, getSamples);
   yield takeEvery(UPDATE_USR, updateUsr);
   yield takeEvery(LOGOUT, logout);

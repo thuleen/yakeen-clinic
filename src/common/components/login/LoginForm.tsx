@@ -1,4 +1,5 @@
 import React from "react";
+import { alpha, styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -25,6 +26,26 @@ type FormValues = {
 type LoginFormProps = {
   toggleForm: () => void;
 };
+
+const CssTextField = styled(TextField)({
+  "& label.Mui-focused": {
+    color: "yellow",
+  },
+  "& .MuiInput-underline:after": {
+    borderBottomColor: "yellow",
+  },
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      borderColor: "red",
+    },
+    "&:hover fieldset": {
+      borderColor: "yellow",
+    },
+    "&.Mui-focused fieldset": {
+      borderColor: "yellow",
+    },
+  },
+});
 
 const LoginForm = (props: LoginFormProps) => {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -60,7 +81,12 @@ const LoginForm = (props: LoginFormProps) => {
           defaultValue=""
           control={control}
           render={({ field }) => (
-            <FormControl fullWidth margin="normal" variant="outlined">
+            <FormControl
+              color="secondary"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            >
               <InputLabel htmlFor="email">Email</InputLabel>
               <OutlinedInput
                 placeholder="Email"
@@ -76,13 +102,19 @@ const LoginForm = (props: LoginFormProps) => {
           defaultValue=""
           control={control}
           render={({ field }) => (
-            <FormControl fullWidth margin="normal" variant="outlined">
+            <FormControl
+              color="secondary"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            >
               <InputLabel htmlFor="password">Password</InputLabel>
               <OutlinedInput
                 placeholder="Password"
                 id="password"
                 label="Password"
                 type={showPassword ? "text" : "password"}
+                style={{ color: "white" }}
                 endAdornment={
                   <InputAdornment position="end">
                     <Button form="show.password" onClick={toggleShowPassword}>
