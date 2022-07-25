@@ -19,14 +19,15 @@ type FormProps = {
 };
 
 const composeResult = (sample: DengueSample) => {
-  let result: string = "";
-  result = `c=${sample.c ? "true" : "false"}/`;
-  result += `igM=${sample.igM ? "true" : "false"}/`;
-  result += `igG=${sample.igG ? "true" : "false"}/`;
-  result += `cC=${sample.cC ? "true" : "false"}/`;
-  result += `ns1Ag=${sample.ns1Ag ? "true" : "false"}/`;
-  result += `${sample.interpretation}`;
-  return result;
+  let result: any = {
+    c: sample.c,
+    igG: sample.igG,
+    igM: sample.igM,
+    cC: sample.cC,
+    ns1Ag: sample.ns1Ag,
+    interpretation: sample.interpretation,
+  };
+  return JSON.stringify(result);
 };
 
 const TestResult = (props: FormProps) => {
@@ -62,7 +63,12 @@ const TestResult = (props: FormProps) => {
   const onSubmit = () => {
     setOpenConfDlg(false);
     let result: string = "hola";
-    handleSaveResult({ ...activeSample, result: composeResult(activeSample) });
+    handleSaveResult({
+      ...activeSample,
+      pending: false, // last step!
+      lastActiveStep: activeSample.lastActiveStep + 1,
+      result: composeResult(activeSample),
+    });
   };
 
   const togglePreview = () => {

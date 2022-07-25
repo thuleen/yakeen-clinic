@@ -130,7 +130,7 @@ export default function SamplesPage(props: ListProps) {
     navigate(`/edit/${tagNo}`);
   };
 
-  if (samples.length === 0) {
+  if (!pending && samples.length === 0) {
     return (
       <>
         <div style={styles.container}>

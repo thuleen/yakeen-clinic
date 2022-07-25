@@ -25,7 +25,7 @@ import { AppState } from "../../../store";
 import ChangePassword from "./ChangePassword";
 import EditName from "./EditName";
 
-const Primary = ({ label }) => {
+const Primary = ({ label }: { label: string }) => {
   return (
     <Typography component={"span"} variant="caption" color="primary">
       {label}
@@ -33,7 +33,7 @@ const Primary = ({ label }) => {
   );
 };
 
-const Secondary = ({ value }) => {
+const Secondary = ({ value }: { value: string }) => {
   return (
     <Typography component={"span"} variant="body1">
       {value}

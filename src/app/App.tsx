@@ -41,7 +41,7 @@ const Home = (props: HomeProps) => {
           <Typography variant="body1" className="App-subheader">
             "keep evidence gathering & facts organised"
           </Typography>
-          <div style={{ marginTop: "3rem" }}>
+          <div style={{ marginTop: "0rem" }}>
             <LogSignForm />
           </div>
         </div>

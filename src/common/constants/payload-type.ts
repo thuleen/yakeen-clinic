@@ -14,9 +14,7 @@ export interface Sample {
   pending: boolean;
   lastActiveStep: number;
   createdAt: string;
-  interpretedAt: string;
   photoTakenAt: string; // date time photo was taken
-  shareLink: string;
 }
 
 export interface Clinic {

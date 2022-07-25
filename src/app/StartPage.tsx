@@ -2,6 +2,8 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Alert from "@mui/material/Alert";
 
+const TESTKIT_NAME = import.meta.env.VITE_APP_DENGUE_TESTKIT_NAME;
+
 type StartPageProps = {
   handleNew: () => void;
 };
@@ -22,7 +24,7 @@ const StartPage = (props: StartPageProps) => {
       <Alert icon={false}>Click test kit button to begin</Alert>
       <div style={{ height: "1rem" }} />
       <Button size="large" variant="contained" onClick={handleNew}>
-        dengue duo igg/igm Ns1Ag test kit
+        {TESTKIT_NAME}
       </Button>
     </div>
   );

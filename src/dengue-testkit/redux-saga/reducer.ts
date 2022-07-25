@@ -111,7 +111,6 @@ export default function dengueReducer(
       };
 
     case INTERPRET_OK:
-      const interpretedAt = mysqlDateFormatter(new Date());
       nuSamples = [...state.samples];
       let sampleWithTag = nuSamples.filter(
         (i) => i.tagNo === action.payload.tagNo
@@ -122,7 +121,6 @@ export default function dengueReducer(
       sampleWithTag.igG = action.payload.igG;
       sampleWithTag.igM = action.payload.igM;
       sampleWithTag.ns1Ag = action.payload.ns1Ag;
-      sampleWithTag.interpretedAt = interpretedAt;
       return {
         ...state,
         activeSample: sampleWithTag,
@@ -134,14 +132,21 @@ export default function dengueReducer(
         pending: true,
       };
     case SAVE_RESULT_OK:
+      nuSamples = [...state.samples];
+      let sampleWithResult = nuSamples.filter(
+        (i) => i.tagNo === action.payload.tagNo
+      )[0];
+      sampleWithResult.lastActiveStep = action.payload.lastActiveStep;
       return {
         ...state,
         pending: false,
+        samples: nuSamples,
       };
     case GET_SAMPLES:
       return {
         ...state,
         pending: true,
+        samples: [],
       };
     case GET_SAMPLES_OK:
       nuSamples = action.payload;

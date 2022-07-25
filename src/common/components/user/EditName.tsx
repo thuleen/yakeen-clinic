@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -21,9 +21,8 @@ const schema = Yup.object().shape({
   name: Yup.string().required("name is required"),
 });
 
-export interface IChangePassword {
-  usrPassword: string;
-  usrNewPassword: string;
+export interface IChangeName {
+  name: string;
 }
 
 const EditName = (props: { toggleNameEdit: () => void }) => {
@@ -37,14 +36,14 @@ const EditName = (props: { toggleNameEdit: () => void }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<ShowSeedphrasePayload>({
+  } = useForm<IChangeName>({
     resolver: yupResolver(schema),
     defaultValues: {
       name: user.name ? user.name : "",
     },
   });
 
-  const onSubmit: SubmitHandler<IChangePassword> = (payload) => {
+  const onSubmit: SubmitHandler<IChangeName> = (payload) => {
     handleChangeName({ ...payload });
   };
 

@@ -26,6 +26,7 @@ import {
   UPDATE_USR_OK,
 } from "../constants/action-type";
 import {
+  User,
   Sample,
   SampleSelection,
   Register,
@@ -155,7 +156,7 @@ export const updateUsr = (payload: {
   payload,
 });
 
-export const updateUsrOK = (payload: { name?: string }) => ({
+export const updateUsrOK = (payload: User) => ({
   type: UPDATE_USR_OK,
   payload,
 });

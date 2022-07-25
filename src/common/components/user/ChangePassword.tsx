@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import InputAdornment from "@mui/material/InputAdornment";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -66,7 +66,7 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<ShowSeedphrasePayload>({
+  } = useForm<IChangePassword>({
     resolver: yupResolver(schema),
   });
 
@@ -114,7 +114,7 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
             control={control}
             render={({ field }) => (
               <OutlinedInput
-                error={errors.password ? true : false}
+                error={errors.usrPassword ? true : false}
                 id="usrPassword"
                 label="Existing password"
                 type={showUsrPassword ? "text" : "password"}
@@ -150,7 +150,7 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
             control={control}
             render={({ field }) => (
               <OutlinedInput
-                error={errors.password ? true : false}
+                error={errors.usrNewPassword ? true : false}
                 id="usrNewPassword"
                 label="New password"
                 type={showUsrNewPassword ? "text" : "password"}

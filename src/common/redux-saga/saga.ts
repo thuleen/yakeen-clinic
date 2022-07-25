@@ -11,6 +11,7 @@ import {
   logoutOK,
   savePatientOK,
   savePhotoOK,
+  saveResultOK,
   getSamplesOK,
   updateUsrOK,
 } from "./actions";
@@ -115,7 +116,12 @@ function* saveResult(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
-  console.log(payload);
+  const res = yield call(apiSample.saveResult, { ...payload });
+  if (!res) {
+    console.log("Todo saveResultErr");
+    return;
+  }
+  yield put(saveResultOK({ ...res.result.sample }));
 }
 
 function* getSamples(): any {
@@ -137,7 +143,7 @@ function* updateUsr(action: any): any {
     clinicId: clinicId,
   };
   const res = yield call(apiClinic.update, { ...payload });
-  yield put(updateUsrOK({ user: res.result.user }));
+  yield put(updateUsrOK(res.result));
 }
 
 export default function* appSaga() {

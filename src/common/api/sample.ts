@@ -3,6 +3,7 @@ import {
   SampleCreation,
   UpdateSamplePhoto,
   UpdateSamplePatient,
+  UpdateSampleResult,
   GetSamples,
 } from "../constants/payload-type";
 

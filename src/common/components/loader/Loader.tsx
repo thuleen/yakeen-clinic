@@ -3,7 +3,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 interface LoaderProps {
   open: boolean;
-  handleClose: () => void;
+  handleClose?: () => void;
 }
 
 const Loader = (props: LoaderProps) => (

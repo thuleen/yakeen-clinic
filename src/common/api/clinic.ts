@@ -53,9 +53,9 @@ const login = async (payload: Login) => {
 };
 export { login };
 
-const update = async (payload: Login) => {
+const update = async (payload: any) => {
   try {
-    const { data } = await axios.put<Register>(
+    const { data } = await axios.put<any>(
       `${import.meta.env.VITE_APP_API_URL}/update-clinic-user`,
       {
         password: import.meta.env.VITE_APP_PWD,
