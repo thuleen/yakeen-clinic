@@ -151,7 +151,7 @@ export const saveClinicNme = (payload: { id: number; name: string }) => ({
   payload,
 });
 
-export const saveClinicNmeOK = (payload: Clinic) => ({
+export const saveClinicNmeOK = (payload: {clinic : Clinic}) => ({
   type: ActionType.SAVE_CLNC_NME_OK,
   payload,
 });

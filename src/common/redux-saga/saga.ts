@@ -12,6 +12,7 @@ import {
   savePatientOK,
   savePhotoOK,
   saveResultOK,
+  saveClinicNmeOK,
   getSamplesOK,
   updateUsrOK,
   deleteSampleOK,
@@ -171,7 +172,7 @@ function* saveClinicNme(action: any): any {
     console.log("Todo implement saveClinicNmeErr");
     return;
   }
-  console.log(res);
+  yield put(saveClinicNmeOK({ clinic: res.result.clinic }));
 }
 
 export default function* appSaga() {

@@ -11,6 +11,8 @@ import {
   LOGOUT_OK,
   UPDATE_USR,
   UPDATE_USR_OK,
+  SAVE_CLNC_NME,
+  SAVE_CLNC_NME_OK
 } from "../constants/action-type";
 import { Clinic, User } from "../constants/payload-type";
 
@@ -105,6 +107,17 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
         ...state,
         pending: false,
         user: action.payload.user,
+      };
+    case SAVE_CLNC_NME:
+      return {
+        ...state,
+        pending: true,
+      };
+    case SAVE_CLNC_NME_OK:
+      return {
+        ...state,
+        clinic: action.payload.clinic,
+        pending: false,
       };
     default:
       return state;
