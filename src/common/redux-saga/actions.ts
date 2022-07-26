@@ -163,7 +163,7 @@ export const updateUsrOK = (payload: User) => ({
   payload,
 });
 
-export const deleteSample = (payload: { id: number}) => ({
+export const deleteSample = (payload: { id: number }) => ({
   type: DELETE_SAMPLE,
   payload,
 });

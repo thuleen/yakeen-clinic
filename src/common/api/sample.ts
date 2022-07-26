@@ -103,19 +103,12 @@ const saveResult = async (payload: UpdateSampleResult) => {
 export { saveResult };
 
 const deleteSample = async (payload: DeleteSample) => {
+  console.log(payload);
   try {
     const { data } = await axios.delete<DeleteSample>(
       `${import.meta.env.VITE_APP_API_URL}/sample`,
       {
-        password: import.meta.env.VITE_APP_PWD,
-        ...payload,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        withCredentials: true,
+        data: { password: import.meta.env.VITE_APP_PWD, ...payload },
       }
     );
     return data;

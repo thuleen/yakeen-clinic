@@ -14,6 +14,7 @@ import {
   saveResultOK,
   getSamplesOK,
   updateUsrOK,
+  deleteSampleOK,
 } from "./actions";
 import {
   INIT,
@@ -129,7 +130,12 @@ function* deleteSample(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, clinicId: clinicId };
-  console.log(payload);
+  const res = yield call(apiSample.deleteSample, { ...payload });
+  if (!res) {
+    console.log("Todo deleteSampleErr");
+    return;
+  }
+  yield put(deleteSampleOK({ samples: res.result.samples }));
 }
 
 function* getSamples(): any {
@@ -139,7 +145,7 @@ function* getSamples(): any {
     console.log("Todo implement error getSamples");
     return;
   }
-  yield put(getSamplesOK(res.result.samples));
+  yield put(getSamplesOK({ samples: res.result.samples }));
 }
 
 function* updateUsr(action: any): any {

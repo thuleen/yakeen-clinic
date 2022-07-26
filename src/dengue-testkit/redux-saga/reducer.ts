@@ -13,6 +13,8 @@ import {
   SELECT_SAMPLE,
   GET_SAMPLES,
   GET_SAMPLES_OK,
+  DELETE_SAMPLE,
+  DELETE_SAMPLE_OK,
 } from "../../common/constants/action-type";
 import { DengueSample } from "./payload-type";
 import { mysqlDateFormatter } from "../../utils/datetime-formatter";
@@ -142,6 +144,17 @@ export default function dengueReducer(
         pending: false,
         samples: nuSamples,
       };
+    case DELETE_SAMPLE:
+      return {
+        ...state,
+        pending: true,
+      };
+    case DELETE_SAMPLE_OK:
+      return {
+        ...state,
+        pending: false,
+        samples: action.payload.samples,
+      };
     case GET_SAMPLES:
       return {
         ...state,
@@ -149,7 +162,7 @@ export default function dengueReducer(
         samples: [],
       };
     case GET_SAMPLES_OK:
-      nuSamples = action.payload;
+      nuSamples = action.payload.samples;
       return {
         ...state,
         samples: nuSamples,

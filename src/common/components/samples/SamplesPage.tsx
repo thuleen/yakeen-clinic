@@ -59,15 +59,9 @@ const leadingActions = () => (
   </LeadingActions>
 );
 
-const trailingActions = (props: {
-  id: number;
-  handleDelete: (id: number) => void;
-}) => (
+const trailingActions = (props: { handleDelete: () => void }) => (
   <TrailingActions>
-    <SwipeAction
-      destructive={false}
-      onClick={() => props.handleDelete({id : props.id})}
-    >
+    <SwipeAction destructive={false} onClick={props.handleDelete}>
       <DeleteActionContent />
     </SwipeAction>
   </TrailingActions>
@@ -86,7 +80,7 @@ type ItemProps = {
   mysqlDatetime: string;
   interpretation: string;
   toggleDetails: (tagNo: string, pending: boolean) => void;
-  handleDelete: (id: number) => void;
+  handleDelete: () => void;
 };
 
 const Item = ({
@@ -105,7 +99,9 @@ const Item = ({
   return (
     <SwipeableListItem
       // leadingActions={leadingActions()}
-      trailingActions={trailingActions({ id, handleDelete })}
+      trailingActions={trailingActions({
+        handleDelete: handleDelete,
+      })}
       scrollStartThreshold={10}
       swipeStartThreshold={10}
       threshold={0.5}
@@ -180,7 +176,7 @@ export default function SamplesPage(props: ListProps) {
   const { clinic } = useSelector((state: AppState) => state.app);
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
   const handleGetSamples = () => dispatch(getSamples());
-  const handleDelete = (id: number) => dispatch(deleteSample(id));
+  const handleDelete = (id: number) => dispatch(deleteSample({ id: id }));
 
   React.useEffect(() => {
     handleGetSamples();
@@ -220,7 +216,7 @@ export default function SamplesPage(props: ListProps) {
           socialId={s.socialId}
           mysqlDatetime={formatUTC(s.createdAt)}
           interpretation={interpretation}
-          handleDelete={handleDelete}
+          handleDelete={() => handleDelete(s.id ? s.id : -999)}
         />
         <Divider />
       </div>
@@ -231,8 +227,6 @@ export default function SamplesPage(props: ListProps) {
     <>
       {pending ? <LinearProgress /> : null}
       <SwipeableList
-        leadingActions={leadingActions()}
-        trailingActions={trailingActions()}
         scrollStartThreshold={10}
         swipeStartThreshold={10}
         threshold={0.5}

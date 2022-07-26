@@ -15,6 +15,7 @@ export interface Sample {
   lastActiveStep: number;
   createdAt: string;
   photoTakenAt: string; // date time photo was taken
+  result?: string;
 }
 
 export interface Clinic {
@@ -75,7 +76,8 @@ export interface UpdateSamplePhoto extends SampleCreation {}
 export interface UpdateSamplePatient extends SampleCreation {}
 export interface UpdateSampleResult extends SampleCreation {}
 export interface DeleteSample {
-    id: number;
+  id: number;
+  clinicId: number;
 }
 
 export interface GetSamples {

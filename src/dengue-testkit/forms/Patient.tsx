@@ -47,7 +47,9 @@ const Patient = (props: FormProps) => {
       socialId: activeSample.socialId,
     },
   });
-  const [idType, setIdType] = useState<string>(activeSample.idType);
+  const [idType, setIdType] = useState<string>(
+    activeSample.idType ? activeSample.idType : "Nric"
+  );
   const { tagNo } = activeSample;
   const dispatch = useDispatch();
   const handleSavePatient = (payload: any) => dispatch(savePatient(payload));
