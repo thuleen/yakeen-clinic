@@ -75,3 +75,26 @@ const update = async (payload: any) => {
   }
 };
 export { update };
+
+const saveClinicNme = async (payload: any) => {
+  try {
+    const { data } = await axios.put<any>(
+      `${import.meta.env.VITE_APP_API_URL}/update-clinic-name`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { saveClinicNme };

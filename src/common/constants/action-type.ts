@@ -43,3 +43,6 @@ export const UPDATE_USR_OK = "UPDATE_USR_OK";
 
 export const DELETE_SAMPLE = "DELETE_SAMPLE";
 export const DELETE_SAMPLE_OK = "DELETE_SAMPLE_OK";
+
+export const SAVE_CLNC_NME = "SAVE_CLNC_NME";
+export const SAVE_CLNC_NME_OK = "SAVE_CLNC_NME_OK";

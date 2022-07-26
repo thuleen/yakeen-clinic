@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
-import { updateUsr } from "../../redux-saga/actions";
+import { saveClinicNme } from "../../redux-saga/actions";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";
 
@@ -28,7 +28,7 @@ export interface IChangeName {
 const EditClinicNme = (props: { toggleClinicNmeEdit: () => void }) => {
   const { toggleClinicNmeEdit } = props;
   const dispatch = useDispatch();
-  const handleChangeName = (payload: any) => dispatch(updateUsr(payload));
+  const handleChangeName = (payload: any) => dispatch(saveClinicNme(payload));
   const { clinic, pending } = useSelector((state: AppState) => state.app);
 
   const {

@@ -27,6 +27,7 @@ import {
   UPDATE_USR,
   SAVE_RESULT,
   DELETE_SAMPLE,
+  SAVE_CLNC_NME,
 } from "../constants/action-type";
 import * as apiApp from "../api/app";
 import * as apiClinic from "../api/clinic";
@@ -160,6 +161,19 @@ function* updateUsr(action: any): any {
   yield put(updateUsrOK(res.result));
 }
 
+function* saveClinicNme(action: any): any {
+  let payload = action.payload;
+  const clinicId = store.getState().app.clinic.id;
+  payload = { ...payload, id: clinicId };
+  console.log(payload);
+  const res = yield call(apiClinic.saveClinicNme, { ...payload });
+  if (!res) {
+    console.log("Todo implement saveClinicNmeErr");
+    return;
+  }
+  console.log(res);
+}
+
 export default function* appSaga() {
   yield takeEvery(INIT, init);
   yield takeEvery(REGISTER, registerClinic);
@@ -170,5 +184,6 @@ export default function* appSaga() {
   yield takeEvery(GET_SAMPLES, getSamples);
   yield takeEvery(UPDATE_USR, updateUsr);
   yield takeEvery(DELETE_SAMPLE, deleteSample);
+  yield takeEvery(SAVE_CLNC_NME, saveClinicNme);
   yield takeEvery(LOGOUT, logout);
 }

@@ -103,7 +103,6 @@ const saveResult = async (payload: UpdateSampleResult) => {
 export { saveResult };
 
 const deleteSample = async (payload: DeleteSample) => {
-  console.log(payload);
   try {
     const { data } = await axios.delete<DeleteSample>(
       `${import.meta.env.VITE_APP_API_URL}/sample`,

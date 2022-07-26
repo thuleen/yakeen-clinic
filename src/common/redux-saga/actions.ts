@@ -1,34 +1,7 @@
-import {
-  INIT,
-  INIT_OK,
-  INIT_ERR,
-  RESET,
-  REGISTER,
-  REGISTER_OK,
-  REGISTER_ERR,
-  LOGIN,
-  LOGIN_OK,
-  LOGIN_ERR,
-  LOGOUT,
-  LOGOUT_OK,
-  SELECT_SAMPLE,
-  GET_SAMPLES,
-  GET_SAMPLES_OK,
-  BACK_STEP,
-  NEXT_STEP,
-  SAVE_PATIENT,
-  SAVE_PATIENT_OK,
-  SAVE_PHOTO,
-  SAVE_PHOTO_OK,
-  SAVE_RESULT,
-  SAVE_RESULT_OK,
-  DELETE_SAMPLE,
-  DELETE_SAMPLE_OK,
-  UPDATE_USR,
-  UPDATE_USR_OK,
-} from "../constants/action-type";
+import * as ActionType from "../constants/action-type";
 import {
   User,
+  Clinic,
   Sample,
   SampleSelection,
   Register,
@@ -41,110 +14,110 @@ import {
 } from "../constants/payload-type";
 
 export const init = () => ({
-  type: INIT,
+  type: ActionType.INIT,
 });
 
 export const initOK = () => ({
-  type: INIT_OK,
+  type: ActionType.INIT_OK,
 });
 
 export const initErr = () => ({
-  type: INIT_ERR,
+  type: ActionType.INIT_ERR,
 });
 
 export const reset = () => ({
-  type: RESET,
+  type: ActionType.RESET,
 });
 
 export const register = (payload: Register) => ({
-  type: REGISTER,
+  type: ActionType.REGISTER,
   payload,
 });
 
 export const registerOK = (payload: RegisterOK) => ({
-  type: REGISTER_OK,
+  type: ActionType.REGISTER_OK,
   payload,
 });
 
 export const registerErr = (payload: RegisterErr) => ({
-  type: REGISTER_ERR,
+  type: ActionType.REGISTER_ERR,
   payload,
 });
 
 export const login = (payload: Login) => ({
-  type: LOGIN,
+  type: ActionType.LOGIN,
   payload,
 });
 
 export const loginOK = (payload: LoginOK) => ({
-  type: LOGIN_OK,
+  type: ActionType.LOGIN_OK,
   payload,
 });
 
 export const loginErr = (payload: LoginErr) => ({
-  type: LOGIN_ERR,
+  type: ActionType.LOGIN_ERR,
   payload,
 });
 
 export const logout = () => ({
-  type: LOGOUT,
+  type: ActionType.LOGOUT,
 });
 
 export const logoutOK = () => ({
-  type: LOGOUT_OK,
+  type: ActionType.LOGOUT_OK,
 });
 
 export const selectSample = (payload: SampleSelection) => ({
-  type: SELECT_SAMPLE,
+  type: ActionType.SELECT_SAMPLE,
   payload,
 });
 
 export const backStep = (payload: Sample) => ({
-  type: BACK_STEP,
+  type: ActionType.BACK_STEP,
   payload,
 });
 
 export const nextStep = (payload: Sample) => ({
-  type: NEXT_STEP,
+  type: ActionType.NEXT_STEP,
   payload,
 });
 
 export const savePatient = (payload: Sample) => ({
-  type: SAVE_PATIENT,
+  type: ActionType.SAVE_PATIENT,
   payload,
 });
 
 export const savePatientOK = (payload: Sample) => ({
-  type: SAVE_PATIENT_OK,
+  type: ActionType.SAVE_PATIENT_OK,
   payload,
 });
 
 export const savePhoto = (payload: Sample) => ({
-  type: SAVE_PHOTO,
+  type: ActionType.SAVE_PHOTO,
   payload,
 });
 
 export const savePhotoOK = (payload: Sample) => ({
-  type: SAVE_PHOTO_OK,
+  type: ActionType.SAVE_PHOTO_OK,
   payload,
 });
 
 export const saveResult = (payload: Sample) => ({
-  type: SAVE_RESULT,
+  type: ActionType.SAVE_RESULT,
   payload,
 });
 
 export const saveResultOK = (payload: Sample) => ({
-  type: SAVE_RESULT_OK,
+  type: ActionType.SAVE_RESULT_OK,
   payload,
 });
 
 export const getSamples = () => ({
-  type: GET_SAMPLES,
+  type: ActionType.GET_SAMPLES,
 });
 
 export const getSamplesOK = (payload: GetSamplesOK) => ({
-  type: GET_SAMPLES_OK,
+  type: ActionType.GET_SAMPLES_OK,
   payload,
 });
 
@@ -154,21 +127,31 @@ export const updateUsr = (payload: {
   usrPassword?: string;
   usrNewPassword?: string;
 }) => ({
-  type: UPDATE_USR,
+  type: ActionType.UPDATE_USR,
   payload,
 });
 
 export const updateUsrOK = (payload: User) => ({
-  type: UPDATE_USR_OK,
+  type: ActionType.UPDATE_USR_OK,
   payload,
 });
 
 export const deleteSample = (payload: { id: number }) => ({
-  type: DELETE_SAMPLE,
+  type: ActionType.DELETE_SAMPLE,
   payload,
 });
 
 export const deleteSampleOK = (payload: GetSamplesOK) => ({
-  type: DELETE_SAMPLE_OK,
+  type: ActionType.DELETE_SAMPLE_OK,
+  payload,
+});
+
+export const saveClinicNme = (payload: { id: number; name: string }) => ({
+  type: ActionType.SAVE_CLNC_NME,
+  payload,
+});
+
+export const saveClinicNmeOK = (payload: Clinic) => ({
+  type: ActionType.SAVE_CLNC_NME_OK,
   payload,
 });

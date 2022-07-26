@@ -51,9 +51,7 @@ const Home = (props: HomeProps) => {
           }}
         >
           {initialised ? null : (
-            <Typography variant="caption" color="error">
-              API error&nbsp;
-            </Typography>
+            <Typography variant="caption">API disconnected &nbsp;</Typography>
           )}
 
           <Typography variant="caption">
