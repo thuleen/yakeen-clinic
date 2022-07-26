@@ -36,7 +36,7 @@ const EditClinicAddr = (props: { toggleClinicAddrEdit: () => void }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IChangeName>({
+  } = useForm<IChangeAddress>({
     resolver: yupResolver(schema),
     defaultValues: {
       address: clinic.address ? clinic.address : "",
@@ -90,7 +90,7 @@ const EditClinicAddr = (props: { toggleClinicAddrEdit: () => void }) => {
               />
             )}
           />
-          {errors.name ? (
+          {errors.address ? (
             <FormHelperText error={true}>
               {errors.address.message}
             </FormHelperText>

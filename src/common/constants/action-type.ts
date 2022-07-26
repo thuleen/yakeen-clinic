@@ -40,3 +40,6 @@ export const SELECT_SAMPLE = "SELECT_SAMPLE";
 
 export const UPDATE_USR = "UPDATE_USR";
 export const UPDATE_USR_OK = "UPDATE_USR_OK";
+
+export const DELETE_SAMPLE = "DELETE_SAMPLE";
+export const DELETE_SAMPLE_OK = "DELETE_SAMPLE_OK";

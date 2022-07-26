@@ -43,7 +43,7 @@ const EditClinicPostcd = (props: { toggleClinicPostcdEdit: () => void }) => {
     },
   });
 
-  const onSubmit: SubmitHandler<IChangeName> = (payload) => {
+  const onSubmit: SubmitHandler<IChangePostcode> = (payload) => {
     console.log(payload);
     // handleChangeName({ ...payload });
   };
@@ -87,7 +87,7 @@ const EditClinicPostcd = (props: { toggleClinicPostcdEdit: () => void }) => {
               />
             )}
           />
-          {errors.name ? (
+          {errors.postcode ? (
             <FormHelperText error={true}>
               {errors.postcode.message}
             </FormHelperText>

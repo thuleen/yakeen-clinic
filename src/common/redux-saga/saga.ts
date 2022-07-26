@@ -25,6 +25,7 @@ import {
   GET_SAMPLES,
   UPDATE_USR,
   SAVE_RESULT,
+  DELETE_SAMPLE,
 } from "../constants/action-type";
 import * as apiApp from "../api/app";
 import * as apiClinic from "../api/clinic";
@@ -124,6 +125,13 @@ function* saveResult(action: any): any {
   yield put(saveResultOK({ ...res.result.sample }));
 }
 
+function* deleteSample(action: any): any {
+  let payload = action.payload;
+  const clinicId = store.getState().app.clinic.id;
+  payload = { ...payload, clinicId: clinicId };
+  console.log(payload);
+}
+
 function* getSamples(): any {
   const clinicId = store.getState().app.clinic.id;
   const res = yield call(apiSample.getSamples, { clinicId });
@@ -155,5 +163,6 @@ export default function* appSaga() {
   yield takeEvery(SAVE_RESULT, saveResult);
   yield takeEvery(GET_SAMPLES, getSamples);
   yield takeEvery(UPDATE_USR, updateUsr);
+  yield takeEvery(DELETE_SAMPLE, deleteSample);
   yield takeEvery(LOGOUT, logout);
 }

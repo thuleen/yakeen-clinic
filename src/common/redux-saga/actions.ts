@@ -22,6 +22,8 @@ import {
   SAVE_PHOTO_OK,
   SAVE_RESULT,
   SAVE_RESULT_OK,
+  DELETE_SAMPLE,
+  DELETE_SAMPLE_OK,
   UPDATE_USR,
   UPDATE_USR_OK,
 } from "../constants/action-type";
@@ -158,5 +160,15 @@ export const updateUsr = (payload: {
 
 export const updateUsrOK = (payload: User) => ({
   type: UPDATE_USR_OK,
+  payload,
+});
+
+export const deleteSample = (payload: { id: number}) => ({
+  type: DELETE_SAMPLE,
+  payload,
+});
+
+export const deleteSampleOK = (payload: GetSamplesOK) => ({
+  type: DELETE_SAMPLE_OK,
   payload,
 });

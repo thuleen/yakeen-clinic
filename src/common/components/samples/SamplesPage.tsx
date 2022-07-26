@@ -11,6 +11,17 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import DoneIcon from "@mui/icons-material/Done";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
+import theme from "../../../theme";
+
+import {
+  LeadingActions,
+  SwipeableList,
+  SwipeableListItem,
+  SwipeAction,
+  TrailingActions,
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
+
 import { AppState, DengueState } from "../../../store";
 import { DengueSample } from "../../../dengue-testkit/redux-saga/payload-type";
 import styles from "./styles";
@@ -18,8 +29,49 @@ import {
   logout,
   selectSample,
   getSamples,
+  deleteSample,
 } from "../../../common/redux-saga/actions";
 import { formatUTC } from "../../../utils/datetime-formatter";
+
+const LeadActionContent = () => (
+  <div style={{ display: "flex", flexDirection: "column" }}>LA</div>
+);
+
+const DeleteActionContent = () => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      background: "#c23616",
+      alignItems: "center",
+    }}
+  >
+    <DeleteIcon style={{ color: "white" }} />
+  </div>
+);
+
+const leadingActions = () => (
+  <LeadingActions>
+    <SwipeAction onClick={() => console.info("swipe action triggered")}>
+      <LeadActionContent />
+    </SwipeAction>
+  </LeadingActions>
+);
+
+const trailingActions = (props: {
+  id: number;
+  handleDelete: (id: number) => void;
+}) => (
+  <TrailingActions>
+    <SwipeAction
+      destructive={false}
+      onClick={() => props.handleDelete({id : props.id})}
+    >
+      <DeleteActionContent />
+    </SwipeAction>
+  </TrailingActions>
+);
 
 type ListProps = {};
 
@@ -34,6 +86,7 @@ type ItemProps = {
   mysqlDatetime: string;
   interpretation: string;
   toggleDetails: (tagNo: string, pending: boolean) => void;
+  handleDelete: (id: number) => void;
 };
 
 const Item = ({
@@ -47,9 +100,16 @@ const Item = ({
   mysqlDatetime,
   toggleDetails,
   id,
+  handleDelete,
 }: ItemProps) => {
   return (
-    <ListItem>
+    <SwipeableListItem
+      // leadingActions={leadingActions()}
+      trailingActions={trailingActions({ id, handleDelete })}
+      scrollStartThreshold={10}
+      swipeStartThreshold={10}
+      threshold={0.5}
+    >
       <div style={styles.listItem}>
         <div style={styles.listItemFirstCol}>
           <Typography variant="body1" style={styles.listItemPatientName}>
@@ -107,7 +167,7 @@ const Item = ({
           </Typography>
         </div>
       </div>
-    </ListItem>
+    </SwipeableListItem>
   );
 };
 
@@ -120,6 +180,7 @@ export default function SamplesPage(props: ListProps) {
   const { clinic } = useSelector((state: AppState) => state.app);
   const handleSelect = (tagNo: any) => dispatch(selectSample(tagNo));
   const handleGetSamples = () => dispatch(getSamples());
+  const handleDelete = (id: number) => dispatch(deleteSample(id));
 
   React.useEffect(() => {
     handleGetSamples();
@@ -141,6 +202,11 @@ export default function SamplesPage(props: ListProps) {
   }
 
   let sampleList = samples.map((s: DengueSample, index: number) => {
+    let interpretation: string = "-";
+    let res = s.result;
+    if (res) {
+      interpretation = JSON.parse(res).interpretation;
+    }
     return (
       <div key={index} style={{ margin: "0.5rem" }}>
         <Item
@@ -153,7 +219,8 @@ export default function SamplesPage(props: ListProps) {
           idType={s.idType}
           socialId={s.socialId}
           mysqlDatetime={formatUTC(s.createdAt)}
-          interpretation={s.interpretation ? s.interpretation : "-"}
+          interpretation={interpretation}
+          handleDelete={handleDelete}
         />
         <Divider />
       </div>
@@ -163,9 +230,15 @@ export default function SamplesPage(props: ListProps) {
   return (
     <>
       {pending ? <LinearProgress /> : null}
-      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+      <SwipeableList
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+        scrollStartThreshold={10}
+        swipeStartThreshold={10}
+        threshold={0.5}
+      >
         {sampleList}
-      </List>
+      </SwipeableList>
     </>
   );
 }
