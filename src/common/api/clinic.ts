@@ -53,7 +53,7 @@ const login = async (payload: Login) => {
 };
 export { login };
 
-const update = async (payload: any) => {
+const saveUsr = async (payload: any) => {
   try {
     const { data } = await axios.put<any>(
       `${import.meta.env.VITE_APP_API_URL}/update-clinic-user`,
@@ -74,7 +74,7 @@ const update = async (payload: any) => {
     return null;
   }
 };
-export { update };
+export { saveUsr };
 
 const saveClinicNme = async (payload: any) => {
   try {
@@ -98,3 +98,49 @@ const saveClinicNme = async (payload: any) => {
   }
 };
 export { saveClinicNme };
+
+const saveClinicAddr = async (payload: any) => {
+  try {
+    const { data } = await axios.put<any>(
+      `${import.meta.env.VITE_APP_API_URL}/update-clinic-address`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { saveClinicAddr };
+
+const saveClinicPostcd = async (payload: any) => {
+  try {
+    const { data } = await axios.put<any>(
+      `${import.meta.env.VITE_APP_API_URL}/update-clinic-postcode`,
+      {
+        password: import.meta.env.VITE_APP_PWD,
+        ...payload,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        withCredentials: true,
+      }
+    );
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+export { saveClinicPostcd };

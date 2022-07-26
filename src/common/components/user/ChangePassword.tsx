@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUsr } from "../../redux-saga/actions";
+import { saveUsr } from "../../redux-saga/actions";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";
 
@@ -58,7 +58,7 @@ const ChangePassword = (props: { toggleChangePassword: () => void }) => {
     React.useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const handleChangePassword = (payload: any) => dispatch(updateUsr(payload));
+  const handleChangePassword = (payload: any) => dispatch(saveUsr(payload));
   const { pending } = useSelector((state: AppState) => state.app);
 
   const {

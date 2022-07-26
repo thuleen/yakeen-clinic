@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
-import { updateUsr } from "../../redux-saga/actions";
+import { saveClinicPostcd } from "../../redux-saga/actions";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";
 
@@ -28,7 +28,8 @@ export interface IChangePostcode {
 const EditClinicPostcd = (props: { toggleClinicPostcdEdit: () => void }) => {
   const { toggleClinicPostcdEdit } = props;
   const dispatch = useDispatch();
-  const handleChangeName = (payload: any) => dispatch(updateUsr(payload));
+  const handleChangePostcd = (payload: any) =>
+    dispatch(saveClinicPostcd(payload));
   const { clinic, pending } = useSelector((state: AppState) => state.app);
 
   const {
@@ -44,8 +45,7 @@ const EditClinicPostcd = (props: { toggleClinicPostcdEdit: () => void }) => {
   });
 
   const onSubmit: SubmitHandler<IChangePostcode> = (payload) => {
-    console.log(payload);
-    // handleChangeName({ ...payload });
+    handleChangePostcd({ ...payload });
   };
 
   return (

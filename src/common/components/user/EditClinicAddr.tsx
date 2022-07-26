@@ -13,7 +13,7 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import IconButton from "@mui/material/IconButton";
-import { updateUsr } from "../../redux-saga/actions";
+import { saveClinicAddr } from "../../redux-saga/actions";
 import { AppState } from "../../../store";
 import Loader from "../loader/Loader";
 
@@ -28,7 +28,7 @@ export interface IChangeAddress {
 const EditClinicAddr = (props: { toggleClinicAddrEdit: () => void }) => {
   const { toggleClinicAddrEdit } = props;
   const dispatch = useDispatch();
-  const handleChangeName = (payload: any) => dispatch(updateUsr(payload));
+  const handleChangeAddr = (payload: any) => dispatch(saveClinicAddr(payload));
   const { clinic, pending } = useSelector((state: AppState) => state.app);
 
   const {
@@ -44,8 +44,7 @@ const EditClinicAddr = (props: { toggleClinicAddrEdit: () => void }) => {
   });
 
   const onSubmit: SubmitHandler<IChangeAddress> = (payload) => {
-    console.log(payload);
-    // handleChangeName({ ...payload });
+    handleChangeAddr({ ...payload });
   };
 
   return (
@@ -79,7 +78,6 @@ const EditClinicAddr = (props: { toggleClinicAddrEdit: () => void }) => {
               <TextField
                 multiline
                 rows={3}
-                maxRows={5}
                 placeholder="Clinic address"
                 InputLabelProps={{
                   shrink: true,

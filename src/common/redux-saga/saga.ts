@@ -1,35 +1,8 @@
 import { Buffer } from "buffer";
 import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import dengueSaga from "../../dengue-testkit/redux-saga/saga";
-import {
-  registerOK,
-  registerErr,
-  initOK,
-  initErr,
-  loginOK,
-  loginErr,
-  logoutOK,
-  savePatientOK,
-  savePhotoOK,
-  saveResultOK,
-  saveClinicNmeOK,
-  getSamplesOK,
-  updateUsrOK,
-  deleteSampleOK,
-} from "./actions";
-import {
-  INIT,
-  REGISTER,
-  LOGIN,
-  LOGOUT,
-  SAVE_PATIENT,
-  SAVE_PHOTO,
-  GET_SAMPLES,
-  UPDATE_USR,
-  SAVE_RESULT,
-  DELETE_SAMPLE,
-  SAVE_CLNC_NME,
-} from "../constants/action-type";
+import * as Action from "./actions";
+import * as ActionType from "../constants/action-type";
 import * as apiApp from "../api/app";
 import * as apiClinic from "../api/clinic";
 import * as apiSample from "../api/sample";
@@ -44,38 +17,38 @@ function* registerClinic(action: any): any {
     email,
   });
   if (!res) {
-    yield put(registerErr({ errMsg: res.message }));
+    yield put(Action.registerErr({ errMsg: res.message }));
     return;
   }
   if (res.status === "Error") {
-    yield put(registerErr({ errMsg: res.message }));
+    yield put(Action.registerErr({ errMsg: res.message }));
     return;
   }
-  yield put(registerOK({ okMsg: res.message }));
+  yield put(Action.registerOK({ okMsg: res.message }));
 }
 
 function* init(): any {
   const res = yield call(apiApp.initialize);
   if (!res) {
-    yield put(initErr());
+    yield put(Action.initErr());
     return;
   }
-  yield put(initOK());
+  yield put(Action.initOK());
 }
 
 function* login(action: any): any {
   const { email, password } = action.payload;
   const res = yield call(apiClinic.login, { email: email, password: password });
   if (!res) {
-    yield put(loginErr({ errMsg: res.message }));
+    yield put(Action.loginErr({ errMsg: res.message }));
     return;
   }
   if (res.status === "Error") {
-    yield put(loginErr({ errMsg: res.message }));
+    yield put(Action.loginErr({ errMsg: res.message }));
     return;
   }
   yield put(
-    loginOK({
+    Action.loginOK({
       okMsg: res.message,
       clinic: res.result.clinic,
       user: res.result.user,
@@ -85,7 +58,7 @@ function* login(action: any): any {
 
 function* logout() {
   // TODO Call login API
-  yield put(logoutOK());
+  yield put(Action.logoutOK());
 }
 
 function* savePatient(action: any): any {
@@ -97,7 +70,7 @@ function* savePatient(action: any): any {
     return;
   }
   const { sample } = res.result;
-  yield put(savePatientOK({ ...sample }));
+  yield put(Action.savePatientOK({ ...sample }));
 }
 
 function* savePhoto(action: any): any {
@@ -110,7 +83,7 @@ function* savePhoto(action: any): any {
     return;
   }
   yield put(
-    savePhotoOK({
+    Action.savePhotoOK({
       ...res.result.sample,
     })
   );
@@ -125,7 +98,7 @@ function* saveResult(action: any): any {
     console.log("Todo saveResultErr");
     return;
   }
-  yield put(saveResultOK({ ...res.result.sample }));
+  yield put(Action.saveResultOK({ ...res.result.sample }));
 }
 
 function* deleteSample(action: any): any {
@@ -137,7 +110,7 @@ function* deleteSample(action: any): any {
     console.log("Todo deleteSampleErr");
     return;
   }
-  yield put(deleteSampleOK({ samples: res.result.samples }));
+  yield put(Action.deleteSampleOK({ samples: res.result.samples }));
 }
 
 function* getSamples(): any {
@@ -147,10 +120,10 @@ function* getSamples(): any {
     console.log("Todo implement error getSamples");
     return;
   }
-  yield put(getSamplesOK({ samples: res.result.samples }));
+  yield put(Action.getSamplesOK({ samples: res.result.samples }));
 }
 
-function* updateUsr(action: any): any {
+function* saveUsr(action: any): any {
   const clinicId = store.getState().app.clinic.id;
   const email = store.getState().app.user.email;
   const payload = {
@@ -158,33 +131,58 @@ function* updateUsr(action: any): any {
     email: email,
     clinicId: clinicId,
   };
-  const res = yield call(apiClinic.update, { ...payload });
-  yield put(updateUsrOK(res.result));
+  const res = yield call(apiClinic.saveUsr, { ...payload });
+  yield put(Action.saveUsrOK(res.result));
 }
 
 function* saveClinicNme(action: any): any {
   let payload = action.payload;
   const clinicId = store.getState().app.clinic.id;
   payload = { ...payload, id: clinicId };
-  console.log(payload);
   const res = yield call(apiClinic.saveClinicNme, { ...payload });
   if (!res) {
     console.log("Todo implement saveClinicNmeErr");
     return;
   }
-  yield put(saveClinicNmeOK({ clinic: res.result.clinic }));
+  yield put(Action.saveClinicNmeOK({ clinic: res.result.clinic }));
+}
+
+function* saveClinicAddr(action: any): any {
+  let payload = action.payload;
+  const clinicId = store.getState().app.clinic.id;
+  payload = { ...payload, id: clinicId };
+  const res = yield call(apiClinic.saveClinicAddr, { ...payload });
+  if (!res) {
+    console.log("Todo implement saveClinicNmeErr");
+    return;
+  }
+  yield put(Action.saveClinicAddrOK({ clinic: res.result.clinic }));
+}
+
+function* saveClinicPostcd(action: any): any {
+  let payload = action.payload;
+  const clinicId = store.getState().app.clinic.id;
+  payload = { ...payload, id: clinicId };
+  const res = yield call(apiClinic.saveClinicPostcd, { ...payload });
+  if (!res) {
+    console.log("Todo implement saveClinicPostcdErr");
+    return;
+  }
+  yield put(Action.saveClinicPostcdOK({ clinic: res.result.clinic }));
 }
 
 export default function* appSaga() {
-  yield takeEvery(INIT, init);
-  yield takeEvery(REGISTER, registerClinic);
-  yield takeEvery(LOGIN, login);
-  yield takeEvery(SAVE_PATIENT, savePatient);
-  yield takeEvery(SAVE_PHOTO, savePhoto);
-  yield takeEvery(SAVE_RESULT, saveResult);
-  yield takeEvery(GET_SAMPLES, getSamples);
-  yield takeEvery(UPDATE_USR, updateUsr);
-  yield takeEvery(DELETE_SAMPLE, deleteSample);
-  yield takeEvery(SAVE_CLNC_NME, saveClinicNme);
-  yield takeEvery(LOGOUT, logout);
+  yield takeEvery(ActionType.INIT, init);
+  yield takeEvery(ActionType.REGISTER, registerClinic);
+  yield takeEvery(ActionType.LOGIN, login);
+  yield takeEvery(ActionType.SAVE_PATIENT, savePatient);
+  yield takeEvery(ActionType.SAVE_PHOTO, savePhoto);
+  yield takeEvery(ActionType.SAVE_RESULT, saveResult);
+  yield takeEvery(ActionType.GET_SAMPLES, getSamples);
+  yield takeEvery(ActionType.DELETE_SAMPLE, deleteSample);
+  yield takeEvery(ActionType.SAVE_USR, saveUsr);
+  yield takeEvery(ActionType.SAVE_CLNC_NME, saveClinicNme);
+  yield takeEvery(ActionType.SAVE_CLNC_ADDR, saveClinicAddr);
+  yield takeEvery(ActionType.SAVE_CLNC_POSTCD, saveClinicPostcd);
+  yield takeEvery(ActionType.LOGOUT, logout);
 }

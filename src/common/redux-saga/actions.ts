@@ -121,18 +121,18 @@ export const getSamplesOK = (payload: GetSamplesOK) => ({
   payload,
 });
 
-export const updateUsr = (payload: {
+export const saveUsr = (payload: {
   email: string;
   name?: string;
   usrPassword?: string;
   usrNewPassword?: string;
 }) => ({
-  type: ActionType.UPDATE_USR,
+  type: ActionType.SAVE_USR,
   payload,
 });
 
-export const updateUsrOK = (payload: User) => ({
-  type: ActionType.UPDATE_USR_OK,
+export const saveUsrOK = (payload: User) => ({
+  type: ActionType.SAVE_USR_OK,
   payload,
 });
 
@@ -151,7 +151,30 @@ export const saveClinicNme = (payload: { id: number; name: string }) => ({
   payload,
 });
 
-export const saveClinicNmeOK = (payload: {clinic : Clinic}) => ({
+export const saveClinicNmeOK = (payload: { clinic: Clinic }) => ({
   type: ActionType.SAVE_CLNC_NME_OK,
+  payload,
+});
+
+export const saveClinicAddr = (payload: { id: number; address: string }) => ({
+  type: ActionType.SAVE_CLNC_ADDR,
+  payload,
+});
+
+export const saveClinicAddrOK = (payload: { clinic: Clinic }) => ({
+  type: ActionType.SAVE_CLNC_ADDR_OK,
+  payload,
+});
+
+export const saveClinicPostcd = (payload: {
+  id: number;
+  postcode: string;
+}) => ({
+  type: ActionType.SAVE_CLNC_POSTCD,
+  payload,
+});
+
+export const saveClinicPostcdOK = (payload: { clinic: Clinic }) => ({
+  type: ActionType.SAVE_CLNC_POSTCD_OK,
   payload,
 });

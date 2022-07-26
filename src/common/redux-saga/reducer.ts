@@ -1,19 +1,4 @@
-import {
-  INIT_OK,
-  INIT_ERR,
-  RESET,
-  REGISTER,
-  REGISTER_OK,
-  REGISTER_ERR,
-  LOGIN,
-  LOGIN_OK,
-  LOGIN_ERR,
-  LOGOUT_OK,
-  UPDATE_USR,
-  UPDATE_USR_OK,
-  SAVE_CLNC_NME,
-  SAVE_CLNC_NME_OK
-} from "../constants/action-type";
+import * as ActionType from "../constants/action-type";
 import { Clinic, User } from "../constants/payload-type";
 
 export interface AppReducerState {
@@ -36,84 +21,106 @@ const initialState = {
 
 function reducerApp(state: AppReducerState = initialState, action: any) {
   switch (action.type) {
-    case RESET:
+    case ActionType.RESET:
       return {
         ...state,
         pending: false,
         errMsg: null,
         okMsg: null,
       };
-    case REGISTER:
+    case ActionType.REGISTER:
       return {
         ...state,
         pending: true,
         errMsg: null,
         okMsg: null,
       };
-    case REGISTER_OK:
+    case ActionType.REGISTER_OK:
       return {
         ...state,
         pending: false,
         okMsg: action.payload.okMsg,
       };
-    case REGISTER_ERR:
+    case ActionType.REGISTER_ERR:
       return {
         ...state,
         pending: false,
         errMsg: action.payload.errMsg,
       };
-    case INIT_OK:
+    case ActionType.INIT_OK:
       return {
         ...state,
         initialised: true,
       };
-    case INIT_ERR:
+    case ActionType.INIT_ERR:
       return {
         ...state,
         initialised: false,
       };
-    case LOGIN:
+    case ActionType.LOGIN:
       return {
         ...state,
         pending: true,
         clinic: null,
         user: null,
       };
-    case LOGIN_OK:
+    case ActionType.LOGIN_OK:
       return {
         ...state,
         pending: false,
         clinic: action.payload.clinic,
         user: action.payload.user,
       };
-    case LOGIN_ERR:
+    case ActionType.LOGIN_ERR:
       return {
         ...state,
         pending: false,
       };
-    case LOGOUT_OK:
+    case ActionType.LOGOUT_OK:
       return {
         ...state,
         clinic: null,
         user: null,
       };
-    case UPDATE_USR:
+    case ActionType.SAVE_USR:
       return {
         ...state,
         pending: true,
       };
-    case UPDATE_USR_OK:
+    case ActionType.SAVE_USR_OK:
       return {
         ...state,
         pending: false,
         user: action.payload.user,
       };
-    case SAVE_CLNC_NME:
+    case ActionType.SAVE_CLNC_NME:
       return {
         ...state,
         pending: true,
       };
-    case SAVE_CLNC_NME_OK:
+    case ActionType.SAVE_CLNC_NME_OK:
+      return {
+        ...state,
+        clinic: action.payload.clinic,
+        pending: false,
+      };
+    case ActionType.SAVE_CLNC_ADDR:
+      return {
+        ...state,
+        pending: true,
+      };
+    case ActionType.SAVE_CLNC_ADDR_OK:
+      return {
+        ...state,
+        clinic: action.payload.clinic,
+        pending: false,
+      };
+    case ActionType.SAVE_CLNC_POSTCD:
+      return {
+        ...state,
+        pending: true,
+      };
+    case ActionType.SAVE_CLNC_POSTCD_OK:
       return {
         ...state,
         clinic: action.payload.clinic,

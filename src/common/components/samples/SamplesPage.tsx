@@ -211,7 +211,7 @@ export default function SamplesPage(props: ListProps) {
           toggleDetails={() => toggleDetails(s.tagNo)}
           pending={s.pending}
           tagNo={s.tagNo}
-          patientName={s.name ? s.name : "<Pending>"}
+          patientName={s.name ? s.name : "-"}
           idType={s.idType}
           socialId={s.socialId}
           mysqlDatetime={formatUTC(s.createdAt)}

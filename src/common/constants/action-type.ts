@@ -38,11 +38,17 @@ export const GET_SAMPLES_OK = "GET_SAMPLES_OK";
 
 export const SELECT_SAMPLE = "SELECT_SAMPLE";
 
-export const UPDATE_USR = "UPDATE_USR";
-export const UPDATE_USR_OK = "UPDATE_USR_OK";
+export const SAVE_USR = "SAVE_USR";
+export const SAVE_USR_OK = "SAVE_USR_OK";
 
 export const DELETE_SAMPLE = "DELETE_SAMPLE";
 export const DELETE_SAMPLE_OK = "DELETE_SAMPLE_OK";
 
 export const SAVE_CLNC_NME = "SAVE_CLNC_NME";
 export const SAVE_CLNC_NME_OK = "SAVE_CLNC_NME_OK";
+
+export const SAVE_CLNC_ADDR = "SAVE_CLNC_ADDR";
+export const SAVE_CLNC_ADDR_OK = "SAVE_CLNC_ADDR_OK";
+
+export const SAVE_CLNC_POSTCD = "SAVE_CLNC_POSTCD";
+export const SAVE_CLNC_POSTCD_OK = "SAVE_CLNC_POSTCD_OK";
