@@ -9,6 +9,7 @@ import store from "../../store";
 import * as apiSample from "../../common/api/sample";
 
 const PATIENT_APP_URL = import.meta.env.VITE_APP_URL_PATIENT;
+const TESTKIT_NAME = import.meta.env.VITE_APP_DENGUE_TESTKIT_NAME;
 
 function* interpret(action: any) {
   let result = "";
@@ -84,7 +85,7 @@ function* createSample(): any {
   const tagNo = generataRandTagNo();
   const payload = {
     clinicId: clinicId,
-    testType: "DengueIgM/G/NS1",
+    testType:`${TESTKIT_NAME}`,
     tagNo: tagNo.toString(),
     lastActiveStep: 0,
   };

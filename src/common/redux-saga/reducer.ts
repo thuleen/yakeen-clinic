@@ -63,6 +63,7 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
         pending: true,
         clinic: null,
         user: null,
+        errrMsg: null,
       };
     case ActionType.LOGIN_OK:
       return {
@@ -75,12 +76,21 @@ function reducerApp(state: AppReducerState = initialState, action: any) {
       return {
         ...state,
         pending: false,
+        errMsg: action.payload.errMsg,
+      };
+    case ActionType.LOGOUT:
+      return {
+        ...state,
+        clinic: null,
+        user: null,
+        errMsg: null,
       };
     case ActionType.LOGOUT_OK:
       return {
         ...state,
         clinic: null,
         user: null,
+        errMsg: null,
       };
     case ActionType.SAVE_USR:
       return {

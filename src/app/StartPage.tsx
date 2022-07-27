@@ -21,7 +21,7 @@ const StartPage = (props: StartPageProps) => {
         height: "70vh",
       }}
     >
-      <Alert icon={false}>Click test kit button to begin</Alert>
+      <Alert icon={false}>Click test kit button below to begin</Alert>
       <div style={{ height: "1rem" }} />
       <Button size="large" variant="contained" onClick={handleNew}>
         {TESTKIT_NAME}

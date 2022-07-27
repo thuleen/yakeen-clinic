@@ -28,13 +28,15 @@ type HomeProps = {
   toggleHome: () => void;
   toggleUpdate: () => void;
   initialised: boolean;
+  errMsg: string | null;
 };
 
 const Home = (props: HomeProps) => {
-  const { toggleHome, toggleUpdate, initialised } = props;
+  const { toggleHome, toggleUpdate, initialised, errMsg } = props;
 
   return (
     <div className="App">
+      {errMsg ? errMsg : null}
       <header className="App-header">
         <div style={{ marginBottom: "3rem" }}>
           <img src={logo} className="App-logo" />
@@ -68,7 +70,9 @@ const Home = (props: HomeProps) => {
 
 function App() {
   const navigate = useNavigate();
-  const { clinic, initialised } = useSelector((state: AppState) => state.app);
+  const { clinic, initialised, errMsg } = useSelector(
+    (state: AppState) => state.app
+  );
   const dispatch = useDispatch();
   const handleInit = () => dispatch(actionsApp.init());
   const handleLogout = () => dispatch(actionsApp.logout());
@@ -104,6 +108,7 @@ function App() {
         initialised={initialised}
         toggleHome={toggleHome}
         toggleUpdate={toggleUpdate}
+        errMsg={errMsg}
       />
     );
   }
